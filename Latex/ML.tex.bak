@@ -1,0 +1,689 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb}
+\usepackage{latexsym}
+\usepackage{CJK}
+\usepackage{graphicx}
+\usepackage{algorithm}
+\usepackage{algorithmicx}
+\usepackage{algpseudocode}
+\usepackage{color}
+\usepackage{ulem}
+\begin{document}
+\begin{CJK*}{GBK}{song}
+
+\begin{equation}\left.\begin{aligned}
+  &
+f_{m}(\boldsymbol{\delta})={{I}_i(\boldsymbol{p}_m)-I_{j}(w(\boldsymbol{p}_m,D_{i}(\boldsymbol{p}_m),\boldsymbol{\delta}))},\boldsymbol{p}_m\in{\boldsymbol{\Omega}_{{D}_{i}}},1\leq m
+\leq n
+\\&
+W_{m}(\boldsymbol{\delta})=\left(2\sigma_{I}^{2}+\left(\dfrac{\partial_{r_{{p}_m}}(\boldsymbol{p}_m,\boldsymbol{\delta})}{\partial{D_i(\boldsymbol{p}_m)}}\right)^2V_{i}(\boldsymbol{p}_m)\right)^{-1}
+\\&
+\boldsymbol{f} = \begin{pmatrix}
+f_{1}(\boldsymbol{\delta})\\f_{2}(\boldsymbol{\delta})\\ \vdots\\f_{n}(\boldsymbol{\delta})
+\end{pmatrix},
+\boldsymbol{W} = \begin{pmatrix}
+\boldsymbol{W}_{1}&0&\cdots&0
+\\
+0&\boldsymbol{W}_{2}&\cdots&0
+\\
+\vdots&\vdots&\ddots&\vdots
+\\
+0&0&\cdots&\boldsymbol{W}_{n}
+\end{pmatrix}
+\\&
+E(\boldsymbol{\delta})=\boldsymbol{f}^{T}(\boldsymbol{\delta})\boldsymbol{W}(\boldsymbol{\delta})\boldsymbol{f}(\boldsymbol{\delta})
+\\&
+\boldsymbol{f}(\boldsymbol{\delta}+\triangle \boldsymbol{\delta})\approx{l(\triangle \boldsymbol{\delta})}=\boldsymbol{f}(\boldsymbol{\delta})+\boldsymbol{J}(\boldsymbol{\delta})\triangle \boldsymbol{\delta}
+\\&
+\frac{1}{2}E(\boldsymbol{\delta})\quad\approx{ L(\triangle \boldsymbol{\delta}) }=\frac{1}{2}l^{T}(\triangle \boldsymbol{\delta})l(\triangle \boldsymbol{\delta})
+\\&
+\qquad\qquad\qquad\qquad= \frac{1}{2}\boldsymbol{f}^{T}\boldsymbol{W}\boldsymbol{f}+\triangle \boldsymbol{\delta}^{T}\boldsymbol{J}^{T}\boldsymbol{W}\boldsymbol{f}+ \frac{1}{2}\triangle \boldsymbol{\delta}^{T}\boldsymbol{J}^{T}\boldsymbol{W}\boldsymbol{J}\triangle \boldsymbol{\delta}
+\\&
+\qquad\qquad\qquad\qquad=E+\triangle \boldsymbol{\delta}^{T}\boldsymbol{J}^{T}\boldsymbol{W}\boldsymbol{f}+ \frac{1}{2}\triangle \boldsymbol{\delta}^{T}\boldsymbol{J}^{T}\boldsymbol{W}\boldsymbol{J}\triangle \boldsymbol{\delta}
+\\&
+L^{'} = \boldsymbol{J}^{T}\boldsymbol{W}\boldsymbol{f}+\boldsymbol{J}^{T}\boldsymbol{W}\boldsymbol{J}\triangle \boldsymbol{\delta}=0
+\\&
+\triangle \boldsymbol{\delta}=-(\boldsymbol{J}^{T}\boldsymbol{W}\boldsymbol{J})^{-1}\boldsymbol{J}^{T}\boldsymbol{W}\boldsymbol{f}
+\end{aligned}\right.\end{equation}
+
+\begin{equation}\left\{\begin{aligned}
+&\boldsymbol{p}:=\begin{pmatrix}\boldsymbol{p}_x\\\boldsymbol{p}_y\\d_p\end{pmatrix} ,\boldsymbol{P}=\begin{pmatrix}X\\Y\\Z\end{pmatrix} = \begin{pmatrix}\boldsymbol{p}_x/d_p\\\boldsymbol{p}_y/d_p\\1/d_p\end{pmatrix}
+\\
+&w(\boldsymbol{p},D_{i}(\boldsymbol{p}),\boldsymbol{\delta}_{ji}):=\begin{pmatrix}x^{'}/z^{'}\\y^{'}/z^{'}\end{pmatrix},\begin{pmatrix}x^{'}\\y^{'}\\z^{'}\\1\end{pmatrix}=
+exp(\boldsymbol{\delta})\begin{pmatrix}\boldsymbol{p}_x/d_p\\\boldsymbol{p}_y/d_p\\1/d_p\\1\end{pmatrix}
+\end{aligned}\right.\tag{2.10}\end{equation}
+
+\begin{equation}\left.
+\begin{aligned}\\&
+\boldsymbol{q}=\left(
+                 \begin{array}{c}
+                   x^{'} \\
+                   y^{'} \\
+                   z^{'} \\
+                 \end{array}
+               \right)
+,
+w_m=(\boldsymbol{p}_m,D_{i}(\boldsymbol{p}_m),\boldsymbol{\delta})=\left(
+                 \begin{array}{c}
+                   x^{'}/z^{'} \\
+                   y^{'}/z^{'} \\
+                 \end{array}
+               \right)
+\\&
+\frac{\partial{f_m}}{\partial{\delta}}=-\frac{\partial{I_{j}(w_m)}}{\partial{\boldsymbol{\delta}}}
+= -\frac{\partial{I_{j}}}{\partial{w_m}}\frac{\partial{w_m}}{\partial{\boldsymbol{q}}}\frac{\partial{\boldsymbol{q}}}{\partial{\boldsymbol{\delta}}}
+\\&
+=-\left(
+            \begin{array}{cc}
+              g_x & g_y \\
+            \end{array}
+          \right)
+          \left(
+            \begin{array}{ccc}
+              \frac{1}{z^{'}} & 0               & -\frac{x^{'}}{z^{'}} \\
+              0               & \frac{1}{z^{'}} & -\frac{y^{'}}{z^{'}} \\
+            \end{array}
+          \right)
+          \left(
+            \begin{array}{cccccc}
+              1 & 0 & 0 & 0     & -z^{'} & y^{'}  \\
+              0 & 1 & 0 & z^{'} & 0      & -x^{'} \\
+              0 & 0 & 1 & -y^{'}& x^{'}  & 0      \\
+            \end{array}
+          \right)
+\\&
+= -\left(
+            \begin{array}{cccccc}
+              \frac{g_x}{z^{'}}
+              & \frac{g_y}{z^{'}}
+              & -\frac{x^{'}g_x}{{z^{'}}^{2}} -\frac{y^{'}g_y}{{z^{'}}^{2}}
+              & -\frac{x^{'}y^{'}g_x}{{z^{'}}^{2}} -(1+\frac{{y^{'}}^{2}}{{z^{'}}^{2}})g_y
+              & (1+ \frac{{x^{'}}^{2}}{{z^{'}}^{2}})g_x + \frac{x^{'}y^{'}g_y}{{z^{'}}^{2}}
+              & -\frac{y^{'}g_x}{z^{'}}+ \frac{x^{'}g_y}{z^{'}}\\
+            \end{array}
+          \right)
+\\&
+   \boldsymbol{J}=\left(
+                    \begin{array}{cccc}
+                      \frac{\partial{f_1}}{\partial{\delta}} & \frac{\partial{f_2}}{\partial{\delta}} & \cdots & \frac{\partial{f_N}}{\partial{\delta}} \\
+                    \end{array}
+                  \right)^{T}
+                  =\left(
+                     \begin{array}{cccc}
+                       \boldsymbol{J}_1 & \boldsymbol{J}_2 & \cdots & \boldsymbol{J}_N \\
+                     \end{array}
+                   \right)^{T}
+    \\
+\end{aligned}\right.\tag{2}\end{equation}
+
+
+\begin{equation}\left.
+\begin{aligned}\\&
+\begin{pmatrix}x^{'}\\y^{'}\\z^{'}\\1\end{pmatrix}=
+exp(\boldsymbol{\delta})\begin{pmatrix}\boldsymbol{p}_x/d_p\\\boldsymbol{p}_y/d_p\\1/d_p\\1\end{pmatrix}
+=\frac{1}{d_p}\left(
+                \begin{array}{cc}
+                  \boldsymbol{R}_1 & t_1 \\
+                  \boldsymbol{R}_2 & t_2 \\
+                  \boldsymbol{R}_3 & t_3 \\
+                  \boldsymbol{0}   & 1 \\
+                \end{array}
+              \right)_{4\times{4}}
+              \left(
+                \begin{array}{c}
+                    \\
+                  \boldsymbol{P} \\
+                   \\
+                  {d_p} \\
+                \end{array}
+              \right)_{4\times{1}}
+=\frac{1}{d_p}\left(
+                \begin{array}{c}
+                  \boldsymbol{R}_1\boldsymbol{P}+t_1d_p \\
+                  \boldsymbol{R}_2\boldsymbol{P}+t_2d_p \\
+                  \boldsymbol{R}_3\boldsymbol{P}+t_3d_p \\
+                  d_p \\
+                \end{array}
+              \right)
+\\&
+w_m=\begin{pmatrix}{x^{'}}/{z^{'}}\\{y^{'}}/{z^{'}}\end{pmatrix}
+=\begin{pmatrix}\frac{\boldsymbol{R}_1\boldsymbol{P}+t_1d_p}{\boldsymbol{R}_3\boldsymbol{P}+t_3d_p}\\
+                \frac{\boldsymbol{R}_2\boldsymbol{P}+t_2d_p}{\boldsymbol{R}_3\boldsymbol{P}+t_3d_p}\end{pmatrix}
+\\&
+\dfrac{\partial_{r_{{p}_m}}(\boldsymbol{p}_m,\boldsymbol{\delta})}{\partial{D_i(\boldsymbol{p}_m)}}
+:=\frac{\partial{f_m}}{\partial{d_{p_m}}}
+=-\frac{\partial{I_{j}}}{\partial{w_m}}\frac{\partial{w_m}}{\partial{d_{p_m}}}
+\\&
+=-\left(
+            \begin{array}{cc}
+              g_x & g_y \\
+            \end{array}
+          \right)
+          \left(
+            \begin{array}{ccc}
+              \frac{t_1z^{'}-x^{'}t_3}{{z^{'}}^{2}} \\
+              \frac{t_2z^{'}-y^{'}t_3}{{z^{'}}^{2}} \\
+            \end{array}
+          \right)
+=-(g_x\frac{t_1z^{'}-x^{'}t_3}{{z^{'}}^{2}}+g_y\frac{t_2z^{'}-y^{'}t_3}{{z^{'}}^{2}})
+\\&
+W_{m}:=\left(2\sigma_{I}^{2}+w_m^2V_m)\right)^{-1}
+    \\
+\end{aligned}\right.\tag{3}\end{equation}
+
+\begin{equation}\left.
+\begin{aligned}\\&
+   \boldsymbol{J}^{T}\boldsymbol{W}\boldsymbol{J}
+   =\left(
+                     \begin{array}{cccc}
+                       \boldsymbol{J}_1^{T} & \boldsymbol{J}_2^{T} & \cdots & \boldsymbol{J}_N^{T} \\
+                     \end{array}
+                   \right)_{6\times{N}}
+                   \begin{pmatrix}
+                    \boldsymbol{W}_{1}&0&\cdots&0
+                    \\
+                    0&\boldsymbol{W}_{2}&\cdots&0
+                    \\
+                    \vdots&\vdots&\ddots&\vdots
+                    \\
+                    0&0&\cdots&\boldsymbol{W}_{N}
+                    \end{pmatrix}_{N\times{N}}
+                    \left(
+                      \begin{array}{c}
+                        \boldsymbol{J}_1 \\
+                        \boldsymbol{J}_2 \\
+                        \vdots \\
+                        \boldsymbol{J}_N \\
+                      \end{array}
+                    \right)_{N\times{6}}
+                    \\&
+                    \qquad\qquad=\sum\limits_{i=1}^N(J_i^TW_iJ_i)_{6\times{6}}= \boldsymbol{A}_{6\times{6}}
+\\&
+\boldsymbol{J}^{T}\boldsymbol{W}=\sum\limits_{i=1}^N(J_i^TW_i)_{6\times{1}}= \boldsymbol{b}_{6\times{1}}
+\\&
+\qquad\qquad\qquad\boldsymbol{A}\boldsymbol{\delta}^{*}=\boldsymbol{b}
+\\&
+\qquad\qquad\Rightarrow\boldsymbol{L}\boldsymbol{D}\boldsymbol{L}^{T}\boldsymbol{\delta}^{*}=\boldsymbol{b}
+\\&
+\qquad\qquad\Rightarrow(\boldsymbol{L}\boldsymbol{D}^{1/2})(\boldsymbol{L}\boldsymbol{D}^{1/2})^{T}\boldsymbol{\delta}^{*}=\boldsymbol{b}
+\\&
+\qquad\qquad\Rightarrow\boldsymbol{G}\boldsymbol{G}^{T}\boldsymbol{\delta}^{*}=\boldsymbol{b}
+\\&
+\qquad\qquad\Rightarrow\boldsymbol{G}{\boldsymbol{\delta}^{*}}^{'}=\boldsymbol{b}
+\\&
+\qquad\qquad\Rightarrow\boldsymbol{G}^{T}{\boldsymbol{\delta}^{*}}={\boldsymbol{\delta}^{*}}^{'}
+    \\
+\end{aligned}\right.\tag{4}\end{equation}
+
+
+
+\begin{equation}\left.
+cost=\sum\limits_{i=j=1}^5(A(i,j)-B(i,j))^2
+\right.\tag{4.1}\end{equation}
+
+\begin{equation}\left.\begin{aligned}\\&
+\overrightarrow{s_1}=\overrightarrow{n_1}\times\overrightarrow{n_2}=\boldsymbol{t}\times\overrightarrow{n_1}\times\overrightarrow{Op}
+\\&\quad=
+                                                                    \left(
+                                                                      \begin{array}{ccc}
+                                                                        0    & -t_3 & t_2  \\
+                                                                        t_3  & 0    & -t_1 \\
+                                                                        -t_2 & t_1  & 0    \\
+                                                                      \end{array}
+                                                                    \right)
+                                                                    \left(
+                                                                      \begin{array}{ccc}
+                                                                        0    & -1 & 0  \\
+                                                                        1  & 0    & 0 \\
+                                                                        0 & 0  & 0    \\
+                                                                      \end{array}
+                                                                    \right)
+                                                                    \left(
+                                                                      \begin{array}{c}
+                                                                        a \\
+                                                                        b \\
+                                                                        1 \\
+                                                                      \end{array}
+                                                                    \right)
+                                                                    \\&
+                                                                   \quad =\left(\begin{array}{c}
+                                                                       -at_3+t_1 \\
+                                                                       -bt_3+t_2 \\
+                                                                       0
+                                                                     \end{array}\right)
+                                                                     =\left(\begin{array}{c}
+                                                                       epx \\
+                                                                       epy \\
+                                                                       0
+                                                                     \end{array}\right)
+\end{aligned}\right.\tag{4.2}\end{equation}
+
+\begin{equation}\left.
+\begin{aligned}\\&
+\qquad\qquad\qquad\qquad\qquad\quad{d}_2\boldsymbol{p}_{best}=\boldsymbol{R}({d}_1\boldsymbol{p}_{c})+\boldsymbol{t}
+\\&
+\qquad\qquad\Rightarrow\qquad\qquad\qquad\qquad 0=[\boldsymbol{p}_{best}]_{\times}({d}_1\boldsymbol{R}\boldsymbol{p}_{c}+\boldsymbol{t})
+\\&
+\qquad\qquad\Rightarrow\qquad{d}_1[\boldsymbol{p}_{best}]_{\times}\boldsymbol{R}\boldsymbol{p}_{c}=-[\boldsymbol{p}_{best}]_{\times}\boldsymbol{t}
+\\&
+\qquad\qquad\Rightarrow\qquad{d}_1\left(
+                              \begin{array}{ccc}
+                                0      & -1     & b_{1} \\
+                                1      & 0      & -a_{1} \\
+                                -b_{1} & a_{1}  & 0      \\
+                              \end{array}
+                            \right)
+                            \left(
+                              \begin{array}{c}
+                                R_{row0} \\
+                                R_{row1} \\
+                                R_{row2} \\
+                              \end{array}
+                            \right)
+                            \boldsymbol{p}_{c}
+                            =\left(
+                              \begin{array}{ccc}
+                                0      & 1     & -b_{1} \\
+                                -1      & 0      & a_{1} \\
+                                b_{1} & -a_{1}  & 0      \\
+                              \end{array}
+                            \right)
+                            \left(
+                              \begin{array}{c}
+                                t_{0} \\
+                                t_{1} \\
+                                t_{2} \\
+                              \end{array}
+                            \right)
+\\&
+\qquad\qquad\Rightarrow\qquad{d}_1
+                            \left(
+                              \begin{array}{c}
+                         b_{1}R_{row2}-R_{row1}        \\
+                          R_{row0}-a_{1}R_{row2}       \\
+                          a_{1}R_{row1}-b_{1}R_{row0}       \\
+                              \end{array}
+                            \right)
+                           \boldsymbol{p}_{c}
+                            =
+                            \left(
+                              \begin{array}{c}
+                           t_{1}-b_{1}t_{2}     \\
+                           a_{1}t_{2}-t_{0}           \\
+                           b_{1}t_{0}-a_{1}t_{1}   \\
+                              \end{array}
+                            \right)
+\\&
+\qquad\qquad\Rightarrow\qquad{d}_1=\frac{t_{1}-b_{1}t_{2}}{(b_{1}R_{row2}-R_{row1})\boldsymbol{p}_{c}}
+\\&
+\qquad\qquad\Rightarrow\qquad\quad=\frac{a_{1}t_{2}-t_{0}}{(R_{row0}-a_{1}R_{row2})\boldsymbol{p}_{c}}
+\\&
+\qquad\qquad\Rightarrow\qquad\quad=\frac{b_{1}t_{0}-a_{1}t_{1}}{(a_{1}R_{row1}-b_{1}R_{row0})\boldsymbol{p}_{c}}
+    \\
+\end{aligned}\right.\tag{4.4}\end{equation}
+
+\begin{equation}\left.\begin{aligned}
+  &L:=\left\{\boldsymbol{x}=\boldsymbol{p}_{close}+\lambda\left(\begin{array}{c}
+                          l_x \\
+                          l_y
+                        \end{array}\right)
+                        |\lambda=k|\mathbf{S}|,k\in{\mathbf{N}^+}
+  \right\}
+\end{aligned}\tag{4.4}\right.\end{equation}
+
+\begin{equation}\left.\begin{aligned}
+  &\mathcal{N}(\frac{{\sigma}^{2}_{p}{d}_{o}+{\sigma}^{2}_{o}{d}_{p}}{{{\sigma}^{2}_{p}+\sigma}^{2}_{o}},\frac{{\sigma}^{2}_{p}{\sigma}^{2}_{o}}{{\sigma}^{2}_{p}+{\sigma}^{2}_{o}})
+\end{aligned}\tag{2.14}\right.\end{equation}
+
+\begin{equation}\left.\begin{aligned}
+  &d_new=(d_p^{-1}-t_z)^{-1}
+  \\&
+  \sigma_{new}^{2}=\left(\frac{d_{new}}{d_p}\right)^4\sigma_{p}^2
+\end{aligned}\tag{2.14}\right.\end{equation}
+
+\begin{equation}f:=\left\{\begin{aligned}
+  &
+  X_{max}=MAX\{x_1,x_2,\ldots,x_m\}
+  \\&
+ X_{min}=MIN\{x_1,x_2,\ldots,x_m \}
+  \\&
+  H_{sum} = \frac{X_{max}-X_{min}}{H}
+  \\&
+  Z_{max}=MAX\{z_1,z_2,\ldots,z_m\}
+  \\&
+  Z_{min}=MIN\{z_1,z_2,\ldots,z_m\}
+  \\&
+  V_{sum} = \frac{Z_{max}-Z_{min}}{V}
+  \\&
+  \boldsymbol{p}_i = [x_i,z_i ]^T \in{\boldsymbol{P}},\boldsymbol{q}_i = [h_i,v_i ]^T\in{\boldsymbol{Q}}
+  \\&
+  h_i=\Big\lfloor\frac{x_i}{H}\Big\rfloor,v_i=\Big\lfloor\frac{z_i}{V}\Big\rfloor
+  \end{aligned}\tag{3.2}\right.\end{equation}
+
+
+\begin{algorithm}[h]
+        \caption{: Time optimized A* Algorithm}
+        \begin{algorithmic}[1] %每行显示行号
+            \Require ${\color{red}{\boldsymbol{Start}}}$,${\color{blue}{\boldsymbol{End}}}$,$\boldsymbol{Q}$
+            \Ensure Father node of $\boldsymbol{End}$
+            \Function{AStarSearch}{$\boldsymbol{Start}$,$\boldsymbol{End}$,$\boldsymbol{Q}$}
+                \State $\boldsymbol{open}$   = binary heap containing  ${\color{red}{\boldsymbol{Start}}}$ node
+                \State $\boldsymbol{closed}$ = empty set
+                \State $movecost(x,y)$  \,=\quad distance from node $x$ to node $y$
+                \While{${\color{blue}{\boldsymbol{End}}}$ node not in $\boldsymbol{open}$}
+                    \State $i$ = node with min $f(i)$ in $\boldsymbol{open}$
+                    \State remove $i$ from $\boldsymbol{open}$
+                    \State add $i$ to $\boldsymbol{closed}$
+                    \State $count = 0 $
+                     \For{$j$ = neighbor node of $i$ and not in $\boldsymbol{closed}$ and reachable in $\boldsymbol{Q}$}
+                        \State $count $++
+                        \State $cost = g(i) + movecost(i,j)$
+                            \If{ $j$ in $\boldsymbol{open}$ and $cost < g(j)$ }
+                                \State remove $j$ from $\boldsymbol{open}$
+                            \EndIf
+                            \If{ $j$ not in $\boldsymbol{open}$ and not in $\boldsymbol{closed}$ }
+                                \State add $j$ into {\color{black}{$\textbf{open}$}}
+                                \State $f(j) = g(j) + h(j)$
+                                \State set father node of $j$ is $i$
+                            \EndIf
+                     \EndFor
+                     \If{ $count == 0$ }
+                                \State can't find path
+                                \State break out
+                     \EndIf
+                 \EndWhile
+            \EndFunction
+        \end{algorithmic}
+    \end{algorithm}
+
+\begin{algorithm}[h]
+    \caption{: Linear Kalman Filter}
+    \begin{algorithmic}[1] %每行显示行号
+        \Require ${\boldsymbol{\mu}_{t-1}}, {\boldsymbol{\Sigma}_{t-1}},{\boldsymbol{z}_{t}}$
+        \Ensure ${\boldsymbol{\mu}_t}, {\boldsymbol{\Sigma}_t}$
+        \Function{Filter}{${\boldsymbol{\mu}_{t-1}}, {\boldsymbol{\Sigma}_{t-1}},{\boldsymbol{z}_{t}}$}
+            \State predict\quad$\overline{{\boldsymbol{\mu}}}_{t}$  = ${\boldsymbol{A}}{\boldsymbol{\mu}_{t-1}}$
+            \State \qquad\qquad$\overline{{\boldsymbol{\Sigma}}}_{t}$  = ${\boldsymbol{A}}{\boldsymbol{\Sigma}_{t-1}}{\boldsymbol{A}}^T$+ $\boldsymbol{R}_t$
+            \State update\quad$\boldsymbol{K}_t$=$\overline{{\boldsymbol{\Sigma}}}_{t}(\overline{{\boldsymbol{\Sigma}}}_{t}+
+            \boldsymbol{Q}_t)^{-1}$
+            \State\qquad\qquad ${{\boldsymbol{\mu}}}_{t}$  = $\overline{{\boldsymbol{\mu}}}_{t}$+
+            $\boldsymbol{K}_t({\boldsymbol{z}_{t}}-\overline{{\boldsymbol{\mu}}}_{t})$
+            \State \qquad\qquad${{\boldsymbol{\Sigma}}}_{t}$  =
+            $(\boldsymbol{E} - \boldsymbol{K}_t)\overline{{\boldsymbol{\Sigma}}}_{t}$
+        \EndFunction
+    \end{algorithmic}
+\end{algorithm}
+
+
+\begin{algorithm}[h]
+        \caption{Levenberg-Marquardt方法优化相机位姿}
+        \begin{algorithmic}[1] %每行显示行号
+            \Require $\boldsymbol{\mathcal{K}}_{i}$,$\boldsymbol{\mathcal{I}}_{j}$,$\boldsymbol{\delta}_{i(i-1)}$
+            ,$k_{max}$(最大迭代次数)
+            \Ensure $\boldsymbol{\delta}_{ji}$
+            \Function{TrackFrame}{$Array, left, middle, right$}
+                \State $v\gets 2$
+                \State $\boldsymbol{\delta}\gets \boldsymbol{\delta}_{i(i-1)}$
+                \State $\boldsymbol{f}_i$
+                \For{$i = 0 \to k_{max}-1$}
+                    \State $\boldsymbol{J}^{T}\boldsymbol{W}\boldsymbol{J}$
+                \While{$true$}
+                    \State slove $\boldsymbol{\delta}^{*}$
+                    \State update
+                    \State $\boldsymbol{f}_i$
+                    \State $error$=caclweight
+                    \If{$error<lastError$}
+                        \State $lastResidual$=$lastError$=$error$
+                        \If{$\lambda <=0.2$}
+                        \State $\lambda$=0
+                        \Else
+                        \State $\lambda$=$\frac{1}{2}\lambda$
+                        \EndIf
+                        \State break
+                    \Else
+                        \If{增量$<\varepsilon_1$}
+                            \State $i$=$k_{max}-1$
+                            \State break
+                        \EndIf
+                        \If{$\lambda$==0}
+                            \State $\lambda$=0.2
+                        \Else
+                        \State $\lambda$=2*inctry
+                        \EndIf
+                    \EndIf
+                \EndWhile
+                \EndFor
+                \State \Return{$\boldsymbol{\delta}$}
+            \EndFunction
+        \end{algorithmic}
+    \end{algorithm}
+
+
+\begin{equation}\left.\begin{aligned}
+&
+\ddot{X}_{t-1}\sim \mathcal{N}(0,k^2_1),
+\ddot{Z}_{t-1}   \sim \mathcal{N}(0,k^2_2),
+\ddot{\theta}_{t-1}   \sim \mathcal{N}(0,k^2_3),
+\\
+& \boldsymbol{R}_t
+=\begin{pmatrix}
+\frac{1}{4}T^4 k^2_1 & \frac{1}{2}T^3k^2_1  & 0  & 0  & 0  & 0
+\\
+\frac{1}{2}T^3 k^2_1  & T^2 k^2_1  & 0  & 0  & 0  & 0
+\\
+0  & 0 &\frac{1}{4}T^4 k^2_2 & \frac{1}{2}T^3 k^2_2  & 0  & 0
+\\
+0  & 0 &\frac{1}{2}T^3 k^2_2 & T^2 k^2_2 & 0  & 0
+\\
+0  & 0 & 0  & 0 &\frac{1}{4}T^4 k^2_3 & \frac{1}{2}T^3  k^2_3
+\\
+0  & 0 & 0  & 0 &\frac{1}{2}T^3 k^2_3  & T^2  k^2_3
+\end{pmatrix}
+\end{aligned}\tag{3.4}\right.\end{equation}
+
+\begin{equation}\left.\begin{aligned}
+\begin{pmatrix}
+cov(\varepsilon_1,\varepsilon_1) &cov(\varepsilon_1,\varepsilon_2)&\cdots&cov(\varepsilon_1,\varepsilon_6)
+\\cov(\varepsilon_2,\varepsilon_1)&cov(\varepsilon_2,\varepsilon_2)&\cdots&cov(\varepsilon_2,\varepsilon_6)
+\\ \vdots & \ddots  &\vdots
+\\cov(\varepsilon_6,\varepsilon_1)&cov(\varepsilon_6,\varepsilon_2)&\cdots&cov(\varepsilon_6,\varepsilon_6)
+\end{pmatrix}
+\end{aligned}\tag{3.4}\right.\end{equation}
+
+
+\begin{equation}\left.\begin{aligned}
+&
+\boldsymbol{\mathcal{F}}=\{\boldsymbol{I}_{1},\boldsymbol{I}_{2},\boldsymbol{I}_{3},\boldsymbol{I}_{4}\}
+\xi\Pi
+\frac{\textbf{p}}{\partial{\textbf{p}_w}},
+\begin{pmatrix}f_xz^{-1}&0&-xf_xz^{-2}&0\\0&f_yz^{-1}&-yf_yz^{-2}&0\\0&0&0&0\\0&0&z^{-2}&0\end{pmatrix}
+\\&
+(\sum\limits_{j\in{obs^t(\textbf{P})}}E_{ij}^{\textbf{p}}+\lambda E_{is}^{\textbf{p}})
+\end{aligned}\tag{3.4}\right.\end{equation}
+
+\begin{equation}\left.\begin{aligned}
+  &E(\delta)={\color{red}
+E_{1L2L}^{\textbf{p}_1}+ E_{2L1L}^{\textbf{p}_2}+ E_{2L3L}^{\textbf{p}_2}+
+E_{2L3L}^{\textbf{p}_3}+ E_{3L1L}^{\textbf{p}_4}+ E_{3L2L}^{\textbf{p}_4}+ E_{4L3L}^{\textbf{p}_5}
+}
+\\&
+\qquad\quad{\color{blue} +
+E_{1L1R}^{\textbf{p}_1}+ E_{2L2R}^{\textbf{p}_2} + E_{4L4R}^{\textbf{p}_5}
+}
+\\&
+\qquad=E_{d}(\delta)+E_{s}(\delta)
+\\&
+E_{s}(\delta)=
+\begin{pmatrix}
+r^{s}_{\textbf{p}_1}\\r^{s}_{\textbf{p}_2}\\r^{s}_{\textbf{p}_5}
+\end{pmatrix}^T
+\begin{pmatrix}
+{\lambda w_{\textbf{p}_1}}&0&0
+\\
+0&{\lambda w_{\textbf{p}_2}}&0
+\\
+0&0&{\lambda w_{\textbf{p}_5}}
+\end{pmatrix}
+\begin{pmatrix}
+r^{s}_{\textbf{p}_1}\\r^{s}_{\textbf{p}_2}\\r^{s}_{\textbf{p}_5}
+\end{pmatrix}
+=(\textbf{r}^s)^T\textbf{W}\textbf{r}^s
+\\&
+J_s=
+{\tiny
+\begin{pmatrix}
+\frac{\partial{r^{s}_{\textbf{p}_1}}}{\partial{\boldsymbol{\xi}_1}}
+\ldots
+&\frac{\partial{r^{s}_{\textbf{p}_1}}}{\partial{\boldsymbol{\xi}_4}}
+&\frac{\partial{r^{s}_{\textbf{p}_1}}}{\partial{d_{\textbf{p}_1}}}
+\ldots
+&\frac{\partial{r^{s}_{\textbf{p}_1}}}{\partial{d_{\textbf{p}_{5}}}}
+&\frac{\partial{r^{s}_{\textbf{p}_1}}}{\partial{a^L_1}}
+\ldots
+&\frac{\partial{r^{s}_{\textbf{p}_1}}}{\partial{b^R_4}}
+&\frac{\partial{r^{s}_{\textbf{p}_1}}}{\partial{f_x}}
+\ldots
+&\frac{\partial{r^{s}_{\textbf{p}_1}}}{\partial{c_y}}
+\\
+\frac{\partial{r^{s}_{\textbf{p}_2}}}{\partial{\boldsymbol{\xi}_1}}
+\ldots
+&\frac{\partial{r^{s}_{\textbf{p}_2}}}{\partial{\boldsymbol{\xi}_4}}
+&\frac{\partial{r^{s}_{\textbf{p}_2}}}{\partial{d_{\textbf{p}_1}}}
+\ldots
+&\frac{\partial{r^{s}_{\textbf{p}_2}}}{\partial{d_{\textbf{p}_{5}}}}
+&\frac{\partial{r^{s}_{\textbf{p}_2}}}{\partial{a^L_1}}
+\ldots
+&\frac{\partial{r^{s}_{\textbf{p}_2}}}{\partial{b^R_4}}
+&\frac{\partial{r^{s}_{\textbf{p}_2}}}{\partial{f_x}}
+\ldots
+&\frac{\partial{r^{s}_{\textbf{p}_2}}}{\partial{c_y}}
+\\
+\frac{\partial{r^{s}_{\textbf{p}_5}}}{\partial{\boldsymbol{\xi}_1}}
+\ldots
+&\frac{\partial{r^{s}_{\textbf{p}_5}}}{\partial{\boldsymbol{\xi}_4}}
+&\frac{\partial{r^{s}_{\textbf{p}_5}}}{\partial{d_{\textbf{p}_1}}}
+\ldots
+&\frac{\partial{r^{s}_{\textbf{p}_5}}}{\partial{d_{\textbf{p}_{5}}}}
+&\frac{\partial{r^{s}_{\textbf{p}_5}}}{\partial{a^L_1}}
+\ldots
+&\frac{\partial{r^{s}_{\textbf{p}_5}}}{\partial{b^R_4}}
+&\frac{\partial{r^{s}_{\textbf{p}_5}}}{\partial{f_x}}
+\ldots
+&\frac{\partial{r^{s}_{\textbf{p}_5}}}{\partial{c_y}}
+\\&
+\end{pmatrix}
+}
+\\&
+E_{d}(\delta)=
+\begin{pmatrix}
+(r^{d}_{\textbf{p}_1})_{12}\\(r^{d}_{\textbf{p}_1})_{21}\\\vdots\\(r^{d}_{\textbf{p}_5})_{43}
+\end{pmatrix}^T
+\begin{pmatrix}
+{ w_{\textbf{p}_1}}&0&\ldots&0
+\\
+0&{ w_{\textbf{p}_1}}&\ldots&0
+\\
+\vdots&\vdots&\ddots&\vdots
+\\
+0&0&\ldots&{ w_{\textbf{p}_5}}
+\end{pmatrix}
+\begin{pmatrix}
+(r^{d}_{\textbf{p}_1})_{12}\\(r^{d}_{\textbf{p}_1})_{21}\\\vdots\\(r^{d}_{\textbf{p}_5})_{43}
+\end{pmatrix}
+=(\textbf{r}^d)^T\textbf{W}\textbf{r}^d
+\end{aligned}\tag{2.2}\right.\end{equation}
+
+
+
+\begin{equation}\left.\begin{aligned}
+  &
+J_d=
+{\tiny
+\begin{pmatrix}
+\frac{\partial{(r^{d}_{\textbf{p}_1})_{12}}}{\partial{\boldsymbol{\xi}_1}}
+\ldots
+&\frac{\partial{(r^{d}_{\textbf{p}_1})_{12}}}{\partial{\boldsymbol{\xi}_4}}
+&\frac{\partial{(r^{d}_{\textbf{p}_1})_{12}}}{\partial{d_{\textbf{p}_1}}}
+\ldots
+&\frac{\partial{(r^{d}_{\textbf{p}_1})_{12}}}{\partial{d_{\textbf{p}_{5}}}}
+&\frac{\partial{(r^{d}_{\textbf{p}_1})_{12}}}{\partial{a^L_1}}
+\ldots
+&\frac{\partial{(r^{d}_{\textbf{p}_1})_{12}}}{\partial{b^R_4}}
+&\frac{\partial{(r^{d}_{\textbf{p}_1})_{12}}}{\partial{f_x}}
+\ldots
+&\frac{\partial{(r^{d}_{\textbf{p}_1})_{12}}}{\partial{c_y}}
+\\
+\frac{\partial{(r^{d}_{\textbf{p}_1})_{21}}}{\partial{\boldsymbol{\xi}_1}}
+\ldots
+&\frac{\partial{(r^{d}_{\textbf{p}_1})_{21}}}{\partial{\boldsymbol{\xi}_4}}
+&\frac{\partial{(r^{d}_{\textbf{p}_1})_{21}}}{\partial{d_{\textbf{p}_1}}}
+\ldots
+&\frac{\partial{(r^{d}_{\textbf{p}_1})_{21}}}{\partial{d_{\textbf{p}_{5}}}}
+&\frac{\partial{(r^{d}_{\textbf{p}_1})_{21}}}{\partial{a^L_1}}
+\ldots
+&\frac{\partial{(r^{d}_{\textbf{p}_1})_{21}}}{\partial{b^R_4}}
+&\frac{\partial{(r^{d}_{\textbf{p}_1})_{21}}}{\partial{f_x}}
+\ldots
+&\frac{\partial{(r^{d}_{\textbf{p}_1})_{21}}}{\partial{c_y}}
+\\
+\vdots&
+\vdots&
+\vdots&
+\vdots&
+\vdots&
+\vdots&
+\vdots&
+\vdots
+\\
+\frac{\partial{(r^{d}_{\textbf{p}_5})_{43}}}{\partial{\boldsymbol{\xi}_1}}
+\ldots
+&\frac{\partial{(r^{d}_{\textbf{p}_5})_{43}}}{\partial{\boldsymbol{\xi}_4}}
+&\frac{\partial{(r^{d}_{\textbf{p}_5})_{43}}}{\partial{d_{\textbf{p}_1}}}
+\ldots
+&\frac{\partial{(r^{d}_{\textbf{p}_5})_{43}}}{\partial{d_{\textbf{p}_{5}}}}
+&\frac{\partial{(r^{d}_{\textbf{p}_5})_{43}}}{\partial{a^L_1}}
+\ldots
+&\frac{\partial{(r^{d}_{\textbf{p}_5})_{43}}}{\partial{b^R_4}}
+&\frac{\partial{(r^{d}_{\textbf{p}_5})_{43}}}{\partial{f_x}}
+\ldots
+&\frac{\partial{(r^{d}_{\textbf{p}_5})_{43}}}{\partial{c_y}}
+\\&
+\end{pmatrix}
+}
+\end{aligned}\tag{2.2}\right.\end{equation}
+
+\begin{equation}\left.\begin{aligned}
+&
+(\textbf{J}_s^T \lambda \textbf{W}^s \textbf{J}_s+\textbf{J}_d^T\textbf{W}^d\textbf{J}_d)\delta^\ast=
+-(\textbf{J}_s^T \lambda \textbf{W}^s \textbf{r}_s+ \textbf{J}_d^T\textbf{W}^d\textbf{r}_d)
+\\&
+\textbf{J}_s\in{\mathbb{R}^{49\times{3}}},\textbf{W}^s\in{\mathbb{R}^{3\times{3}}},
+\textbf{J}_s\in{\mathbb{R}^{49\times{7}}},\textbf{W}^s\in{\mathbb{R}^{7\times{7}}},
+\\
+\end{aligned}\tag{2.2}\right.\end{equation}
+
+
+\begin{equation}\left.\begin{aligned}
+&
+\textbf{p}^{'}=d_\textbf{p}^{iR}\textbf{K}(\textbf{T}_{RL}((d_\textbf{p}^{iL})^{-1}\textbf{K}^{-1}\textbf{p}))
+\\&
+\frac{\partial{\textbf{p}^{'}}}{\partial{d_\textbf{p}^{iL}}} = 0 ?
+\end{aligned}\tag{2.2}\right.\end{equation}
+
+
+\begin{equation}\left.\begin{aligned}
+&
+\frac{\partial{(r^{d}_{\textbf{p}})}}{\partial{\boldsymbol{\xi_{i}}}} =
+\frac{\partial{I^L_j(\textbf{p}^{'})}}{\partial{\boldsymbol{\xi_{i}}}}  =
+\frac{\partial{I^L_j(\textbf{p}^{'})}}{\partial{\textbf{p}^{'}}} 
+\frac{\partial{\textbf{p}^{'}}}{\partial{\textbf{p}^{'}_{w}}} 
+\frac{\partial{\textbf{p}^{'}_{w}}}{\partial{\boldsymbol{\xi_{i}}}}
+\\&
+\textbf{p}^{'}_{w}=d_\textbf{p}^{jL}\textbf{K}(\textbf{T}_j\textbf{T}_i^{-1}((d_\textbf{p}^{iL})^{-1}\textbf{K}^{-1}\textbf{p}))
+\end{aligned}\tag{2.2}\right.\end{equation}
+
+
+\end{CJK*}
+\end{document}
+
+
