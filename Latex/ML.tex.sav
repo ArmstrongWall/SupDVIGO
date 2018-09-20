@@ -693,8 +693,30 @@ f_x^{-1}(d_\textbf{p}^{iL})^{-1}(u^i-c_x)\\f_y^{-1}(d_\textbf{p}^{iL})^{-1}(v^i-
 \end{pmatrix}
 \\&
 \textbf{p}^{'}_{w}=d_\textbf{p}^{jL}\textbf{K}(\textbf{T}_j\textbf{T}_i^{-1}((d_\textbf{p}^{iL})^{-1}\textbf{K}^{-1}\textbf{p}))
-\end{aligned}\tag{2.2}\right.\end{equation}
+\end{aligned}\tag{2.2}\right.\end{equation}p
 
+
+\begin{equation}\left.\begin{aligned}
+&
+\frac{\partial{(exp(\xi^{\bigwedge})\textbf{p}_w})}{\partial{\boldsymbol{\xi}}} =
+\frac{\partial{(\textbf{T}\textbf{p}_w)}}{\partial{\boldsymbol{\xi}}} = (\textbf{T}\textbf{p}_w)^\bigodot
+\\&
+\boldsymbol{\epsilon}\in{\mathbb{R}^3},
+
+\begin{equation}\left.\begin{aligned}
+&
+\frac{\partial{(exp(\xi^{\bigwedge})\textbf{p}_w})}{\partial{\boldsymbol{\xi}}} =
+\frac{\partial{(\textbf{T}\textbf{p}_w)}}{\partial{\boldsymbol{\xi}}} = (\textbf{T}\textbf{p}_w)^\bigodot
+\\&
+\boldsymbol{\epsilon}\in{\mathbb{R}^3},
+\begin{pmatrix}
+\boldsymbol{\epsilon}\\1
+\end{pmatrix}^{\bigodot}
+=\begin{pmatrix}
+\textbf{E}&-\boldsymbol{\epsilon}^{\bigwedge}\\\textbf{0}^T&\textbf{0}^T}
+\end{pmatrix}\in{\mathbb{R}^{4\times{6}}
+
+\end{aligned}\tag{2.2}\right.\end{equation}p
 
 \end{CJK*}
 \end{document}

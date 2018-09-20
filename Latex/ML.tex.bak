@@ -363,7 +363,7 @@ cost=\sum\limits_{i=j=1}^5(A(i,j)-B(i,j))^2
 
 \begin{algorithm}[h]
         \caption{: Time optimized A* Algorithm}
-        \begin{algorithmic}[1] %Ã¿ÐÐÏÔÊ¾ÐÐºÅ
+        \begin{algorithmic}[1] %Ã¿ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½Ðºï¿½
             \Require ${\color{red}{\boldsymbol{Start}}}$,${\color{blue}{\boldsymbol{End}}}$,$\boldsymbol{Q}$
             \Ensure Father node of $\boldsymbol{End}$
             \Function{AStarSearch}{$\boldsymbol{Start}$,$\boldsymbol{End}$,$\boldsymbol{Q}$}
@@ -398,7 +398,7 @@ cost=\sum\limits_{i=j=1}^5(A(i,j)-B(i,j))^2
 
 \begin{algorithm}[h]
     \caption{: Linear Kalman Filter}
-    \begin{algorithmic}[1] %Ã¿ÐÐÏÔÊ¾ÐÐºÅ
+    \begin{algorithmic}[1] %Ã¿ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½Ðºï¿½
         \Require ${\boldsymbol{\mu}_{t-1}}, {\boldsymbol{\Sigma}_{t-1}},{\boldsymbol{z}_{t}}$
         \Ensure ${\boldsymbol{\mu}_t}, {\boldsymbol{\Sigma}_t}$
         \Function{Filter}{${\boldsymbol{\mu}_{t-1}}, {\boldsymbol{\Sigma}_{t-1}},{\boldsymbol{z}_{t}}$}
@@ -416,10 +416,10 @@ cost=\sum\limits_{i=j=1}^5(A(i,j)-B(i,j))^2
 
 
 \begin{algorithm}[h]
-        \caption{Levenberg-Marquardt·½·¨ÓÅ»¯Ïà»úÎ»×Ë}
-        \begin{algorithmic}[1] %Ã¿ÐÐÏÔÊ¾ÐÐºÅ
+        \caption{Levenberg-Marquardtï¿½ï¿½ï¿½ï¿½ï¿½Å»ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½}
+        \begin{algorithmic}[1] %Ã¿ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½Ðºï¿½
             \Require $\boldsymbol{\mathcal{K}}_{i}$,$\boldsymbol{\mathcal{I}}_{j}$,$\boldsymbol{\delta}_{i(i-1)}$
-            ,$k_{max}$(×î´óµü´ú´ÎÊý)
+            ,$k_{max}$(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)
             \Ensure $\boldsymbol{\delta}_{ji}$
             \Function{TrackFrame}{$Array, left, middle, right$}
                 \State $v\gets 2$
@@ -441,7 +441,7 @@ cost=\sum\limits_{i=j=1}^5(A(i,j)-B(i,j))^2
                         \EndIf
                         \State break
                     \Else
-                        \If{ÔöÁ¿$<\varepsilon_1$}
+                        \If{ï¿½ï¿½ï¿½ï¿½$<\varepsilon_1$}
                             \State $i$=$k_{max}-1$
                             \State break
                         \EndIf
@@ -675,12 +675,27 @@ J_d=
 &
 \frac{\partial{(r^{d}_{\textbf{p}})}}{\partial{\boldsymbol{\xi_{i}}}} =
 \frac{\partial{I^L_j(\textbf{p}^{'})}}{\partial{\boldsymbol{\xi_{i}}}}  =
-\frac{\partial{I^L_j(\textbf{p}^{'})}}{\partial{\textbf{p}^{'}}} 
-\frac{\partial{\textbf{p}^{'}}}{\partial{\textbf{p}^{'}_{w}}} 
+\frac{\partial{I^L_j(\textbf{p}^{'})}}{\partial{\textbf{p}^{'}}}
+\frac{\partial{\textbf{p}^{'}}}{\partial{\textbf{p}^{'}_{w}}}
 \frac{\partial{\textbf{p}^{'}_{w}}}{\partial{\boldsymbol{\xi_{i}}}}
 \\&
 \textbf{p}^{'}_{w}=d_\textbf{p}^{jL}\textbf{K}(\textbf{T}_j\textbf{T}_i^{-1}((d_\textbf{p}^{iL})^{-1}\textbf{K}^{-1}\textbf{p}))
 \end{aligned}\tag{2.2}\right.\end{equation}
+
+\begin{equation}\left\{\begin{aligned}
+&
+\textbf{p}_{w}=
+\begin{pmatrix}
+x\\y\\z
+\end{pmatrix}
+=\begin{pmatrix}
+f_x^{-1}(d_\textbf{p}^{iL})^{-1}(u^i-c_x)\\f_y^{-1}(d_\textbf{p}^{iL})^{-1}(v^i-c_y)\\d_\textbf{p}^{iL}\\1
+\end{pmatrix}
+\\&
+\textbf{p}^{'}_{w}=d_\textbf{p}^{jL}\textbf{K}(\textbf{T}_j\textbf{T}_i^{-1}((d_\textbf{p}^{iL})^{-1}\textbf{K}^{-1}\textbf{p}))
+\end{aligned}\tag{2.2}\right.\end{equation}
+
+
 
 
 \end{CJK*}

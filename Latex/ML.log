@@ -1,7 +1,8 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2018.1.13)  20 SEP 2018 16:44
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2018.9.21)  21 SEP 2018 00:09
 entering extended mode
-**C:/Users/Johnny/Desktop/formula_derivation_stereo_VI_DSO/Latex/ML.tex
-(C:/Users/Johnny/Desktop/formula_derivation_stereo_VI_DSO/Latex/ML.tex
+**C:/Users/wzq/Desktop/git/formula_derivation_stereo_VI_DSO-master/Latex/ML.tex
+
+(C:/Users/wzq/Desktop/git/formula_derivation_stereo_VI_DSO-master/Latex/ML.tex
 LaTeX2e <2011/06/27>
 Babel <v3.8m> and hyphenation patterns for loaded.
 (C:\CTEX\MiKTeX\tex\latex\base\article.cls
@@ -195,7 +196,7 @@ Package color Info: Driver file: pdftex.def on input line 130.
 Package: ulem 2011/03/18
 \ULdepth=\dimen116
 )
-(C:\Users\Johnny\Desktop\formula_derivation_stereo_VI_DSO\Latex\ML.aux)
+(C:\Users\wzq\Desktop\git\formula_derivation_stereo_VI_DSO-master\Latex\ML.aux)
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 11.
 LaTeX Font Info:    ... okay on input line 11.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 11.
@@ -272,7 +273,6 @@ LaTeX Font Info:    Checking defaults for C41/song/m/n on input line 11.
 LaTeX Font Info:    ... okay on input line 11.
 LaTeX Font Info:    Checking defaults for C62/song/m/n on input line 11.
 LaTeX Font Info:    ... okay on input line 11.
-
 (C:\CTEX\MiKTeX\tex\context\base\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count110
@@ -364,41 +364,38 @@ Overfull \hbox (71.6752pt too wide) detected at line 653
  []
 
 [6] [7] [8]
-(C:\Users\Johnny\Desktop\formula_derivation_stereo_VI_DSO\Latex\ML.aux) ) 
+(C:\Users\wzq\Desktop\git\formula_derivation_stereo_VI_DSO-master\Latex\ML.aux)
+ ) 
 Here is how much of TeX's memory you used:
- 3883 strings out of 495354
- 45996 string characters out of 3183859
- 134562 words of memory out of 3000000
- 6982 multiletter control sequences out of 15000+200000
- 12504 words of font info for 49 fonts, out of 3000000 for 9000
+ 3861 strings out of 495354
+ 45681 string characters out of 3183859
+ 135614 words of memory out of 3000000
+ 6966 multiletter control sequences out of 15000+200000
+ 10711 words of font info for 43 fonts, out of 3000000 for 9000
  14 hyphenation exceptions out of 8191
- 27i,21n,25p,372b,505s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/CT
-EX/CTeX/fonts/truetype/chinese/simsun.ttf><C:/CTEX/CTeX/fonts/truetype/chinese/
-simsun.ttf><C:/CTEX/CTeX/fonts/truetype/chinese/simsun.ttf><C:/CTEX/CTeX/fonts/
-truetype/chinese/simsun.ttf><C:/CTEX/CTeX/fonts/truetype/chinese/simsun.ttf><C:
-/CTEX/CTeX/fonts/truetype/chinese/simsun.ttf><C:/CTEX/CTeX/fonts/truetype/chine
-se/simsun.ttf><C:/CTEX/CTeX/fonts/truetype/chinese/simsun.ttf><C:/CTEX/CTeX/fon
-ts/truetype/chinese/simsun.ttf><C:/CTEX/CTeX/fonts/truetype/chinese/simsun.ttf>
-<C:/CTEX/CTeX/fonts/truetype/chinese/simsun.ttf><C:/CTEX/MiKTeX/fonts/type1/pub
-lic/amsfonts/cm/cmbsy10.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx
-10.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx5.pfb><C:/CTEX/MiKTeX
-/fonts/type1/public/amsfonts/cm/cmbx7.pfb><C:/CTEX/MiKTeX/fonts/type1/public/am
-sfonts/cm/cmcsc10.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb
-><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/CTEX/MiKTeX/font
-s/type1/public/amsfonts/cm/cmmi5.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfont
-s/cm/cmmi7.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmmib10.pfb><C:/C
-TEX/MiKTeX/fonts/type1/public/amsfonts/cmextra/cmmib5.pfb><C:/CTEX/MiKTeX/fonts
-/type1/public/amsfonts/cmextra/cmmib7.pfb><C:/CTEX/MiKTeX/fonts/type1/public/am
-sfonts/cm/cmr10.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:
-/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/CTEX/MiKTeX/fonts/type
-1/public/amsfonts/cm/cmr8.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cm
-sy10.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/CTEX/MiKT
-eX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/CTEX/MiKTeX/fonts/type1/public/
-amsfonts/symbols/msbm10.pfb>
-Output written on ML.pdf (8 pages, 295888 bytes).
+ 27i,21n,25p,380b,504s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/CTEX/CTeX/fonts/truetype/chinese/simsun.ttf><C:/CTEX/CTeX/fonts/truetype/
+chinese/simsun.ttf><C:/CTEX/CTeX/fonts/truetype/chinese/simsun.ttf><C:/CTEX/CTe
+X/fonts/truetype/chinese/simsun.ttf><C:/CTEX/CTeX/fonts/truetype/chinese/simsun
+.ttf><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmbsy10.pfb><C:/CTEX/MiKTeX
+/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/CTEX/MiKTeX/fonts/type1/public/a
+msfonts/cm/cmbx5.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx7.pfb><
+C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/CTEX/MiKTeX/fonts
+/type1/public/amsfonts/cm/cmex10.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfont
+s/cmextra/cmex7.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><
+C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/CTEX/MiKTeX/fonts/t
+ype1/public/amsfonts/cm/cmmi7.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/c
+m/cmmib10.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cmextra/cmmib5.pfb><C
+:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cmextra/cmmib7.pfb><C:/CTEX/MiKTeX/fo
+nts/type1/public/amsfonts/cm/cmr10.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfo
+nts/cm/cmr5.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/CTE
+X/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/CTEX/MiKTeX/fonts/type1/pu
+blic/amsfonts/cm/cmsy10.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy
+5.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/CTEX/MiKTeX/
+fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on ML.pdf (8 pages, 276562 bytes).
 PDF statistics:
- 153 PDF objects out of 1000 (max. 8388607)
+ 133 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

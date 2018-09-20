@@ -363,7 +363,7 @@ cost=\sum\limits_{i=j=1}^5(A(i,j)-B(i,j))^2
 
 \begin{algorithm}[h]
         \caption{: Time optimized A* Algorithm}
-        \begin{algorithmic}[1] %Ã¿ÐÐÏÔÊ¾ÐÐºÅ
+        \begin{algorithmic}[1] %Ã¿ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½Ðºï¿½
             \Require ${\color{red}{\boldsymbol{Start}}}$,${\color{blue}{\boldsymbol{End}}}$,$\boldsymbol{Q}$
             \Ensure Father node of $\boldsymbol{End}$
             \Function{AStarSearch}{$\boldsymbol{Start}$,$\boldsymbol{End}$,$\boldsymbol{Q}$}
@@ -398,7 +398,7 @@ cost=\sum\limits_{i=j=1}^5(A(i,j)-B(i,j))^2
 
 \begin{algorithm}[h]
     \caption{: Linear Kalman Filter}
-    \begin{algorithmic}[1] %Ã¿ÐÐÏÔÊ¾ÐÐºÅ
+    \begin{algorithmic}[1] %Ã¿ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½Ðºï¿½
         \Require ${\boldsymbol{\mu}_{t-1}}, {\boldsymbol{\Sigma}_{t-1}},{\boldsymbol{z}_{t}}$
         \Ensure ${\boldsymbol{\mu}_t}, {\boldsymbol{\Sigma}_t}$
         \Function{Filter}{${\boldsymbol{\mu}_{t-1}}, {\boldsymbol{\Sigma}_{t-1}},{\boldsymbol{z}_{t}}$}
@@ -416,10 +416,10 @@ cost=\sum\limits_{i=j=1}^5(A(i,j)-B(i,j))^2
 
 
 \begin{algorithm}[h]
-        \caption{Levenberg-Marquardt·½·¨ÓÅ»¯Ïà»úÎ»×Ë}
-        \begin{algorithmic}[1] %Ã¿ÐÐÏÔÊ¾ÐÐºÅ
+        \caption{Levenberg-Marquardtï¿½ï¿½ï¿½ï¿½ï¿½Å»ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½}
+        \begin{algorithmic}[1] %Ã¿ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½Ðºï¿½
             \Require $\boldsymbol{\mathcal{K}}_{i}$,$\boldsymbol{\mathcal{I}}_{j}$,$\boldsymbol{\delta}_{i(i-1)}$
-            ,$k_{max}$(×î´óµü´ú´ÎÊý)
+            ,$k_{max}$(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)
             \Ensure $\boldsymbol{\delta}_{ji}$
             \Function{TrackFrame}{$Array, left, middle, right$}
                 \State $v\gets 2$
@@ -441,7 +441,7 @@ cost=\sum\limits_{i=j=1}^5(A(i,j)-B(i,j))^2
                         \EndIf
                         \State break
                     \Else
-                        \If{ÔöÁ¿$<\varepsilon_1$}
+                        \If{ï¿½ï¿½ï¿½ï¿½$<\varepsilon_1$}
                             \State $i$=$k_{max}-1$
                             \State break
                         \EndIf
@@ -693,6 +693,40 @@ f_x^{-1}(d_\textbf{p}^{iL})^{-1}(u^i-c_x)\\f_y^{-1}(d_\textbf{p}^{iL})^{-1}(v^i-
 \end{pmatrix}
 \\&
 \textbf{p}^{'}_{w}=d_\textbf{p}^{jL}\textbf{K}(\textbf{T}_j\textbf{T}_i^{-1}((d_\textbf{p}^{iL})^{-1}\textbf{K}^{-1}\textbf{p}))
+\end{aligned}\tag{2.2}\right.\end{equation}
+
+\begin{equation}\left.\begin{aligned}
+&
+\xi^{\bigwedge}=
+\begin{pmatrix}
+\boldsymbol{\rho}\\\boldsymbol{\phi}
+\end{pmatrix}^{\bigwedge}=
+\begin{pmatrix}
+\boldsymbol{\phi}^{\bigwedge}&\boldsymbol{\rho}
+\\\textbf{0}^T&\textbf{0}^T
+\end{pmatrix}\in{\mathbb{R}^{4\times{4}}}
+\\&
+\boldsymbol{\epsilon}\in{\mathbb{R}^3},
+\begin{pmatrix}
+\boldsymbol{\epsilon}\\1
+\end{pmatrix}^{\odot}
+=\begin{pmatrix}
+\textbf{E}&-\boldsymbol{\epsilon}^{\bigwedge}\\\textbf{0}^T&\textbf{0}^T
+\end{pmatrix}\in{\mathbb{R}^{4\times{6}}}
+\\&
+\frac{\partial{(exp(\xi^{\bigwedge})\textbf{p}_w})}{\partial{\boldsymbol{\xi}}} =
+\frac{\partial{(\textbf{T}\textbf{p}_w)}}{\partial{\boldsymbol{\xi}}} = (\textbf{T}\textbf{p}_w)^{\odot}
+\\&
+\textbf{T}\textbf{p}_w=exp(\xi^{\bigwedge})\textbf{p}_w\approx(\textbf{E}+\xi^{\bigwedge})\textbf{p}_w
+\\&
+\frac{\partial{(exp(\xi^{\bigwedge})\textbf{p}_w})}{\partial{\boldsymbol{\xi}}}\approx
+\frac{\partial{(\textbf{E}+\xi^{\bigwedge})}}{\partial{\boldsymbol{\xi}}}=
+\textbf{0}+\frac{\partial{(\xi^{\bigwedge}\textbf{p}_w})}{\partial{\boldsymbol{\xi}}}\approx(\textbf{T}\textbf{p}_w)^{\odot}
+\\&
+since,\frac{\partial{(\textbf{T}\textbf{p}_w)}}{\partial{\boldsymbol{\xi}}} = (\textbf{T}^{-1}\textbf{p}_w)^{\odot}=
+\frac{\partial{(exp(-\xi^{\bigwedge})\textbf{p}_w})}{\partial{\boldsymbol{\xi}}}
+\\&
+=\frac{\partial{(\textbf{E}-\xi^{\bigwedge})}}{\partial{\boldsymbol{\xi}}}=-(\textbf{T}\textbf{p}_w)^{\odot}
 \end{aligned}\tag{2.2}\right.\end{equation}
 
 
