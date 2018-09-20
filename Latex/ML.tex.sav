@@ -7,7 +7,7 @@
 \usepackage{algorithmicx}
 \usepackage{algpseudocode}
 \usepackage{color}
-
+\usepackage{ulem}
 \begin{document}
 \begin{CJK*}{GBK}{song}
 
@@ -501,6 +501,199 @@ cov(\varepsilon_1,\varepsilon_1) &cov(\varepsilon_1,\varepsilon_2)&\cdots&cov(\v
 (\sum\limits_{j\in{obs^t(\textbf{P})}}E_{ij}^{\textbf{p}}+\lambda E_{is}^{\textbf{p}})
 \end{aligned}\tag{3.4}\right.\end{equation}
 
+\begin{equation}\left.\begin{aligned}
+  &E(\delta)={\color{red}
+E_{1L2L}^{\textbf{p}_1}+ E_{2L1L}^{\textbf{p}_2}+ E_{2L3L}^{\textbf{p}_2}+
+E_{2L3L}^{\textbf{p}_3}+ E_{3L1L}^{\textbf{p}_4}+ E_{3L2L}^{\textbf{p}_4}+ E_{4L3L}^{\textbf{p}_5}
+}
+\\&
+\qquad\quad{\color{blue} +
+E_{1L1R}^{\textbf{p}_1}+ E_{2L2R}^{\textbf{p}_2} + E_{4L4R}^{\textbf{p}_5}
+}
+\\&
+\qquad=E_{d}(\delta)+E_{s}(\delta)
+\\&
+E_{s}(\delta)=
+\begin{pmatrix}
+r^{s}_{\textbf{p}_1}\\r^{s}_{\textbf{p}_2}\\r^{s}_{\textbf{p}_5}
+\end{pmatrix}^T
+\begin{pmatrix}
+{\lambda w_{\textbf{p}_1}}&0&0
+\\
+0&{\lambda w_{\textbf{p}_2}}&0
+\\
+0&0&{\lambda w_{\textbf{p}_5}}
+\end{pmatrix}
+\begin{pmatrix}
+r^{s}_{\textbf{p}_1}\\r^{s}_{\textbf{p}_2}\\r^{s}_{\textbf{p}_5}
+\end{pmatrix}
+=(\textbf{r}^s)^T\textbf{W}\textbf{r}^s
+\\&
+J_s=
+{\tiny
+\begin{pmatrix}
+\frac{\partial{r^{s}_{\textbf{p}_1}}}{\partial{\boldsymbol{\xi}_1}}
+\ldots
+&\frac{\partial{r^{s}_{\textbf{p}_1}}}{\partial{\boldsymbol{\xi}_4}}
+&\frac{\partial{r^{s}_{\textbf{p}_1}}}{\partial{d_{\textbf{p}_1}}}
+\ldots
+&\frac{\partial{r^{s}_{\textbf{p}_1}}}{\partial{d_{\textbf{p}_{5}}}}
+&\frac{\partial{r^{s}_{\textbf{p}_1}}}{\partial{a^L_1}}
+\ldots
+&\frac{\partial{r^{s}_{\textbf{p}_1}}}{\partial{b^R_4}}
+&\frac{\partial{r^{s}_{\textbf{p}_1}}}{\partial{f_x}}
+\ldots
+&\frac{\partial{r^{s}_{\textbf{p}_1}}}{\partial{c_y}}
+\\
+\frac{\partial{r^{s}_{\textbf{p}_2}}}{\partial{\boldsymbol{\xi}_1}}
+\ldots
+&\frac{\partial{r^{s}_{\textbf{p}_2}}}{\partial{\boldsymbol{\xi}_4}}
+&\frac{\partial{r^{s}_{\textbf{p}_2}}}{\partial{d_{\textbf{p}_1}}}
+\ldots
+&\frac{\partial{r^{s}_{\textbf{p}_2}}}{\partial{d_{\textbf{p}_{5}}}}
+&\frac{\partial{r^{s}_{\textbf{p}_2}}}{\partial{a^L_1}}
+\ldots
+&\frac{\partial{r^{s}_{\textbf{p}_2}}}{\partial{b^R_4}}
+&\frac{\partial{r^{s}_{\textbf{p}_2}}}{\partial{f_x}}
+\ldots
+&\frac{\partial{r^{s}_{\textbf{p}_2}}}{\partial{c_y}}
+\\
+\frac{\partial{r^{s}_{\textbf{p}_5}}}{\partial{\boldsymbol{\xi}_1}}
+\ldots
+&\frac{\partial{r^{s}_{\textbf{p}_5}}}{\partial{\boldsymbol{\xi}_4}}
+&\frac{\partial{r^{s}_{\textbf{p}_5}}}{\partial{d_{\textbf{p}_1}}}
+\ldots
+&\frac{\partial{r^{s}_{\textbf{p}_5}}}{\partial{d_{\textbf{p}_{5}}}}
+&\frac{\partial{r^{s}_{\textbf{p}_5}}}{\partial{a^L_1}}
+\ldots
+&\frac{\partial{r^{s}_{\textbf{p}_5}}}{\partial{b^R_4}}
+&\frac{\partial{r^{s}_{\textbf{p}_5}}}{\partial{f_x}}
+\ldots
+&\frac{\partial{r^{s}_{\textbf{p}_5}}}{\partial{c_y}}
+\\&
+\end{pmatrix}
+}
+\\&
+E_{d}(\delta)=
+\begin{pmatrix}
+(r^{d}_{\textbf{p}_1})_{12}\\(r^{d}_{\textbf{p}_1})_{21}\\\vdots\\(r^{d}_{\textbf{p}_5})_{43}
+\end{pmatrix}^T
+\begin{pmatrix}
+{ w_{\textbf{p}_1}}&0&\ldots&0
+\\
+0&{ w_{\textbf{p}_1}}&\ldots&0
+\\
+\vdots&\vdots&\ddots&\vdots
+\\
+0&0&\ldots&{ w_{\textbf{p}_5}}
+\end{pmatrix}
+\begin{pmatrix}
+(r^{d}_{\textbf{p}_1})_{12}\\(r^{d}_{\textbf{p}_1})_{21}\\\vdots\\(r^{d}_{\textbf{p}_5})_{43}
+\end{pmatrix}
+=(\textbf{r}^d)^T\textbf{W}\textbf{r}^d
+\end{aligned}\tag{2.2}\right.\end{equation}
+
+
+
+\begin{equation}\left.\begin{aligned}
+  &
+J_d=
+{\tiny
+\begin{pmatrix}
+\frac{\partial{(r^{d}_{\textbf{p}_1})_{12}}}{\partial{\boldsymbol{\xi}_1}}
+\ldots
+&\frac{\partial{(r^{d}_{\textbf{p}_1})_{12}}}{\partial{\boldsymbol{\xi}_4}}
+&\frac{\partial{(r^{d}_{\textbf{p}_1})_{12}}}{\partial{d_{\textbf{p}_1}}}
+\ldots
+&\frac{\partial{(r^{d}_{\textbf{p}_1})_{12}}}{\partial{d_{\textbf{p}_{5}}}}
+&\frac{\partial{(r^{d}_{\textbf{p}_1})_{12}}}{\partial{a^L_1}}
+\ldots
+&\frac{\partial{(r^{d}_{\textbf{p}_1})_{12}}}{\partial{b^R_4}}
+&\frac{\partial{(r^{d}_{\textbf{p}_1})_{12}}}{\partial{f_x}}
+\ldots
+&\frac{\partial{(r^{d}_{\textbf{p}_1})_{12}}}{\partial{c_y}}
+\\
+\frac{\partial{(r^{d}_{\textbf{p}_1})_{21}}}{\partial{\boldsymbol{\xi}_1}}
+\ldots
+&\frac{\partial{(r^{d}_{\textbf{p}_1})_{21}}}{\partial{\boldsymbol{\xi}_4}}
+&\frac{\partial{(r^{d}_{\textbf{p}_1})_{21}}}{\partial{d_{\textbf{p}_1}}}
+\ldots
+&\frac{\partial{(r^{d}_{\textbf{p}_1})_{21}}}{\partial{d_{\textbf{p}_{5}}}}
+&\frac{\partial{(r^{d}_{\textbf{p}_1})_{21}}}{\partial{a^L_1}}
+\ldots
+&\frac{\partial{(r^{d}_{\textbf{p}_1})_{21}}}{\partial{b^R_4}}
+&\frac{\partial{(r^{d}_{\textbf{p}_1})_{21}}}{\partial{f_x}}
+\ldots
+&\frac{\partial{(r^{d}_{\textbf{p}_1})_{21}}}{\partial{c_y}}
+\\
+\vdots&
+\vdots&
+\vdots&
+\vdots&
+\vdots&
+\vdots&
+\vdots&
+\vdots
+\\
+\frac{\partial{(r^{d}_{\textbf{p}_5})_{43}}}{\partial{\boldsymbol{\xi}_1}}
+\ldots
+&\frac{\partial{(r^{d}_{\textbf{p}_5})_{43}}}{\partial{\boldsymbol{\xi}_4}}
+&\frac{\partial{(r^{d}_{\textbf{p}_5})_{43}}}{\partial{d_{\textbf{p}_1}}}
+\ldots
+&\frac{\partial{(r^{d}_{\textbf{p}_5})_{43}}}{\partial{d_{\textbf{p}_{5}}}}
+&\frac{\partial{(r^{d}_{\textbf{p}_5})_{43}}}{\partial{a^L_1}}
+\ldots
+&\frac{\partial{(r^{d}_{\textbf{p}_5})_{43}}}{\partial{b^R_4}}
+&\frac{\partial{(r^{d}_{\textbf{p}_5})_{43}}}{\partial{f_x}}
+\ldots
+&\frac{\partial{(r^{d}_{\textbf{p}_5})_{43}}}{\partial{c_y}}
+\\&
+\end{pmatrix}
+}
+\end{aligned}\tag{2.2}\right.\end{equation}
+
+\begin{equation}\left.\begin{aligned}
+&
+(\textbf{J}_s^T \lambda \textbf{W}^s \textbf{J}_s+\textbf{J}_d^T\textbf{W}^d\textbf{J}_d)\delta^\ast=
+-(\textbf{J}_s^T \lambda \textbf{W}^s \textbf{r}_s+ \textbf{J}_d^T\textbf{W}^d\textbf{r}_d)
+\\&
+\textbf{J}_s\in{\mathbb{R}^{49\times{3}}},\textbf{W}^s\in{\mathbb{R}^{3\times{3}}},
+\textbf{J}_s\in{\mathbb{R}^{49\times{7}}},\textbf{W}^s\in{\mathbb{R}^{7\times{7}}},
+\\
+\end{aligned}\tag{2.2}\right.\end{equation}
+
+
+\begin{equation}\left.\begin{aligned}
+&
+\textbf{p}^{'}=d_\textbf{p}^{iR}\textbf{K}(\textbf{T}_{RL}((d_\textbf{p}^{iL})^{-1}\textbf{K}^{-1}\textbf{p}))
+\\&
+\frac{\partial{\textbf{p}^{'}}}{\partial{d_\textbf{p}^{iL}}} = 0 ?
+\end{aligned}\tag{2.2}\right.\end{equation}
+
+
+\begin{equation}\left.\begin{aligned}
+&
+\frac{\partial{(r^{d}_{\textbf{p}})}}{\partial{\boldsymbol{\xi_{i}}}} =
+\frac{\partial{I^L_j(\textbf{p}^{'})}}{\partial{\boldsymbol{\xi_{i}}}}  =
+\frac{\partial{I^L_j(\textbf{p}^{'})}}{\partial{\textbf{p}^{'}}}
+\frac{\partial{\textbf{p}^{'}}}{\partial{\textbf{p}^{'}_{w}}}
+\frac{\partial{\textbf{p}^{'}_{w}}}{\partial{\boldsymbol{\xi_{i}}}}
+\\&
+\textbf{p}^{'}_{w}=d_\textbf{p}^{jL}\textbf{K}(\textbf{T}_j\textbf{T}_i^{-1}((d_\textbf{p}^{iL})^{-1}\textbf{K}^{-1}\textbf{p}))
+\end{aligned}\tag{2.2}\right.\end{equation}
+
+\begin{equation}\left\{\begin{aligned}
+&
+\textbf{p}_{w}=
+\begin{pmatrix}
+x\\y\\z
+\end{pmatrix}
+=\begin{pmatrix}
+f_x^{-1}(d_\textbf{p}^{iL})^{-1}(u^i-c_x)\\f_y^{-1}(d_\textbf{p}^{iL})^{-1}(v^i-c_y)\\d_\textbf{p}^{iL}\\1
+\end{pmatrix}
+\\&
+\textbf{p}^{'}_{w}=d_\textbf{p}^{jL}\textbf{K}(\textbf{T}_j\textbf{T}_i^{-1}((d_\textbf{p}^{iL})^{-1}\textbf{K}^{-1}\textbf{p}))
+\end{aligned}\tag{2.2}\right.\end{equation}
 
 
 \end{CJK*}

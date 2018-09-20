@@ -675,9 +675,22 @@ J_d=
 &
 \frac{\partial{(r^{d}_{\textbf{p}})}}{\partial{\boldsymbol{\xi_{i}}}} =
 \frac{\partial{I^L_j(\textbf{p}^{'})}}{\partial{\boldsymbol{\xi_{i}}}}  =
-\frac{\partial{I^L_j(\textbf{p}^{'})}}{\partial{\textbf{p}^{'}}} 
-\frac{\partial{\textbf{p}^{'}}}{\partial{\textbf{p}^{'}_{w}}} 
+\frac{\partial{I^L_j(\textbf{p}^{'})}}{\partial{\textbf{p}^{'}}}
+\frac{\partial{\textbf{p}^{'}}}{\partial{\textbf{p}^{'}_{w}}}
 \frac{\partial{\textbf{p}^{'}_{w}}}{\partial{\boldsymbol{\xi_{i}}}}
+\\&
+\textbf{p}^{'}_{w}=d_\textbf{p}^{jL}\textbf{K}(\textbf{T}_j\textbf{T}_i^{-1}((d_\textbf{p}^{iL})^{-1}\textbf{K}^{-1}\textbf{p}))
+\end{aligned}\tag{2.2}\right.\end{equation}
+
+\begin{equation}\left\{\begin{aligned}
+&
+\textbf{p}_{w}=
+\begin{pmatrix}
+x\\y\\z
+\end{pmatrix}
+=\begin{pmatrix}
+f_x^{-1}(d_\textbf{p}^{iL})^{-1}(u^i-c_x)\\f_y^{-1}(d_\textbf{p}^{iL})^{-1}(v^i-c_y)\\d_\textbf{p}^{iL}\\1
+\end{pmatrix}
 \\&
 \textbf{p}^{'}_{w}=d_\textbf{p}^{jL}\textbf{K}(\textbf{T}_j\textbf{T}_i^{-1}((d_\textbf{p}^{iL})^{-1}\textbf{K}^{-1}\textbf{p}))
 \end{aligned}\tag{2.2}\right.\end{equation}
