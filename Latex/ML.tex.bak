@@ -695,8 +695,51 @@ f_x^{-1}(d_\textbf{p}^{iL})^{-1}(u^i-c_x)\\f_y^{-1}(d_\textbf{p}^{iL})^{-1}(v^i-
 \textbf{p}^{'}_{w}=d_\textbf{p}^{jL}\textbf{K}(\textbf{T}_j\textbf{T}_i^{-1}((d_\textbf{p}^{iL})^{-1}\textbf{K}^{-1}\textbf{p}))
 \end{aligned}\tag{2.2}\right.\end{equation}
 
+\begin{equation}\left.\begin{aligned}
+&
+\xi^{\bigwedge}=
+\begin{pmatrix}
+\boldsymbol{\rho}\\\boldsymbol{\phi}
+\end{pmatrix}^{\bigwedge}=
+\begin{pmatrix}
+\boldsymbol{\phi}^{\bigwedge}&\boldsymbol{\rho}
+\\\textbf{0}^T&\textbf{0}^T
+\end{pmatrix}\in{\mathbb{R}^{4\times{4}}}
+\\&
+\boldsymbol{\epsilon}\in{\mathbb{R}^3},
+\begin{pmatrix}
+\boldsymbol{\epsilon}\\1
+\end{pmatrix}^{\odot}
+=\begin{pmatrix}
+\textbf{E}&-\boldsymbol{\epsilon}^{\bigwedge}\\\textbf{0}^T&\textbf{0}^T
+\end{pmatrix}\in{\mathbb{R}^{4\times{6}}}
+\\&
+\frac{\partial{(exp(\xi^{\bigwedge})\textbf{p}_w})}{\partial{\boldsymbol{\xi}}} =
+\frac{\partial{(\textbf{T}\textbf{p}_w)}}{\partial{\boldsymbol{\xi}}} = (\textbf{T}\textbf{p}_w)^{\odot}
+\\&
+\textbf{T}\textbf{p}_w=exp(\xi^{\bigwedge})\textbf{p}_w\approx(\textbf{E}+\xi^{\bigwedge})\textbf{p}_w
+\\&
+\frac{\partial{(exp(\xi^{\bigwedge})\textbf{p}_w})}{\partial{\boldsymbol{\xi}}}\approx
+\frac{\partial{(\textbf{E}+\xi^{\bigwedge})}}{\partial{\boldsymbol{\xi}}}=
+\textbf{0}+\frac{\partial{(\xi^{\bigwedge}\textbf{p}_w})}{\partial{\boldsymbol{\xi}}}\approx(\textbf{T}\textbf{p}_w)^{\odot}
+\\&
+since,\frac{\partial{(\textbf{T}\textbf{p}_w)}}{\partial{\boldsymbol{\xi}}} = (\textbf{T}^{-1}\textbf{p}_w)^{\odot}=
+\frac{\partial{(exp(-\xi^{\bigwedge})\textbf{p}_w})}{\partial{\boldsymbol{\xi}}}
+\\&
+=\frac{\partial{(\textbf{E}-\xi^{\bigwedge})}}{\partial{\boldsymbol{\xi}}}=-(\textbf{T}\textbf{p}_w)^{\odot}
+\end{aligned}\tag{2.2}\right.\end{equation}
 
-
+\begin{equation}\left.\begin{aligned}
+&
+\frac{\partial{(r^{d}_{\textbf{p}})_{ij}}}{\partial{d_\textbf{p}^{iL}}} =
+\frac{\partial{(I^L_j(\textbf{p}^{'}))}}{\partial{\boldsymbol{\xi_{i}}}}  =
+\frac{\partial{(I^L_j(\textbf{p}^{'}))}}{\partial{\textbf{p}^{'}}}
+\frac{\partial{\textbf{p}^{'}}}{\partial{\textbf{p}^{'}_{w}}}
+\frac{\partial{\textbf{p}^{'}_{w}}}{\partial{\boldsymbol{\xi_{i}}}}
+\\&
+\textbf{p}^{'}_{w}=d_\textbf{p}^{jL}\textbf{K}(\textbf{T}_j\textbf{T}_i^{-1}\textbf{p}_w)
+=d_\textbf{p}^{jL}\textbf{K}(\textbf{T}_j\textbf{T}_i^{-1}((d_\textbf{p}^{iL})^{-1}\textbf{K}^{-1}\textbf{p}))
+\end{aligned}\tag{2.2}\right.\end{equation}
 
 \end{CJK*}
 \end{document}
