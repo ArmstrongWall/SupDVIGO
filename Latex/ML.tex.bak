@@ -729,19 +729,117 @@ since,\frac{\partial{(\textbf{T}\textbf{p}_w)}}{\partial{\boldsymbol{\xi}}} = (\
 =\frac{\partial{(\textbf{E}-\xi^{\bigwedge})}}{\partial{\boldsymbol{\xi}}}=-(\textbf{T}\textbf{p}_w)^{\odot}
 \end{aligned}\tag{2.2}\right.\end{equation}
 
+
 \begin{equation}\left.\begin{aligned}
 &
 \frac{\partial{(r^{d}_{\textbf{p}})_{ij}}}{\partial{d_\textbf{p}^{iL}}} =
-\frac{\partial{(I^L_j(\textbf{p}^{'}))}}{\partial{\boldsymbol{\xi_{i}}}}  =
+\frac{\partial{(I^L_j(\textbf{p}^{'}))}}{\partial{d_\textbf{p}^{iL}}}  =
 \frac{\partial{(I^L_j(\textbf{p}^{'}))}}{\partial{\textbf{p}^{'}}}
-\frac{\partial{\textbf{p}^{'}}}{\partial{\textbf{p}^{'}_{w}}}
-\frac{\partial{\textbf{p}^{'}_{w}}}{\partial{\boldsymbol{\xi_{i}}}}
+\frac{\partial{\textbf{p}^{'}}}{\partial{d_\textbf{p}^{iL}}}
 \\&
-\textbf{p}^{'}_{w}=d_\textbf{p}^{jL}\textbf{K}(\textbf{T}_j\textbf{T}_i^{-1}\textbf{p}_w)
-=d_\textbf{p}^{jL}\textbf{K}(\textbf{T}_j\textbf{T}_i^{-1}((d_\textbf{p}^{iL})^{-1}\textbf{K}^{-1}\textbf{p}))
+\textbf{p}^{'}=d_\textbf{p}^{jL}\textbf{K}(\textbf{T}_j\textbf{T}_i^{-1}\textbf{p}_w)
+\\&
+assume:
+\textbf{T}_j\textbf{T}_i^{-1}=
+\left(
+  \begin{array}{cccc}
+    r^{ji}_{11} & r^{ji}_{12} & r^{ji}_{13} & t^{ji}_{1} \\
+    r^{ji}_{21} & r^{ji}_{22} & r^{ji}_{23} & t^{ji}_{2} \\
+    r^{ji}_{31} & r^{ji}_{32} & r^{ji}_{33} & t^{ji}_{3} \\
+    0 & 0 & 0 & 1 \\
+  \end{array}
+\right)
+\\&
+\textbf{p}^{'}_w=
+\left(
+  \begin{array}{cccc}
+    r^{ji}_{11}f_x^{-1}(d_\textbf{p}^{iL})^{-1}(u^i-c_x) + r^{ji}_{12}f_y^{-1}(d_\textbf{p}^{iL})^{-1}(v^i-c_y)  + 
+    r^{ji}_{13}d_\textbf{p}^{iL}^{-1} + t^{ji}_{1} \\
+    r^{ji}_{21}f_x^{-1}(d_\textbf{p}^{iL})^{-1}(u^i-c_x) + r^{ji}_{22}f_y^{-1}(d_\textbf{p}^{iL})^{-1}(v^i-c_y)
+    + r^{ji}_{23}d_\textbf{p}^{iL}^{-1} + t^{ji}_{2} \\
+    r^{ji}_{31}f_x^{-1}(d_\textbf{p}^{iL})^{-1}(u^i-c_x)
+    + r^{ji}_{32}f_y^{-1}(d_\textbf{p}^{iL})^{-1}(v^i-c_y)+
+     r^{ji}_{33}d_\textbf{p}^{iL}^{-1} + t^{ji}_{3} \\
+     1 \\
+  \end{array}
+\right)
+=\begin{pmatrix}x^{'}\\y^{'}\\z^{'}\\1\end{pmatrix}
+\\&since,d_\textbf{p}^{jL}=(z^{'})^{-1},
 \end{aligned}\tag{2.2}\right.\end{equation}
+
+\begin{equation}\left.\begin{aligned}
+&
+assume:
+\textbf{T}_{RL}=
+\left(
+  \begin{array}{cccc}
+    1 & 0 & 0 & t_{1} \\
+    0 & 1 & 0 & 0     \\
+    0 & 0 & 1 & 0     \\
+    0 & 0 & 0 & 1     \\
+  \end{array}
+\right)
+\\&
+\textbf{p}^{'}=d_\textbf{p}^{iR}\textbf{K}(\textbf{T}_{RL}\textbf{p}_w)
+\\&
+=d_\textbf{p}^{iL}
+\left(
+  \begin{array}{cccc}
+    f_x & 0 & c_x & 0 \\
+    0 & f_y & c_y & 0 \\
+    0 & 0 & 1 & 0     \\
+    0 & 0 & 0 & 1     \\
+  \end{array}
+\right)
+\begin{pmatrix}
+f_x^{-1}(d_\textbf{p}^{iL})^{-1}(u^i-c_x)+t_1
+\\f_y^{-1}(d_\textbf{p}^{iL})^{-1}(v^i-c_y)
+\\(d_\textbf{p}^{iL})^{-1}
+\\1
+\end{pmatrix}
+=\begin{pmatrix}
+u^i+t_1f_xd_\textbf{p}^{iL}
+\\v^i
+\\1
+\\d_\textbf{p}^{iL}
+\end{pmatrix}
+\\&
+\frac{\partial{r^{s}_{\textbf{p}}}}{\partial{d_\textbf{p}^{iL}}} =
+\frac{\partial{(I^L_j(\textbf{p}^{'}))}}{\partial{d_\textbf{p}^{iL}}}  =
+\frac{\partial{(I^L_j(\textbf{p}^{'}))}}{\partial{\textbf{p}^{'}}}
+\frac{\partial{\textbf{p}^{'}}}{\partial{d_\textbf{p}^{iL}}}
+=(g_x,g_y,0,0)\begin{pmatrix}
+t_1f_x
+\\0
+\\0
+\\1
+\end{pmatrix}
+=g_xt_1f_x
+\\&
+\end{aligned}\tag{2.2}\right.\end{equation}
+
 
 \end{CJK*}
 \end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

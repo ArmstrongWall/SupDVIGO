@@ -363,7 +363,7 @@ cost=\sum\limits_{i=j=1}^5(A(i,j)-B(i,j))^2
 
 \begin{algorithm}[h]
         \caption{: Time optimized A* Algorithm}
-        \begin{algorithmic}[1] %Ã¿ÐÐÏÔÊ¾ÐÐºÅ
+        \begin{algorithmic}[1] %Ã¿ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½Ðºï¿½
             \Require ${\color{red}{\boldsymbol{Start}}}$,${\color{blue}{\boldsymbol{End}}}$,$\boldsymbol{Q}$
             \Ensure Father node of $\boldsymbol{End}$
             \Function{AStarSearch}{$\boldsymbol{Start}$,$\boldsymbol{End}$,$\boldsymbol{Q}$}
@@ -398,7 +398,7 @@ cost=\sum\limits_{i=j=1}^5(A(i,j)-B(i,j))^2
 
 \begin{algorithm}[h]
     \caption{: Linear Kalman Filter}
-    \begin{algorithmic}[1] %Ã¿ÐÐÏÔÊ¾ÐÐºÅ
+    \begin{algorithmic}[1] %Ã¿ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½Ðºï¿½
         \Require ${\boldsymbol{\mu}_{t-1}}, {\boldsymbol{\Sigma}_{t-1}},{\boldsymbol{z}_{t}}$
         \Ensure ${\boldsymbol{\mu}_t}, {\boldsymbol{\Sigma}_t}$
         \Function{Filter}{${\boldsymbol{\mu}_{t-1}}, {\boldsymbol{\Sigma}_{t-1}},{\boldsymbol{z}_{t}}$}
@@ -416,10 +416,10 @@ cost=\sum\limits_{i=j=1}^5(A(i,j)-B(i,j))^2
 
 
 \begin{algorithm}[h]
-        \caption{Levenberg-Marquardt·½·¨ÓÅ»¯Ïà»úÎ»×Ë}
-        \begin{algorithmic}[1] %Ã¿ÐÐÏÔÊ¾ÐÐºÅ
+        \caption{Levenberg-Marquardtï¿½ï¿½ï¿½ï¿½ï¿½Å»ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½}
+        \begin{algorithmic}[1] %Ã¿ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½Ðºï¿½
             \Require $\boldsymbol{\mathcal{K}}_{i}$,$\boldsymbol{\mathcal{I}}_{j}$,$\boldsymbol{\delta}_{i(i-1)}$
-            ,$k_{max}$(×î´óµü´ú´ÎÊý)
+            ,$k_{max}$(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)
             \Ensure $\boldsymbol{\delta}_{ji}$
             \Function{TrackFrame}{$Array, left, middle, right$}
                 \State $v\gets 2$
@@ -441,7 +441,7 @@ cost=\sum\limits_{i=j=1}^5(A(i,j)-B(i,j))^2
                         \EndIf
                         \State break
                     \Else
-                        \If{ÔöÁ¿$<\varepsilon_1$}
+                        \If{ï¿½ï¿½ï¿½ï¿½$<\varepsilon_1$}
                             \State $i$=$k_{max}-1$
                             \State break
                         \EndIf
@@ -693,32 +693,153 @@ f_x^{-1}(d_\textbf{p}^{iL})^{-1}(u^i-c_x)\\f_y^{-1}(d_\textbf{p}^{iL})^{-1}(v^i-
 \end{pmatrix}
 \\&
 \textbf{p}^{'}_{w}=d_\textbf{p}^{jL}\textbf{K}(\textbf{T}_j\textbf{T}_i^{-1}((d_\textbf{p}^{iL})^{-1}\textbf{K}^{-1}\textbf{p}))
-\end{aligned}\tag{2.2}\right.\end{equation}p
-
-
-\begin{equation}\left.\begin{aligned}
-&
-\frac{\partial{(exp(\xi^{\bigwedge})\textbf{p}_w})}{\partial{\boldsymbol{\xi}}} =
-\frac{\partial{(\textbf{T}\textbf{p}_w)}}{\partial{\boldsymbol{\xi}}} = (\textbf{T}\textbf{p}_w)^\bigodot
-\\&
-\boldsymbol{\epsilon}\in{\mathbb{R}^3},
+\end{aligned}\tag{2.2}\right.\end{equation}
 
 \begin{equation}\left.\begin{aligned}
 &
-\frac{\partial{(exp(\xi^{\bigwedge})\textbf{p}_w})}{\partial{\boldsymbol{\xi}}} =
-\frac{\partial{(\textbf{T}\textbf{p}_w)}}{\partial{\boldsymbol{\xi}}} = (\textbf{T}\textbf{p}_w)^\bigodot
+\xi^{\bigwedge}=
+\begin{pmatrix}
+\boldsymbol{\rho}\\\boldsymbol{\phi}
+\end{pmatrix}^{\bigwedge}=
+\begin{pmatrix}
+\boldsymbol{\phi}^{\bigwedge}&\boldsymbol{\rho}
+\\\textbf{0}^T&\textbf{0}^T
+\end{pmatrix}\in{\mathbb{R}^{4\times{4}}}
 \\&
 \boldsymbol{\epsilon}\in{\mathbb{R}^3},
 \begin{pmatrix}
 \boldsymbol{\epsilon}\\1
-\end{pmatrix}^{\bigodot}
+\end{pmatrix}^{\odot}
 =\begin{pmatrix}
-\textbf{E}&-\boldsymbol{\epsilon}^{\bigwedge}\\\textbf{0}^T&\textbf{0}^T}
-\end{pmatrix}\in{\mathbb{R}^{4\times{6}}
+\textbf{E}&-\boldsymbol{\epsilon}^{\bigwedge}\\\textbf{0}^T&\textbf{0}^T
+\end{pmatrix}\in{\mathbb{R}^{4\times{6}}}
+\\&
+\frac{\partial{(exp(\xi^{\bigwedge})\textbf{p}_w})}{\partial{\boldsymbol{\xi}}} =
+\frac{\partial{(\textbf{T}\textbf{p}_w)}}{\partial{\boldsymbol{\xi}}} = (\textbf{T}\textbf{p}_w)^{\odot}
+\\&
+\textbf{T}\textbf{p}_w=exp(\xi^{\bigwedge})\textbf{p}_w\approx(\textbf{E}+\xi^{\bigwedge})\textbf{p}_w
+\\&
+\frac{\partial{(exp(\xi^{\bigwedge})\textbf{p}_w})}{\partial{\boldsymbol{\xi}}}\approx
+\frac{\partial{(\textbf{E}+\xi^{\bigwedge})}}{\partial{\boldsymbol{\xi}}}=
+\textbf{0}+\frac{\partial{(\xi^{\bigwedge}\textbf{p}_w})}{\partial{\boldsymbol{\xi}}}\approx(\textbf{T}\textbf{p}_w)^{\odot}
+\\&
+since,\frac{\partial{(\textbf{T}\textbf{p}_w)}}{\partial{\boldsymbol{\xi}}} = (\textbf{T}^{-1}\textbf{p}_w)^{\odot}=
+\frac{\partial{(exp(-\xi^{\bigwedge})\textbf{p}_w})}{\partial{\boldsymbol{\xi}}}
+\\&
+=\frac{\partial{(\textbf{E}-\xi^{\bigwedge})}}{\partial{\boldsymbol{\xi}}}=-(\textbf{T}\textbf{p}_w)^{\odot}
+\end{aligned}\tag{2.2}\right.\end{equation}
 
-\end{aligned}\tag{2.2}\right.\end{equation}p
+
+\begin{equation}\left.\begin{aligned}
+&
+\frac{\partial{(r^{d}_{\textbf{p}})_{ij}}}{\partial{d_\textbf{p}^{iL}}} =
+\frac{\partial{(I^L_j(\textbf{p}^{'}))}}{\partial{d_\textbf{p}^{iL}}}  =
+\frac{\partial{(I^L_j(\textbf{p}^{'}))}}{\partial{\textbf{p}^{'}}}
+\frac{\partial{\textbf{p}^{'}}}{\partial{d_\textbf{p}^{iL}}}
+\\&
+\textbf{p}^{'}=d_\textbf{p}^{jL}\textbf{K}(\textbf{T}_j\textbf{T}_i^{-1}\textbf{p}_w)
+\\&
+assume:
+\textbf{T}_j\textbf{T}_i^{-1}=
+\left(
+  \begin{array}{cccc}
+    r^{ji}_{11} & r^{ji}_{12} & r^{ji}_{13} & t^{ji}_{1} \\
+    r^{ji}_{21} & r^{ji}_{22} & r^{ji}_{23} & t^{ji}_{2} \\
+    r^{ji}_{31} & r^{ji}_{32} & r^{ji}_{33} & t^{ji}_{3} \\
+    0 & 0 & 0 & 1 \\
+  \end{array}
+\right)
+\\&
+\textbf{p}^{'}_w=
+\left(
+  \begin{array}{cccc}
+    r^{ji}_{11}f_x^{-1}(d_\textbf{p}^{iL})^{-1}(u^i-c_x) + r^{ji}_{12}f_y^{-1}(d_\textbf{p}^{iL})^{-1}(v^i-c_y)  + 
+    r^{ji}_{13}d_\textbf{p}^{iL} + t^{ji}_{1} \\
+    r^{ji}_{21}f_x^{-1}(d_\textbf{p}^{iL})^{-1}(u^i-c_x) + r^{ji}_{22}f_y^{-1}(d_\textbf{p}^{iL})^{-1}(v^i-c_y)
+    + r^{ji}_{23}d_\textbf{p}^{iL} + t^{ji}_{2} \\
+    r^{ji}_{31}f_x^{-1}(d_\textbf{p}^{iL})^{-1}(u^i-c_x)
+    + r^{ji}_{32}f_y^{-1}(d_\textbf{p}^{iL})^{-1}(v^i-c_y)+
+     r^{ji}_{33}d_\textbf{p}^{iL} + t^{ji}_{3} \\
+     1 \\
+  \end{array}
+\right)
+=\begin{pmatrix}x^{'}\\y^{'}\\z^{'}\\1\end{pmatrix}
+\\&since,d_\textbf{p}^{jL}=(z^{'})^{-1},
+\end{aligned}\tag{2.2}\right.\end{equation}
+
+\begin{equation}\left.\begin{aligned}
+&
+assume:
+\textbf{T}_{RL}=
+\left(
+  \begin{array}{cccc}
+    1 & 0 & 0 & t_{1} \\
+    0 & 1 & 0 & 0     \\
+    0 & 0 & 1 & 0     \\
+    0 & 0 & 0 & 1     \\
+  \end{array}
+\right)
+\\&
+\textbf{p}^{'}=d_\textbf{p}^{iR}\textbf{K}(\textbf{T}_{RL}\textbf{p}_w)
+\\&
+=d_\textbf{p}^{iL}
+\left(
+  \begin{array}{cccc}
+    f_x & 0 & c_x & 0 \\
+    0 & f_y & c_y & 0 \\
+    0 & 0 & 1 & 0     \\
+    0 & 0 & 0 & 1     \\
+  \end{array}
+\right)
+\begin{pmatrix}
+f_x^{-1}(d_\textbf{p}^{iL})^{-1}(u^i-c_x)+t_1
+\\f_y^{-1}(d_\textbf{p}^{iL})^{-1}(v^i-c_y)
+\\(d_\textbf{p}^{iL})^{-1}
+\\1
+\end{pmatrix}
+=\begin{pmatrix}
+u^i+t_1f_xd_\textbf{p}^{iL}
+\\v^i
+\\1
+\\d_\textbf{p}^{iL}
+\end{pmatrix}
+\\&
+\frac{\partial{r^{s}_{\textbf{p}}}}{\partial{d_\textbf{p}^{iL}}} =
+\frac{\partial{(I^L_j(\textbf{p}^{'}))}}{\partial{d_\textbf{p}^{iL}}}  =
+\frac{\partial{(I^L_j(\textbf{p}^{'}))}}{\partial{\textbf{p}^{'}}}
+\frac{\partial{\textbf{p}^{'}}}{\partial{d_\textbf{p}^{iL}}}
+=(g_x,g_y,0,0)\begin{pmatrix}
+t_1f_x
+\\0
+\\0
+\\1
+\end{pmatrix}
+=g_xt_1f_x
+\\&
+\end{aligned}\tag{2.2}\right.\end{equation}
+
 
 \end{CJK*}
 \end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
