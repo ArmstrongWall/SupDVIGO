@@ -782,7 +782,7 @@ assume:
                0
                \end{pmatrix}
 \\&
-\Rightarrow 
+\Rightarrow
 \frac{\partial{(r^{d}_{\textbf{p}})_{ij}}}{\partial{d_\textbf{p}^{iL}}} =
 \frac{\partial{(I^L_j(\textbf{p}^{'}))}}{\partial{d_\textbf{p}^{iL}}}  =
 \frac{\partial{(I^L_j(\textbf{p}^{'}))}}{\partial{\textbf{p}^{'}}}
@@ -900,6 +900,55 @@ t_1f_x
 \\&
 \end{aligned}\tag{2.2}\right.\end{equation}
 
+\begin{equation}\left.\begin{aligned}
+&
+\frac{\partial{\textbf{p}^{'}_{w}}}{\partial{\boldsymbol{\xi_{i}}}}=\textbf{T}_j
+\frac{\partial{(\textbf{T}_i^{-1}\textbf{p}^{'}_{w}})}{\partial{\boldsymbol{\xi_{i}}}}
+=-\textbf{T}_j(\textbf{T}_i\textbf{p}_w)^{\odot}
+\\&
+\frac{\partial{\textbf{p}^{'}_{w}}}{\partial{\boldsymbol{\xi_{j}}}}=
+\frac{\partial{(\textbf{T}_j\textbf{T}_i^{-1}\textbf{p}_{w}})}{\partial{\boldsymbol{\xi_{i}}}}
+=(\textbf{T}_j\textbf{T}_i^{-1}\textbf{p}_w)^{\odot}
+\\&
+=\begin{pmatrix}
+x^{'}\\y^{'}\\z^{'}\\1
+\end{pmatrix}^{\odot}
+=\begin{pmatrix}
+  1&0&0&     0&z^{'} &-y^{'}
+\\0&1&0&-z^{'}&0     &x^{'}
+\\0&1&0& y^{'}&-x^{'}&0
+\\0&0&0&0&0&0
+\end{pmatrix}
+\\&
+\Rightarrow
+\frac{\partial{(r^{d}_{\textbf{p}})_{ij}}}{\partial{\boldsymbol{\xi_{j}}}}=
+\frac{\partial{(I^L_j(\textbf{p}^{'}))}}{\partial{\textbf{p}^{'}}}
+\frac{\partial{\textbf{p}^{'}}}{\partial{\textbf{p}^{'}_{w}}}
+\frac{\partial{\textbf{p}^{'}_{w}}}{\partial{\boldsymbol{\xi_{j}}}}
+\\&
+=(g_x^{'},g_y^{'},0,0)
+\begin{pmatrix}
+f_x(z^{'})^{-1}&0&-x^{'}f_x(z^{'})^{-2}&0
+\\0&f_y(z^{'})^{-1}&-y^{'}f_y(z^{'})^{-2}&0
+\\0&0&0&0
+\\0&0&(z^{'})^{-2}&0
+\end{pmatrix}
+\begin{pmatrix}
+  1&0&0&     0&z^{'} &-y^{'}
+\\0&1&0&-z^{'}&0     &x^{'}
+\\0&0&1& y^{'}&-x^{'}&0
+\\0&0&0&0&0&0
+\end{pmatrix}
+\\&
+=\begin{pmatrix}
+ g_x^{'}f_x(z^{'})^{-1}
+\\g_y^{'}f_y(z^{'})^{-1}
+\\-(g_x^{'}x^{'}f_x + g_y^{'}y^{'}f_y)(z^{'})^{-2}
+\\-g_y^{'}f_y-(g_x^{'}x^{'}y^{'}f_x+g_y^{'}(y^{'})^{2}f_y)(z^{'})^{-2}
+\\g_x^{'}f_x +(g_x^{'}(x^{'})^{2}f_x+g_y^{'}x^{'}y^{'}f_y)(z^{'})^{-2}
+\\-g_x^{'}f_xy^{'}(z^{'})^{-1}+g_y^{'}f_yx^{'}(z^{'})^{-1}
+\end{pmatrix}^{T}
+\end{aligned}\tag{2.2}\right.\end{equation}
 
 \end{CJK*}
 \end{document}

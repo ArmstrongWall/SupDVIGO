@@ -732,11 +732,6 @@ since,\frac{\partial{(\textbf{T}\textbf{p}_w)}}{\partial{\boldsymbol{\xi}}} = (\
 
 \begin{equation}\left.\begin{aligned}
 &
-\frac{\partial{(r^{d}_{\textbf{p}})_{ij}}}{\partial{d_\textbf{p}^{iL}}} =
-\frac{\partial{(I^L_j(\textbf{p}^{'}))}}{\partial{d_\textbf{p}^{iL}}}  =
-\frac{\partial{(I^L_j(\textbf{p}^{'}))}}{\partial{\textbf{p}^{'}}}
-\frac{\partial{\textbf{p}^{'}}}{\partial{d_\textbf{p}^{iL}}}
-\\&
 \textbf{p}^{'}=d_\textbf{p}^{jL}\textbf{K}(\textbf{T}_j\textbf{T}_i^{-1}\textbf{p}_w)
 \\&
 assume:
@@ -753,19 +748,106 @@ assume:
 \textbf{p}^{'}_w=
 \left(
   \begin{array}{cccc}
-    r^{ji}_{11}f_x^{-1}(d_\textbf{p}^{iL})^{-1}(u^i-c_x) + r^{ji}_{12}f_y^{-1}(d_\textbf{p}^{iL})^{-1}(v^i-c_y)  + 
-    r^{ji}_{13}d_\textbf{p}^{iL}^{-1} + t^{ji}_{1} \\
+    r^{ji}_{11}f_x^{-1}(d_\textbf{p}^{iL})^{-1}(u^i-c_x) + r^{ji}_{12}f_y^{-1}(d_\textbf{p}^{iL})^{-1}(v^i-c_y)  +
+    r^{ji}_{13}(d_\textbf{p}^{iL})^{-1} + t^{ji}_{1} \\
     r^{ji}_{21}f_x^{-1}(d_\textbf{p}^{iL})^{-1}(u^i-c_x) + r^{ji}_{22}f_y^{-1}(d_\textbf{p}^{iL})^{-1}(v^i-c_y)
-    + r^{ji}_{23}d_\textbf{p}^{iL}^{-1} + t^{ji}_{2} \\
+    + r^{ji}_{23}(d_\textbf{p}^{iL})^{-1} + t^{ji}_{2} \\
     r^{ji}_{31}f_x^{-1}(d_\textbf{p}^{iL})^{-1}(u^i-c_x)
     + r^{ji}_{32}f_y^{-1}(d_\textbf{p}^{iL})^{-1}(v^i-c_y)+
-     r^{ji}_{33}d_\textbf{p}^{iL}^{-1} + t^{ji}_{3} \\
+     r^{ji}_{33}(d_\textbf{p}^{iL})^{-1} + t^{ji}_{3} \\
      1 \\
   \end{array}
 \right)
+\\&=
+\begin{pmatrix}\dfrac{a}{d_\textbf{p}^{iL}}+t^{ji}_{1}\\
+               \dfrac{b}{d_\textbf{p}^{iL}}+t^{ji}_{2}\\
+               \dfrac{c}{d_\textbf{p}^{iL}}+t^{ji}_{3}\\
+               1
+               \end{pmatrix}
 =\begin{pmatrix}x^{'}\\y^{'}\\z^{'}\\1\end{pmatrix}
-\\&since,d_\textbf{p}^{jL}=(z^{'})^{-1},
+\Rightarrow d_\textbf{p}^{jL}=(z^{'})^{-1},
+\textbf{p}^{'}=\begin{pmatrix}f_x{x^{'}}{d_\textbf{p}^{jL}}+c_x
+\\f_y{y^{'}}{d_\textbf{p}^{jL}}+c_y
+\\1\\d_\textbf{p}^{jL}\end{pmatrix}
+\\&
+\frac{\partial{(I^L_j(\textbf{p}^{'}))}}{\partial{\textbf{p}^{'}}}=(g_x^{'},g_y^{'},0,0)
+\\&
+\frac{\partial{\textbf{p}^{'}}}{\partial{\textbf{p}^{'}_w}}
+=\begin{pmatrix}f_x(z^{'})^{-1}&0&-x^{'}f_x(z^{'})^{-2}&0\\0&f_y(z^{'})^{-1}&-y^{'}f_y(z^{'})^{-2}&0
+\\0&0&0&0\\0&0&(z^{'})^{-2}&0\end{pmatrix},
+\frac{\partial{\textbf{p}^{'}_w}}{\partial{d_\textbf{p}^{iL}}}=
+\begin{pmatrix}-\dfrac{a}{(d_\textbf{p}^{iL})^2}\\
+               -\dfrac{b}{(d_\textbf{p}^{iL})^2}\\
+               -\dfrac{c}{(d_\textbf{p}^{iL})^2}\\
+               0
+               \end{pmatrix}
+\\&
+\Rightarrow
+\frac{\partial{(r^{d}_{\textbf{p}})_{ij}}}{\partial{d_\textbf{p}^{iL}}} =
+\frac{\partial{(I^L_j(\textbf{p}^{'}))}}{\partial{d_\textbf{p}^{iL}}}  =
+\frac{\partial{(I^L_j(\textbf{p}^{'}))}}{\partial{\textbf{p}^{'}}}
+\frac{\partial{\textbf{p}^{'}}}{\partial{\textbf{p}^{'}_w}}
+\frac{\partial{\textbf{p}^{'}_w}}{\partial{d_\textbf{p}^{iL}}}
+\\&
+=-\frac{g_x^{'}f_xa}{z^{'}(d_\textbf{p}^{iL})^2}-\frac{g_y^{'}f_yb}{z^{'}(d_\textbf{p}^{iL})^2}
++\frac{c(g_x^{'}x^{'}f_x+g_y^{'}y^{'}f_y)}{(z^{'}d_\textbf{p}^{iL})^2}
+\\&
+=\frac{c(g_x^{'}x^{'}f_x+g_y^{'}y^{'}f_y)-g_x^{'}f_xaz^{'}-g_y^{'}f_ybz^{'}}{(z^{'}d_\textbf{p}^{iL})^2}
 \end{aligned}\tag{2.2}\right.\end{equation}
+
+
+\begin{equation}\left.
+\begin{aligned}\\&
+\begin{pmatrix}x^{'}\\y^{'}\\z^{'}\\1\end{pmatrix}=
+exp(\boldsymbol{\delta})\begin{pmatrix}\boldsymbol{p}_x/d_p\\\boldsymbol{p}_y/d_p\\1/d_p\\1\end{pmatrix}
+=\frac{1}{d_p}\left(
+                \begin{array}{cc}
+                  \boldsymbol{R}_1 & t_1 \\
+                  \boldsymbol{R}_2 & t_2 \\
+                  \boldsymbol{R}_3 & t_3 \\
+                  \boldsymbol{0}   & 1 \\
+                \end{array}
+              \right)_{4\times{4}}
+              \left(
+                \begin{array}{c}
+                    \\
+                  \boldsymbol{P} \\
+                   \\
+                  {d_p} \\
+                \end{array}
+              \right)_{4\times{1}}
+=\frac{1}{d_p}\left(
+                \begin{array}{c}
+                  \boldsymbol{R}_1\boldsymbol{P}+t_1d_p \\
+                  \boldsymbol{R}_2\boldsymbol{P}+t_2d_p \\
+                  \boldsymbol{R}_3\boldsymbol{P}+t_3d_p \\
+                  d_p \\
+                \end{array}
+              \right)
+\\&
+w_m=\begin{pmatrix}{x^{'}}/{z^{'}}\\{y^{'}}/{z^{'}}\end{pmatrix}
+=\begin{pmatrix}\dfrac{\boldsymbol{R}_1\boldsymbol{P}+t_1d_p}{\boldsymbol{R}_3\boldsymbol{P}+t_3d_p}\\
+                \dfrac{\boldsymbol{R}_2\boldsymbol{P}+t_2d_p}{\boldsymbol{R}_3\boldsymbol{P}+t_3d_p}\end{pmatrix}
+\\&
+\dfrac{\partial_{r_{{p}_m}}(\boldsymbol{p}_m,\boldsymbol{\delta})}{\partial{D_i(\boldsymbol{p}_m)}}
+:=\frac{\partial{f_m}}{\partial{d_{p_m}}}
+=-\frac{\partial{I_{j}}}{\partial{w_m}}\frac{\partial{w_m}}{\partial{d_{p_m}}}
+\\&
+=-\left(
+            \begin{array}{cc}
+              g_x & g_y \\
+            \end{array}
+          \right)
+          \left(
+            \begin{array}{ccc}
+              \frac{t_1z^{'}-x^{'}t_3}{{z^{'}}^{2}} \\
+              \frac{t_2z^{'}-y^{'}t_3}{{z^{'}}^{2}} \\
+            \end{array}
+          \right)
+=-(g_x\frac{t_1z^{'}-x^{'}t_3}{{z^{'}}^{2}}+g_y\frac{t_2z^{'}-y^{'}t_3}{{z^{'}}^{2}})
+\\&
+\end{aligned}\right.\tag{3}\end{equation}
+
 
 \begin{equation}\left.\begin{aligned}
 &
@@ -818,6 +900,20 @@ t_1f_x
 \\&
 \end{aligned}\tag{2.2}\right.\end{equation}
 
+\begin{equation}\left.\begin{aligned}
+&
+\frac{\partial{\textbf{p}^{'}_{w}}}{\partial{\boldsymbol{\xi_{i}}}}=\textbf{T}_j
+\frac{\partial{(\textbf{T}_i^{-1}\textbf{p}^{'}_{w}})}{\partial{\boldsymbol{\xi_{i}}}}
+=-\textbf{T}_j(\textbf{T}_i\textbf{p}_w)^{\odot}
+\\&
+\frac{\partial{\textbf{p}^{'}_{w}}}{\partial{\boldsymbol{\xi_{j}}}}=
+\frac{\partial{(\textbf{T}_j\textbf{T}_i^{-1}\textbf{p}_{w}})}{\partial{\boldsymbol{\xi_{i}}}}
+=(\textbf{T}_j\textbf{T}_i^{-1}\textbf{p}_w)^{\odot}
+\\&
+=\begin{pmatrix}
+x^{'}\\y\\z\\1
+\end{pmatrix}
+\end{aligned}\tag{2.2}\right.\end{equation}
 
 \end{CJK*}
 \end{document}
