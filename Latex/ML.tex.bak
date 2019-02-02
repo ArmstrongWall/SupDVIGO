@@ -911,8 +911,224 @@ t_1f_x
 =(\textbf{T}_j\textbf{T}_i^{-1}\textbf{p}_w)^{\odot}
 \\&
 =\begin{pmatrix}
-x^{'}\\y\\z\\1
+x^{'}\\y^{'}\\z^{'}\\1
+\end{pmatrix}^{\odot}
+=\begin{pmatrix}
+  1&0&0&     0&z^{'} &-y^{'}
+\\0&1&0&-z^{'}&0     &x^{'}
+\\0&1&0& y^{'}&-x^{'}&0
+\\0&0&0&0&0&0
 \end{pmatrix}
+\\&
+\Rightarrow
+\frac{\partial{(r^{d}_{\textbf{p}})_{ij}}}{\partial{\boldsymbol{\xi_{j}}}}=
+\frac{\partial{(I^L_j(\textbf{p}^{'}))}}{\partial{\textbf{p}^{'}}}
+\frac{\partial{\textbf{p}^{'}}}{\partial{\textbf{p}^{'}_{w}}}
+\frac{\partial{\textbf{p}^{'}_{w}}}{\partial{\boldsymbol{\xi_{j}}}}
+\\&
+=(g_x^{'},g_y^{'},0,0)
+\begin{pmatrix}
+f_x(z^{'})^{-1}&0&-x^{'}f_x(z^{'})^{-2}&0
+\\0&f_y(z^{'})^{-1}&-y^{'}f_y(z^{'})^{-2}&0
+\\0&0&0&0
+\\0&0&(z^{'})^{-2}&0
+\end{pmatrix}
+\begin{pmatrix}
+  1&0&0&     0&z^{'} &-y^{'}
+\\0&1&0&-z^{'}&0     &x^{'}
+\\0&0&1& y^{'}&-x^{'}&0
+\\0&0&0&0&0&0
+\end{pmatrix}
+\\&
+=\begin{pmatrix}
+ g_x^{'}f_x(z^{'})^{-1}
+\\g_y^{'}f_y(z^{'})^{-1}
+\\-(g_x^{'}x^{'}f_x + g_y^{'}y^{'}f_y)(z^{'})^{-2}
+\\-g_y^{'}f_y-(g_x^{'}x^{'}y^{'}f_x+g_y^{'}(y^{'})^{2}f_y)(z^{'})^{-2}
+\\g_x^{'}f_x +(g_x^{'}(x^{'})^{2}f_x+g_y^{'}x^{'}y^{'}f_y)(z^{'})^{-2}
+\\-g_x^{'}f_xy^{'}(z^{'})^{-1}+g_y^{'}f_yx^{'}(z^{'})^{-1}
+\end{pmatrix}^{T}
+\end{aligned}\tag{2.2}\right.\end{equation}
+
+\begin{equation}\left.\begin{aligned}
+\frac{\partial{\Delta \bar{R}_{0k}}}{\partial{\bar{b^g}}} = \sum_{m=0}^{k-1}\Delta \bar{R}_{m+1k}^{T}J^{m}_r\Delta{t}
+\\
+\frac{\partial{\Delta \bar{R}_{00}}}{\partial{\bar{b^g}}} = \Delta \bar{R}_{10}^{T}J^{0}_r\Delta{t}
+\\
+\frac{\partial{\Delta \bar{R}_{01}}}{\partial{\bar{b^g}}} = \sum_{m=0}^{0}\Delta \bar{R}_{(m+1)1}^{T}J^{m}_r\Delta{t}
+\\
+\ldots
+\\
+\frac{\partial{\Delta \bar{R}_{0(44)}}}{\partial{\bar{b^g}}} = \sum_{m=0}^{43}\Delta \bar{R}_{(m+1)44}^{T}J^{m}_r\Delta{t}
+\end{aligned}\tag{2.2}\right.\end{equation}
+
+\begin{equation}\left.\begin{aligned}&
+\Delta \bar{\mathbf{R}}_{ik} =
+\left\{
+\begin{aligned}
+\mathbf{I}_{3\times{3}},\qquad k=i
+\\
+\prod_{m=i}^{k-1} \mathbf{Exp}((\tilde{\boldsymbol{\omega}}_m - \bar{\mathbf{b}}_i^{g})\Delta{t}) ,\quad k>i
+\end{aligned}
+\right.
+\\&
+e.g. \quad k:0\rightarrow{44},i=0
+\\&
+\qquad \Delta \bar{\mathbf{R}}_{00} = \mathbf{I}_{3\times{3}}
+\\&
+\qquad \Delta \bar{\mathbf{R}}_{01} = \mathbf{Exp}((\tilde{\boldsymbol{\omega}}_{0} - \bar{\mathbf{b}}_0^{g})\Delta{t})
+\\&
+\qquad \Delta \bar{\mathbf{R}}_{02} = \mathbf{Exp}((\tilde{\boldsymbol{\omega}}_{0} - \bar{\mathbf{b}}_0^{g})\Delta{t})
+                                        \mathbf{Exp}((\tilde{\boldsymbol{\omega}}_{1} - \bar{\mathbf{b}}_0^{g})\Delta{t})
+\\&
+\qquad \qquad \qquad \qquad \vdots
+\\&
+\qquad \Delta \bar{\mathbf{R}}_{0(44)} = \mathbf{Exp}((\tilde{\boldsymbol{\omega}}_0 - \bar{\mathbf{b}}_0^{g})\Delta{t})
+\mathbf{Exp}((\tilde{\boldsymbol{\omega}}_1 - \bar{\mathbf{b}}_0^{g})\Delta{t})\cdots
+\mathbf{Exp}((\tilde{\boldsymbol{\omega}}_{43} - \bar{\mathbf{b}}_0^{g})\Delta{t})
+\end{aligned}\tag{2.2}\right.\end{equation}
+
+\begin{equation}\left.\begin{aligned}&
+\Delta \bar{\mathbf{R}}_{kj} =
+\left\{
+\begin{aligned}
+\prod_{m=k}^{j-1} \mathbf{Exp}((\tilde{\boldsymbol{\omega}}_m - \bar{\mathbf{b}}_i)\Delta{t}) ,\quad k<j
+\\
+\mathbf{I}_{3\times{3}},\qquad k=j
+\end{aligned}
+\right.
+\\&
+e.g. \quad k:1\rightarrow{45},j=45 ,i=0
+\\&
+\qquad \Delta \bar{\mathbf{R}}_{1(45)} = \mathbf{Exp}((\tilde{\boldsymbol{\omega}}_1 - \bar{\mathbf{b}}_0^{g})\Delta{t})
+\mathbf{Exp}((\tilde{\boldsymbol{\omega}}_2 - \bar{\mathbf{b}}_0^{g})\Delta{t})\cdots
+\mathbf{Exp}((\tilde{\boldsymbol{\omega}}_{44} - \bar{\mathbf{b}}_0^{g})\Delta{t})
+\\&
+\qquad \qquad \qquad \qquad \vdots
+\\&
+\qquad \Delta \bar{\mathbf{R}}_{43(45)} = \mathbf{Exp}((\tilde{\boldsymbol{\omega}}_{43} - \bar{\mathbf{b}}_0^{g})\Delta{t})\mathbf{Exp}((\tilde{\boldsymbol{\omega}}_{44} - \bar{\mathbf{b}}_0^{g})\Delta{t})
+\\&
+\qquad \Delta \bar{\mathbf{R}}_{44(45)} = \mathbf{Exp}((\tilde{\boldsymbol{\omega}}_{44} - \bar{\mathbf{b}}_0^{g})\Delta{t})
+\\&
+\qquad \Delta \bar{\mathbf{R}}_{45(45)} = \mathbf{I}_{3\times{3}}
+\end{aligned}\tag{2.2}\right.\end{equation}
+
+
+\begin{equation}\left.\begin{aligned}&
+\frac{\partial{\Delta \bar{\mathbf{R}}_{ik}}}{\partial{\bar{\mathbf{b}^g}}} =
+\left\{
+\begin{aligned}
+\mathbf{0}_{3\times{3}},\qquad k=i
+\\
+\sum_{m=i}^{k-1}-\Delta \bar{\mathbf{R}}_{m+1k}^{T}\mathbf{J}^{m}_r\Delta{t},\quad k>i
+\end{aligned}
+\right.
+\\&
+=
+\left\{
+\begin{aligned}
+\mathbf{0}_{3\times{3}},\qquad \quad k=i
+\\
+\mathbf{J}^{0}_r\Delta{t},\quad k=i+1
+\\
+\Delta \bar{\mathbf{R}}_{(k-1)k}^{T}\frac{\partial{\Delta \bar{\mathbf{R}}_{i(k-1)}}}{\partial{\bar{\mathbf{b}^g}}}+\mathbf{J}^{k-1}_r\Delta{t}
+,\quad k>i+1
+\end{aligned}
+\right.
+\\&
+e.g. \quad i=0, \quad k:0\rightarrow{44}
+\\&
+\qquad \frac{\partial{\Delta \bar{\mathbf{R}}_{00}}}{\partial{\bar{\mathbf{b}^g}}} = \mathbf{0}_{3\times{3}}
+\\&
+\qquad \frac{\partial{\Delta \bar{\mathbf{R}}_{01}}}{\partial{\bar{\mathbf{b}^g}}} = \sum_{m=0}^{0}\Delta \bar{\mathbf{R}}_{(m+1)1}^{T}\mathbf{J}^{m}_r\Delta{t}
+=\Delta \bar{\mathbf{R}}_{11}^{T}\mathbf{J}^{0}_r\Delta{t}=\mathbf{J}^{0}_r\Delta{t}
+\\&
+\qquad \frac{\partial{\Delta \bar{\mathbf{R}}_{02}}}{\partial{\bar{\mathbf{b}^g}}} = \sum_{m=0}^{1}\Delta \bar{\mathbf{R}}_{(m+1)2}^{T}\mathbf{J}^{m}_r\Delta{t}
+=\Delta \bar{\mathbf{R}}_{12}^{T}\mathbf{J}^{0}_r\Delta{t}
++ \Delta \bar{\mathbf{R}}_{22}^{T}\mathbf{J}^{1}_r\Delta{t}
+=\Delta \bar{\mathbf{R}}_{12}^{T}\frac{\partial{\Delta \bar{\mathbf{R}}_{01}}}{\partial{\bar{\mathbf{b}^g}}}+\mathbf{J}^{1}_r\Delta{t}
+\\&
+\qquad \frac{\partial{\Delta \bar{\mathbf{R}}_{03}}}{\partial{\bar{\mathbf{b}^g}}} = \sum_{m=0}^{2}\Delta \bar{\mathbf{R}}_{(m+1)2}^{T}\mathbf{J}^{m}_r\Delta{t}
+=\Delta \bar{\mathbf{R}}_{13}^{T}\mathbf{J}^{0}_r\Delta{t}
++ \Delta \bar{\mathbf{R}}_{23}^{T}\mathbf{J}^{1}_r\Delta{t}
++ \Delta \bar{\mathbf{R}}_{33}^{T}\mathbf{J}^{2}_r\Delta{t}
+\\&
+\qquad \qquad \qquad =
+{(\Delta\bar{\mathbf{R}}_{12}\Delta\bar{\mathbf{R}}_{23})}^{T}\mathbf{J}^{0}_r\Delta{t}
+\\&
+\qquad \qquad \qquad =
+\Delta \bar{\mathbf{R}}_{23}^{T}  \frac{\partial{\Delta \bar{\mathbf{R}}_{02}}}{\partial{\bar{\mathbf{b}^g}}} + \mathbf{J}^{2}_r\Delta{t}
+\\&
+\qquad \qquad \qquad \vdots
+\\&
+\qquad \frac{\partial{\Delta \bar{\mathbf{R}}_{0(44)}}}{\partial{\bar{\mathbf{b}^g}}} =
+\sum_{m=0}^{43}\Delta \bar{\mathbf{R}}_{(m+1)44}^{T}\mathbf{J}^{m}_r\Delta{t}
+\\&
+\qquad \qquad \qquad =\Delta \bar{\mathbf{R}}_{1(44)}^{T}\mathbf{J}^{0}_r\Delta{t}
++\Delta \bar{\mathbf{R}}_{2(44)}^{T}\mathbf{J}^{1}_r\Delta{t}
++\cdots
++\Delta \bar{\mathbf{R}}_{43(44)}^{T}\mathbf{J}^{42}_r\Delta{t}
++\Delta \bar{\mathbf{R}}_{44(44)}^{T}\mathbf{J}^{43}_r\Delta{t}
+\\&
+\qquad \qquad \qquad =\Delta \bar{\mathbf{R}}_{43(44)}^{T}
+\frac{\partial{\Delta \bar{\mathbf{R}}_{0(43)}}}{\partial{\bar{\mathbf{b}^g}}}
++\mathbf{J}^{43}_r\Delta{t}
+\end{aligned}\tag{2.2}\right.\end{equation}
+
+\begin{equation}\left.\begin{aligned}&
+\frac{\partial{\Delta \bar{\mathbf{V}}_{ik}}}{\partial{\bar{\mathbf{b}^g}}} =
+\left\{
+\begin{aligned}
+\mathbf{0}_{3\times{3}},\qquad k=i
+\\
+-\sum_{m=i}^{k-1}\Delta \bar{\mathbf{R}}_{im}^{T}(\tilde{\boldsymbol{a}}_{m} - \bar{\mathbf{b}}_i^{g})^{\wedge}
+\frac{\partial{\Delta \bar{\mathbf{R}}_{im}}}{\partial{\bar{\mathbf{b}^g}}}\Delta{t},\quad k>i
+\end{aligned}
+\right.
+\\&
+=
+\left\{
+\begin{aligned}
+\mathbf{0}_{3\times{3}},\qquad \quad k=i
+\\
+\frac{\partial{\Delta \bar{\mathbf{V}}_{i(k-1)}}}{\partial{\bar{\mathbf{b}^g}}}
++\Delta \bar{\mathbf{R}}_{i(k-1)}^{T}(\tilde{\boldsymbol{a}}_{k-1} - \bar{\mathbf{b}}_i^{g})^{\wedge}
+\frac{\partial{\Delta \bar{\mathbf{R}}_{i(k-1)}}}{\partial{\bar{\mathbf{b}^g}}}\Delta{t}
+,\quad k>i
+\end{aligned}
+\right.
+\\&
+e.g. \quad i=0, \quad k:0\rightarrow{44}
+\\&
+\qquad \frac{\partial{\Delta \bar{\mathbf{V}}_{00}}}{\partial{\bar{\mathbf{b}^g}}} = \mathbf{0}_{3\times{3}}
+\\&
+\qquad \frac{\partial{\Delta \bar{\mathbf{V}}_{01}}}{\partial{\bar{\mathbf{b}^g}}} = 
+-\Delta \bar{\mathbf{R}}_{00}^{T}(\tilde{\boldsymbol{a}}_{0} - \bar{\mathbf{b}}_0^{g})^{\wedge}
+\frac{\partial{\Delta \bar{\mathbf{R}}_{00}}}{\partial{\bar{\mathbf{b}^g}}}\Delta{t}
+\\&
+\qquad \frac{\partial{\Delta \bar{\mathbf{V}}_{02}}}{\partial{\bar{\mathbf{b}^g}}} = 
+-\Delta \bar{\mathbf{R}}_{00}^{T}(\tilde{\boldsymbol{a}}_{0} - \bar{\mathbf{b}}_0^{g})^{\wedge}
+\frac{\partial{\Delta \bar{\mathbf{R}}_{00}}}{\partial{\bar{\mathbf{b}^g}}}\Delta{t}
++
+\Delta \bar{\mathbf{R}}_{01}^{T}(\tilde{\boldsymbol{a}}_{1} - \bar{\mathbf{b}}_0^{g})^{\wedge}
+\frac{\partial{\Delta \bar{\mathbf{R}}_{01}}}{\partial{\bar{\mathbf{b}^g}}}\Delta{t}
+\\&
+\qquad \qquad \qquad = \frac{\partial{\Delta \bar{\mathbf{V}}_{01}}}{\partial{\bar{\mathbf{b}^g}}}
++\Delta \bar{\mathbf{R}}_{01}^{T}(\tilde{\boldsymbol{a}}_{1} - \bar{\mathbf{b}}_0^{g})^{\wedge}
+\frac{\partial{\Delta \bar{\mathbf{R}}_{01}}}{\partial{\bar{\mathbf{b}^g}}}\Delta{t}
+\\&
+\qquad \frac{\partial{\Delta \bar{\mathbf{V}}_{03}}}{\partial{\bar{\mathbf{b}^g}}} = 
+\frac{\partial{\Delta \bar{\mathbf{V}}_{02}}}{\partial{\bar{\mathbf{b}^g}}} 
++\Delta \bar{\mathbf{R}}_{02}^{T}(\tilde{\boldsymbol{a}}_{2} - \bar{\mathbf{b}}_0^{g})^{\wedge}
+\frac{\partial{\Delta \bar{\mathbf{R}}_{02}}}{\partial{\bar{\mathbf{b}^g}}}\Delta{t}
+\\&
+\qquad \qquad \qquad \vdots
+\\&
+\qquad \frac{\partial{\Delta \bar{\mathbf{V}}_{0(44)}}}{\partial{\bar{\mathbf{b}^g}}} =
+=
+\frac{\partial{\Delta \bar{\mathbf{V}}_{0(43)}}}{\partial{\bar{\mathbf{b}^g}}}
++\Delta \bar{\mathbf{R}}_{0(43)}^{T}(\tilde{\boldsymbol{a}}_{43} - \bar{\mathbf{b}}_0^{g})^{\wedge}
+\frac{\partial{\Delta \bar{\mathbf{R}}_{0(43)}}}{\partial{\bar{\mathbf{b}^g}}}\Delta{t}
 \end{aligned}\tag{2.2}\right.\end{equation}
 
 \end{CJK*}
