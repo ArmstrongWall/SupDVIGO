@@ -1145,6 +1145,67 @@ e.g. \quad i=0, \quad k:0\rightarrow{44}
 \frac{\partial{\Delta \bar{\mathbf{R}}_{0(43)}}}{\partial{\bar{\mathbf{b}^g}}}\Delta{t}
 \end{aligned}\tag{2.2}\right.\end{equation}
 
+\begin{equation}\left.\begin{aligned}&
+\textbf{r}_{\Delta\textbf{R}_{ij}}=
+\mathtt{Log}((\Delta\widetilde{\textbf{R}}_{ij}(\bar{\textbf{b}}^g_i)
+\mathtt{Exp}(
+{\small
+\begin{matrix}
+\frac{\partial{\Delta\bar{\textbf{R}}_{ij}}}{\partial{\textbf{b}^g}}
+\end{matrix}
+}
+\delta\textbf{b}^g)
+)^T
+\textbf{R}_i^T\textbf{R}_j)
+\\&
+\textbf{r}_{\Delta\textbf{v}_{ij}}=
+\textbf{R}_i^T(\textbf{v}_{j}-\textbf{v}_{i}-\textbf{g}\Delta{t_{ij}})
+\\&
+\qquad -[\Delta\widetilde{\textbf{v}}_{ij}(\bar{\textbf{b}}_i^g,\bar{\textbf{b}}_i^a)
++{\small
+\begin{matrix}
+\frac{\partial{\Delta\bar{\textbf{v}}_{ij}}}{\partial{\textbf{b}^g}}
+\end{matrix}
+}
+\delta\textbf{b}^g)
++{\small
+\begin{matrix}
+\frac{\partial{\Delta\bar{\textbf{v}}_{ij}}}{\partial{\textbf{b}^a}}
+\end{matrix}
+}
+\delta\textbf{b}^a)
+]
+\\&
+\textbf{r}_{\Delta\textbf{p}_{ij}}=
+\textbf{R}_i^T(\textbf{p}_{j}-\textbf{p}_{i}-\textbf{v}_i\Delta{t_{ij}}
+-{\normalsize
+\begin{matrix}
+\frac{1}{2}
+\end{matrix}
+}\textbf{g}\Delta{t^2_{ij}})
+\\&
+\qquad -[\Delta\widetilde{\textbf{p}}_{ij}(\bar{\textbf{b}}_i^g,\bar{\textbf{b}}_i^a)
++{\small
+\begin{matrix}
+\frac{\partial{\Delta\bar{\textbf{p}}_{ij}}}{\partial{\textbf{b}^g}}
+\end{matrix}
+}
+\delta\textbf{b}^g)
++{\small
+\begin{matrix}
+\frac{\partial{\Delta\bar{\textbf{p}}_{ij}}}{\partial{\textbf{b}^a}}
+\end{matrix}
+}
+\delta\textbf{b}^a)
+\[
+\sideset{_{a}^{b}}{^c_d}\prod
+\]
+]
+\end{aligned}\tag{2.2}\right.\end{equation}
+
+
+
+
 \end{CJK*}
 \end{document}
 
