@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2018.9.21)  19 JAN 2019 18:39
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2018.9.21)  17 FEB 2019 14:27
 entering extended mode
 **C:/Users/wzq/Desktop/git/formula_derivation_stereo_VI_DSO/Latex/ML.tex
 (C:/Users/wzq/Desktop/git/formula_derivation_stereo_VI_DSO/Latex/ML.tex
@@ -383,14 +383,34 @@ Overfull \hbox (43.60606pt too wide) detected at line 1090
 []
  []
 
-[11] [12] [13] [14]
+[11] [12]
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 1152.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 1165.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 1171.
+
+
+LaTeX Font Warning: Command \normalsize invalid in math mode on input line 1181
+.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 1188.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 1194.
+
+[13] [14]
 (C:\Users\wzq\Desktop\git\formula_derivation_stereo_VI_DSO\Latex\ML.aux) ) 
 Here is how much of TeX's memory you used:
- 3861 strings out of 495354
- 45632 string characters out of 3183859
+ 3896 strings out of 495354
+ 45983 string characters out of 3183859
  140614 words of memory out of 3000000
- 6966 multiletter control sequences out of 15000+200000
- 10711 words of font info for 43 fonts, out of 3000000 for 9000
+ 6988 multiletter control sequences out of 15000+200000
+ 15378 words of font info for 63 fonts, out of 3000000 for 9000
  14 hyphenation exceptions out of 8191
  27i,21n,25p,373b,504s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/C
@@ -399,23 +419,26 @@ TEX/CTeX/fonts/truetype/chinese/simsun.ttf><C:/CTEX/CTeX/fonts/truetype/chinese
 /truetype/chinese/simsun.ttf><C:/CTEX/CTeX/fonts/truetype/chinese/simsun.ttf><C
 :/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmbsy10.pfb><C:/CTEX/MiKTeX/fonts/
 type1/public/amsfonts/cm/cmbx10.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts
-/cm/cmbx5.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx7.pfb><C:/CTEX
-/MiKTeX/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/CTEX/MiKTeX/fonts/type1/
-public/amsfonts/cm/cmex10.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cmext
-ra/cmex7.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/CTEX
-/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/CTEX/MiKTeX/fonts/type1/pu
-blic/amsfonts/cm/cmmi7.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmmib
-10.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cmextra/cmmib5.pfb><C:/CTEX/
-MiKTeX/fonts/type1/public/amsfonts/cmextra/cmmib7.pfb><C:/CTEX/MiKTeX/fonts/typ
-e1/public/amsfonts/cm/cmr10.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/
-cmr5.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/CTEX/MiKTe
-X/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/CTEX/MiKTeX/fonts/type1/public/am
-sfonts/cm/cmsy10.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy5.pfb><
-C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/CTEX/MiKTeX/fonts/t
-ype1/public/amsfonts/symbols/msbm10.pfb>
-Output written on ML.pdf (14 pages, 295008 bytes).
+/cm/cmbx5.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx6.pfb><C:/CTEX
+/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx7.pfb><C:/CTEX/MiKTeX/fonts/type1/pu
+blic/amsfonts/cm/cmcsc10.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cme
+x10.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cmextra/cmex7.pfb><C:/CTEX/
+MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/CTEX/MiKTeX/fonts/type1/pu
+blic/amsfonts/cm/cmmi5.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6
+.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/CTEX/MiKTeX/f
+onts/type1/public/amsfonts/cm/cmmib10.pfb><C:/CTEX/MiKTeX/fonts/type1/public/am
+sfonts/cmextra/cmmib5.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cmextra/c
+mmib7.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/CTEX/MiK
+TeX/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/CTEX/MiKTeX/fonts/type1/public/
+amsfonts/cm/cmr6.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C
+:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/CTEX/MiKTeX/fonts/typ
+e1/public/amsfonts/cm/cmsy10.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm
+/cmsy5.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/CTEX/Mi
+KTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/CTEX/MiKTeX/fonts/type1/publ
+ic/amsfonts/symbols/msbm10.pfb>
+Output written on ML.pdf (14 pages, 331213 bytes).
 PDF statistics:
- 152 PDF objects out of 1000 (max. 8388607)
+ 168 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

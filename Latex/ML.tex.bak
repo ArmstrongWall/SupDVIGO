@@ -1036,7 +1036,7 @@ e.g. \quad k:1\rightarrow{45},j=45 ,i=0
 \end{aligned}
 \right.
 \\&
-e.g. \quad i=0, \quad k:0\rightarrow{44}
+e.g. \quad i=0, \quad k:0\rightarrow{45}
 \\&
 \qquad \frac{\partial{\Delta \bar{\mathbf{R}}_{00}}}{\partial{\bar{\mathbf{b}^g}}} = \mathbf{0}_{3\times{3}}
 \\&
@@ -1055,6 +1055,13 @@ e.g. \quad i=0, \quad k:0\rightarrow{44}
 \\&
 \qquad \qquad \qquad =
 {(\Delta\bar{\mathbf{R}}_{12}\Delta\bar{\mathbf{R}}_{23})}^{T}\mathbf{J}^{0}_r\Delta{t}
++\Delta \bar{\mathbf{R}}_{23}^{T}\mathbf{J}^{1}_r\Delta{t}+
+\mathbf{J}^{2}_r\Delta{t}
+\\&
+\qquad \qquad \qquad =
+{\Delta\bar{\mathbf{R}}_{23}^{T}\Delta\bar{\mathbf{R}}_{12}^{T}}\mathbf{J}^{0}_r\Delta{t}
++\Delta \bar{\mathbf{R}}_{23}^{T}\mathbf{J}^{1}_r\Delta{t}+
+\mathbf{J}^{2}_r\Delta{t}
 \\&
 \qquad \qquad \qquad =
 \Delta \bar{\mathbf{R}}_{23}^{T}  \frac{\partial{\Delta \bar{\mathbf{R}}_{02}}}{\partial{\bar{\mathbf{b}^g}}} + \mathbf{J}^{2}_r\Delta{t}
@@ -1073,6 +1080,13 @@ e.g. \quad i=0, \quad k:0\rightarrow{44}
 \qquad \qquad \qquad =\Delta \bar{\mathbf{R}}_{43(44)}^{T}
 \frac{\partial{\Delta \bar{\mathbf{R}}_{0(43)}}}{\partial{\bar{\mathbf{b}^g}}}
 +\mathbf{J}^{43}_r\Delta{t}
+\\&
+\qquad \frac{\partial{\Delta \bar{\mathbf{R}}_{0(45)}}}{\partial{\bar{\mathbf{b}^g}}} =
+\sum_{m=0}^{44}\Delta \bar{\mathbf{R}}_{(m+1)45}^{T}\mathbf{J}^{m}_r\Delta{t}
+\\&
+\qquad \qquad \qquad =\Delta \bar{\mathbf{R}}_{44(45)}^{T}
+\frac{\partial{\Delta \bar{\mathbf{R}}_{0(44)}}}{\partial{\bar{\mathbf{b}^g}}}
++\mathbf{J}^{44}_r\Delta{t}
 \end{aligned}\tag{2.2}\right.\end{equation}
 
 \begin{equation}\left.\begin{aligned}&
@@ -1102,11 +1116,11 @@ e.g. \quad i=0, \quad k:0\rightarrow{44}
 \\&
 \qquad \frac{\partial{\Delta \bar{\mathbf{V}}_{00}}}{\partial{\bar{\mathbf{b}^g}}} = \mathbf{0}_{3\times{3}}
 \\&
-\qquad \frac{\partial{\Delta \bar{\mathbf{V}}_{01}}}{\partial{\bar{\mathbf{b}^g}}} = 
+\qquad \frac{\partial{\Delta \bar{\mathbf{V}}_{01}}}{\partial{\bar{\mathbf{b}^g}}} =
 -\Delta \bar{\mathbf{R}}_{00}^{T}(\tilde{\boldsymbol{a}}_{0} - \bar{\mathbf{b}}_0^{g})^{\wedge}
 \frac{\partial{\Delta \bar{\mathbf{R}}_{00}}}{\partial{\bar{\mathbf{b}^g}}}\Delta{t}
 \\&
-\qquad \frac{\partial{\Delta \bar{\mathbf{V}}_{02}}}{\partial{\bar{\mathbf{b}^g}}} = 
+\qquad \frac{\partial{\Delta \bar{\mathbf{V}}_{02}}}{\partial{\bar{\mathbf{b}^g}}} =
 -\Delta \bar{\mathbf{R}}_{00}^{T}(\tilde{\boldsymbol{a}}_{0} - \bar{\mathbf{b}}_0^{g})^{\wedge}
 \frac{\partial{\Delta \bar{\mathbf{R}}_{00}}}{\partial{\bar{\mathbf{b}^g}}}\Delta{t}
 +
@@ -1117,8 +1131,8 @@ e.g. \quad i=0, \quad k:0\rightarrow{44}
 +\Delta \bar{\mathbf{R}}_{01}^{T}(\tilde{\boldsymbol{a}}_{1} - \bar{\mathbf{b}}_0^{g})^{\wedge}
 \frac{\partial{\Delta \bar{\mathbf{R}}_{01}}}{\partial{\bar{\mathbf{b}^g}}}\Delta{t}
 \\&
-\qquad \frac{\partial{\Delta \bar{\mathbf{V}}_{03}}}{\partial{\bar{\mathbf{b}^g}}} = 
-\frac{\partial{\Delta \bar{\mathbf{V}}_{02}}}{\partial{\bar{\mathbf{b}^g}}} 
+\qquad \frac{\partial{\Delta \bar{\mathbf{V}}_{03}}}{\partial{\bar{\mathbf{b}^g}}} =
+\frac{\partial{\Delta \bar{\mathbf{V}}_{02}}}{\partial{\bar{\mathbf{b}^g}}}
 +\Delta \bar{\mathbf{R}}_{02}^{T}(\tilde{\boldsymbol{a}}_{2} - \bar{\mathbf{b}}_0^{g})^{\wedge}
 \frac{\partial{\Delta \bar{\mathbf{R}}_{02}}}{\partial{\bar{\mathbf{b}^g}}}\Delta{t}
 \\&
