@@ -1197,12 +1197,24 @@ e.g. \quad i=0, \quad k:0\rightarrow{44}
 \end{matrix}
 }
 \delta\textbf{b}^a)
-\[
-\sideset{_{a}^{b}}{^c_d}\prod
-\]
 ]
+\sideset{_{a}^{b}}{^c_d}\beta
 \end{aligned}\tag{2.2}\right.\end{equation}
 
+\begin{equation}\left.\begin{aligned}
+&
+\frac{\partial{(\mathtt{Exp}(\boldsymbol{\xi^{\wedge}})\textbf{p}})}{\partial{\delta\boldsymbol{\xi}}}
+={\lim_{\delta\boldsymbol{\xi} \to \textbf{0}}}
+=\frac{}{}
+\\&
+\textbf{p}=\begin{pmatrix}u^i\\v^i\\1\\d_\textbf{p}\end{pmatrix},
+\textbf{p}_w=\begin{pmatrix}x\\y\\z\\1\end{pmatrix},d_\textbf{p}=z^{-1},\textbf{p}=d_\textbf{p}\textbf{K}\textbf{p}_w={\Pi}_\textbf{K}(\textbf{p}_w)
+\\&
+\frac{\partial{I_i^L(\textbf{p})}}{\partial{\textbf{p}}}=(g_x,g_y,0,0),
+\frac{\partial{\textbf{p}}}{\partial{\textbf{p}_w}}=\begin{pmatrix}f_xz^{-1}&0&-xf_xz^{-2}&0\\0&f_yz^{-1}&-yf_yz^{-2}&0\\0&0&0&0\\0&0&z^{-2}&0\end{pmatrix}
+\end{aligned}\right.
+\tag{1.1}
+\end{equation}
 
 
 
