@@ -415,48 +415,7 @@ cost=\sum\limits_{i=j=1}^5(A(i,j)-B(i,j))^2
 \end{algorithm}
 
 
-\begin{algorithm}[h]
-        \caption{Levenberg-Marquardtï¿½ï¿½ï¿½ï¿½ï¿½Å»ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½}
-        \begin{algorithmic}[1] %Ã¿ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½Ðºï¿½
-            \Require $\boldsymbol{\mathcal{K}}_{i}$,$\boldsymbol{\mathcal{I}}_{j}$,$\boldsymbol{\delta}_{i(i-1)}$
-            ,$k_{max}$(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)
-            \Ensure $\boldsymbol{\delta}_{ji}$
-            \Function{TrackFrame}{$Array, left, middle, right$}
-                \State $v\gets 2$
-                \State $\boldsymbol{\delta}\gets \boldsymbol{\delta}_{i(i-1)}$
-                \State $\boldsymbol{f}_i$
-                \For{$i = 0 \to k_{max}-1$}
-                    \State $\boldsymbol{J}^{T}\boldsymbol{W}\boldsymbol{J}$
-                \While{$true$}
-                    \State slove $\boldsymbol{\delta}^{*}$
-                    \State update
-                    \State $\boldsymbol{f}_i$
-                    \State $error$=caclweight
-                    \If{$error<lastError$}
-                        \State $lastResidual$=$lastError$=$error$
-                        \If{$\lambda <=0.2$}
-                        \State $\lambda$=0
-                        \Else
-                        \State $\lambda$=$\frac{1}{2}\lambda$
-                        \EndIf
-                        \State break
-                    \Else
-                        \If{ï¿½ï¿½ï¿½ï¿½$<\varepsilon_1$}
-                            \State $i$=$k_{max}-1$
-                            \State break
-                        \EndIf
-                        \If{$\lambda$==0}
-                            \State $\lambda$=0.2
-                        \Else
-                        \State $\lambda$=2*inctry
-                        \EndIf
-                    \EndIf
-                \EndWhile
-                \EndFor
-                \State \Return{$\boldsymbol{\delta}$}
-            \EndFunction
-        \end{algorithmic}
-    \end{algorithm}
+
 
 
 \begin{equation}\left.\begin{aligned}
@@ -1198,25 +1157,141 @@ e.g. \quad i=0, \quad k:0\rightarrow{44}
 }
 \delta\textbf{b}^a)
 ]
-\sideset{_{a}^{b}}{^c_d}\beta
 \end{aligned}\tag{2.2}\right.\end{equation}
+
 
 \begin{equation}\left.\begin{aligned}
 &
-\frac{\partial{(\mathtt{Exp}(\boldsymbol{\xi^{\wedge}})\textbf{p}})}{\partial{\delta\boldsymbol{\xi}}}
+\mathtt{Exp}(\boldsymbol{\xi^{\wedge}})
+=\textbf{T}=
+\begin{pmatrix}
+\textbf{R}&\textbf{t}\\\textbf{0}^T&0
+\end{pmatrix}_{4\times4},
+\mathtt{Exp}(\delta\boldsymbol{\xi^{\wedge}})
+=\begin{pmatrix}
+\delta\boldsymbol{\phi}^{\wedge}&\delta\boldsymbol{\rho}\\\textbf{0}^T&0
+\end{pmatrix}_{4\times4},\textbf{p}\in{\mathbb{R}^3}
+\\&
+\frac{\partial{(\textbf{T}\textbf{p}})}{\partial{\delta\boldsymbol{\xi}}}
 ={\lim_{\delta\boldsymbol{\xi} \to \textbf{0}}}
-=\frac{}{}
+\frac{\mathtt{Exp}(\boldsymbol{\xi^{\wedge}})\mathtt{Exp}(\delta\boldsymbol{\xi^{\wedge}})\textbf{p}
+-\mathtt{Exp}(\boldsymbol{\xi^{\wedge}})\textbf{p}
+}{\delta\boldsymbol{\xi}}
 \\&
-\textbf{p}=\begin{pmatrix}u^i\\v^i\\1\\d_\textbf{p}\end{pmatrix},
-\textbf{p}_w=\begin{pmatrix}x\\y\\z\\1\end{pmatrix},d_\textbf{p}=z^{-1},\textbf{p}=d_\textbf{p}\textbf{K}\textbf{p}_w={\Pi}_\textbf{K}(\textbf{p}_w)
+\approx{\lim_{\delta\boldsymbol{\xi} \to \textbf{0}}}
+\frac{\mathtt{Exp}(\boldsymbol{\xi^{\wedge}})(\textbf{I}-\delta\boldsymbol{\xi^{\wedge}})\textbf{p}
+-\mathtt{Exp}(\boldsymbol{\xi^{\wedge}})\textbf{p}
+}{\delta\boldsymbol{\xi}}
+={\lim_{\delta\boldsymbol{\xi} \to \textbf{0}}}
+-\frac{\mathtt{Exp}(\boldsymbol{\xi^{\wedge}})\delta\boldsymbol{\xi^{\wedge}}\textbf{p}
+}{\delta\boldsymbol{\xi}}
 \\&
-\frac{\partial{I_i^L(\textbf{p})}}{\partial{\textbf{p}}}=(g_x,g_y,0,0),
-\frac{\partial{\textbf{p}}}{\partial{\textbf{p}_w}}=\begin{pmatrix}f_xz^{-1}&0&-xf_xz^{-2}&0\\0&f_yz^{-1}&-yf_yz^{-2}&0\\0&0&0&0\\0&0&z^{-2}&0\end{pmatrix}
+={\lim_{\delta\boldsymbol{\xi} \to \textbf{0}}}
+-\frac{
+\begin{pmatrix}
+\textbf{R}&\textbf{t}\\\textbf{0}^T&0
+\end{pmatrix}
+\begin{pmatrix}
+\delta\boldsymbol{\phi}^{\wedge}\textbf{p}+\delta\boldsymbol{\rho}
+\\
+1
+\end{pmatrix}
+}{\delta\boldsymbol{\xi}}
+={\lim_{\delta\boldsymbol{\xi} \to \textbf{0}}}
+-\frac{
+\begin{pmatrix}
+\textbf{R}\delta\boldsymbol{\phi}^{\wedge}\textbf{p}+\textbf{R}\delta\boldsymbol{\rho}+\textbf{t}\\\textbf{0}^T
+\end{pmatrix}
+}{\delta\boldsymbol{\xi}}
+\\&
+={\lim_{\delta\boldsymbol{\xi} \to \textbf{0}}}
+-\frac{
+\begin{pmatrix}
+-\textbf{R}\textbf{p}^{\wedge}\delta\boldsymbol{\phi}+\textbf{R}\delta\boldsymbol{\rho}+\textbf{t}\\\textbf{0}^T
+\end{pmatrix}
+}{\begin{pmatrix}
+\delta\boldsymbol{\rho}
+\\\delta\boldsymbol{\phi}=
+\end{pmatrix}
+}
+=\begin{pmatrix}
+-\textbf{R}&\textbf{R}\textbf{p}^{\wedge}\\\textbf{0}^T&\textbf{0}^T
+\end{pmatrix}_{4\times6}
 \end{aligned}\right.
 \tag{1.1}
 \end{equation}
 
+\begin{algorithm}[h]
+    \caption{Levenberg-Marquardt µü´ú·¨}
+    \begin{algorithmic}[1] %µü´ú·¨
+        \Require $\boldsymbol{\mathcal{K}}_{i}$,$\boldsymbol{\mathcal{I}}_{j}$,$\boldsymbol{\delta}_{i(i-1)}$
+        ,$k_{max}$(µü´ú·¨)
+        \Ensure $\boldsymbol{\delta}_{ji}$
+        \Function{TrackFrame}{$Array, left, middle, right$}
+            \State $v\gets 2$
+            \State $\boldsymbol{\delta}\gets \boldsymbol{\delta}_{i(i-1)}$
+            \State $\boldsymbol{f}_i$
+            \For{$i = 0 \to k_{max}-1$}
+                \State $\boldsymbol{J}^{T}\boldsymbol{W}\boldsymbol{J}$
+            \While{$true$}
+                \State slove $\boldsymbol{\delta}^{*}$
+                \State update
+                \State $\boldsymbol{f}_i$
+                \State $error$=caclweight
+                \If{$error<lastError$}
+                    \State $lastResidual$=$lastError$=$error$
+                    \If{$\lambda <=0.2$}
+                    \State $\lambda$=0
+                    \Else
+                    \State $\lambda$=$\frac{1}{2}\lambda$
+                    \EndIf
+                    \State break
+                \Else
+                    \If{µü´ú·¨$<\varepsilon_1$}
+                        \State $i$=$k_{max}-1$
+                        \State break
+                    \EndIf
+                    \If{$\lambda$==0}
+                        \State $\lambda$=0.2
+                    \Else
+                    \State $\lambda$=2*inctry
+                    \EndIf
+                \EndIf
+            \EndWhile
+            \EndFor
+            \State \Return{$\boldsymbol{\delta}$}
+        \EndFunction
+    \end{algorithmic}
+\end{algorithm}
 
+\renewcommand{\thealgorithm}{1}
+\begin{algorithm}[H]
+\caption{Time-closest measurements selection}
+\label{ABCLFRS}
+\begin{algorithmic}[1]
+\Require $gyro\_list$,$acc\_list[s]$(an element in acc\_list)
+        \Ensure $gyro\_measure$(time closest element in gyro\_list)
+        \Function{Time\_closest\_select}{$gyro\_list,i$}
+            \State $t\gets acc\_list[s].timastamp$
+            \State $i\gets s$
+            \While{$true$}
+                \If{$i>=gyro\_list.size$}
+                    \State \Return{$gyro\_list.back$}
+                \Else
+                    \If{$t  < gyro\_list[i].timastamp$}
+                        \State $i$=$i-1$
+                        \State \Break
+                    \EndIf
+                    \If{$\lambda$==0}
+                        \State $\lambda$=0.2
+                    \Else
+                    \State $\lambda$=2*inctry
+                    \EndIf
+                \EndIf
+            \EndWhile
+        \EndFunction
+\end{algorithmic}
+\end{algorithm}
 
 \end{CJK*}
 \end{document}
