@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2018.9.21)  14 MAR 2019 14:02
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2018.9.21)  14 MAR 2019 23:42
 entering extended mode
 **C:/Users/wzq/Desktop/git/Supplementary_Material_to_Stereo_VI_DSO/Latex/ML.tex
 
@@ -196,7 +196,11 @@ Package color Info: Driver file: pdftex.def on input line 130.
 Package: ulem 2011/03/18
 \ULdepth=\dimen116
 )
-(C:\Users\wzq\Desktop\git\Supplementary_Material_to_Stereo_VI_DSO\Latex\ML.aux)
+(C:\Users\wzq\Desktop\git\Supplementary_Material_to_Stereo_VI_DSO\Latex\ML.aux
+
+LaTeX Warning: Label `ABCLFRS' multiply defined.
+
+)
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 11.
 LaTeX Font Info:    ... okay on input line 11.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 11.
@@ -273,7 +277,7 @@ LaTeX Font Info:    Checking defaults for C41/song/m/n on input line 11.
 LaTeX Font Info:    ... okay on input line 11.
 LaTeX Font Info:    Checking defaults for C62/song/m/n on input line 11.
 LaTeX Font Info:    ... okay on input line 11.
-(C:\CTEX\MiKTeX\tex\context\base\supp-pdf.mkii
+ (C:\CTEX\MiKTeX\tex\context\base\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count110
 \scratchdimen=\dimen117
@@ -404,17 +408,20 @@ File: c19song.fd 2009/09/23 4.8.2
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[14] [15]
+[14] [15] [16]
 (C:\Users\wzq\Desktop\git\Supplementary_Material_to_Stereo_VI_DSO\Latex\ML.aux)
+
+LaTeX Warning: There were multiply-defined labels.
+
  ) 
 Here is how much of TeX's memory you used:
- 3892 strings out of 495354
- 45959 string characters out of 3183859
- 131829 words of memory out of 3000000
- 6986 multiletter control sequences out of 15000+200000
+ 3895 strings out of 495354
+ 46008 string characters out of 3183859
+ 135332 words of memory out of 3000000
+ 6989 multiletter control sequences out of 15000+200000
  14787 words of font info for 61 fonts, out of 3000000 for 9000
  14 hyphenation exceptions out of 8191
- 27i,21n,25p,380b,504s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 27i,21n,25p,380b,549s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/CTEX/CTeX/fonts/truetype/chinese/simsun.ttf><C:/CTEX/CTeX/fonts/truetype/
 chinese/simsun.ttf><C:/CTEX/CTeX/fonts/truetype/chinese/simsun.ttf><C:/CTEX/MiK
 TeX/fonts/type1/public/amsfonts/cm/cmbsy10.pfb><C:/CTEX/MiKTeX/fonts/type1/publ
@@ -437,9 +444,9 @@ public/amsfonts/cm/cmr8.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy
 /fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/CTEX/MiKTeX/fonts/type1/public/am
 sfonts/cm/cmtt10.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10
 .pfb>
-Output written on ML.pdf (15 pages, 329270 bytes).
+Output written on ML.pdf (16 pages, 337489 bytes).
 PDF statistics:
- 167 PDF objects out of 1000 (max. 8388607)
+ 170 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

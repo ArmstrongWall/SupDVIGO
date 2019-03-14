@@ -1272,23 +1272,84 @@ e.g. \quad i=0, \quad k:0\rightarrow{44}
 \Require $gyro\_list$,$acc\_list[s]$(an element in acc\_list)
         \Ensure $gyro\_measure$(time closest element in gyro\_list)
         \Function{Time\_closest\_select}{$gyro\_list,i$}
-            \State $t\gets acc\_list[s].timastamp$
-            \State $i\gets s$
+            \State $t\gets acc\_list[s].timestamp,i\gets s$
             \While{$true$}
                 \If{$i>=gyro\_list.size$}
                     \State \Return{$gyro\_list.back$}
                 \Else
-                    \If{$t  < gyro\_list[i].timastamp$}
-                        \State $i$=$i-1$
-                        \State \Break
-                    \EndIf
-                    \If{$\lambda$==0}
-                        \State $\lambda$=0.2
+                    \State $t_{now}\gets gyro\_list[i].timestamp$
+                    \State $t_{next}\gets gyro\_list[i+1].timestamp$                                    \If{$t_{now}  < t$}
+                        \If{$t_{next}  > t$}
+                            \State $t_{front}\gets abs(t_{now}-t),t_{back}\gets abs(t_{next}-t)$
+                            \State \Return{$t_{front}>t_{back}?gyro\_list[i]:gyro\_list[i+1]$}
+                        \Else
+                            \State $i=i+1$
+                        \EndIf
+                    \ElsIf{$t_{now}  > t$}
+                        \State $i=i-1$
                     \Else
-                    \State $\lambda$=2*inctry
+                        \State \Return{$gyro\_list[i]$}
                     \EndIf
                 \EndIf
             \EndWhile
+        \EndFunction
+\end{algorithmic}
+\end{algorithm}
+
+\renewcommand{\thealgorithm}{1}
+\begin{algorithm}[H]
+\caption{On-Manifold Preintegeration for IMU}
+\label{ABCLFRS}
+\begin{algorithmic}[1]
+\Require $gyro\_list,acc\_list,m,n,rotate\_list$
+        \Ensure $(\Delta\bar{\textbf{R}}_{ij},
+                \frac{\partial{\Delta\bar{\textbf{R}}_{ij}}}{\partial{\textbf{b}^g}},
+                \frac{\partial{\Delta\bar{\textbf{v}}_{ij}}}{\partial{\textbf{b}^a}},
+                \frac{\partial{\Delta\bar{\textbf{p}}_{ij}}}{\partial{\textbf{b}^a}}
+                ),
+                (\Delta\bar{\textbf{v}}_{ij},
+                \frac{\partial{\Delta\bar{\textbf{v}}_{ij}}}{\partial{\textbf{b}^g}},
+                \Delta\bar{\textbf{p}}_{ij},
+                \frac{\partial{\Delta\bar{\textbf{p}}_{ij}}}{\partial{\textbf{b}^g}}
+                )$
+        \Function{IMU\_Preintegeration}{$gyro\_list,acc\_list,m,n,rotate\_list$}
+            \ForAll{$gyro\_list[i],i:0 \to m$}
+                \State $last\_{r} \gets rotate\_list[i-1]$
+                \State $rot.timestamp \gets gyro\_list[i].timestamp$
+                \State $rot.\omega \gets gyro\_list[i].\omega$
+                \State $rot.\Delta\bar{\textbf{R}}_{ik} \gets last\_{r}.\Delta\bar{\textbf{R}}_{ik}*\mathtt{Exp}(rot.\omega*\Delta{t})$
+                \State $rot.\Delta\bar{\textbf{R}}_{(k-1)k} \gets \mathtt{Exp}(rot.\omega*\Delta{t})$
+                \State $rot.\frac{\partial{\Delta\bar{\textbf{R}}_{ik}}}{\partial{\textbf{b}^g}} \gets \Delta\bar{\textbf{R}}_{(k-1)k}^T*
+                last\_{r}.\frac{\partial{\Delta\bar{\textbf{R}}_{ik}}}{\partial{\textbf{b}^g}}
+                -\mathtt{J}_r^{k-1}*\Delta t$
+                \State $rot.\frac{\partial{\Delta\bar{\textbf{v}}_{ik}}}{\partial{\textbf{b}^a}}
+                 \gets
+                 last\_{r}.\frac{\partial{\Delta\bar{\textbf{v}}_{ik}}}{\partial{\textbf{b}^a}}
+                -last\_{r}.\Delta \bar{\mathbf{R}}_{ik}*\Delta{t}$
+                \State $rot.\frac{\partial{\Delta\bar{\textbf{p}}_{ik}}}{\partial{\textbf{b}^a}}
+                 \gets
+                 last\_{r}.\frac{\partial{\Delta\bar{\textbf{p}}_{ik}}}{\partial{\textbf{b}^a}} +
+                 last\_{r}.\frac{\partial{\Delta\bar{\textbf{v}}_{ik}}}{\partial{\textbf{b}^a}}*\Delta{t}
+                -\frac{1}{2}*last\_{r}.\Delta \bar{\mathbf{R}}_{ik}*\Delta{t}^2$
+                \State $rotate\_list.push(rot)$
+            \EndFor
+
+            \ForAll{$acc\_list[i],i:0 \to n$}
+                \State $cls\_r \gets time\_closest\_select(rotate\_list,acc\_list[i])$
+                \State $acc \gets acc\_list[i]-\bar{\textbf{b}_i^a}$
+                \State $\Delta\bar{\textbf{v}}_{ij}+=cls\_r.\Delta\bar{\textbf{R}}_{ik}*acc*\Delta{t}$
+                \State $                           \frac{\partial{\Delta\bar{\textbf{v}}_{ij}}}{\partial{\textbf{b}^g}}
+                -=  cls\_r.\Delta\bar{\textbf{R}}_{ik}*acc^{\wedge}* cls\_r.\frac{\partial{\Delta\bar{\textbf{R}}_{ik}}}{\partial{\textbf{b}^g}}*
+                \Delta{t}$
+                \State $\Delta\bar{\textbf{p}}_{ij}
+                +=
+                \Delta\bar{\textbf{v}}_{ij}*\Delta{t}
+                +\frac{1}{2}*cls\_r.\Delta\bar{\textbf{R}}_{ik}*acc*\Delta{t}^2$
+                \State $                           \frac{\partial{\Delta\bar{\textbf{p}}_{ij}}}{\partial{\textbf{b}^g}}
+                +=  cls\_r.\frac{\partial{\Delta\bar{\textbf{v}}_{ik}}}{\partial{\textbf{b}^a}}
+                *acc^{\wedge}* cls\_r.\frac{\partial{\Delta\bar{\textbf{R}}_{ik}}}{\partial{\textbf{b}^g}}*
+                \Delta{t}$
+            \EndFor
         \EndFunction
 \end{algorithmic}
 \end{algorithm}

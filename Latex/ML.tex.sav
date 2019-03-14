@@ -415,48 +415,7 @@ cost=\sum\limits_{i=j=1}^5(A(i,j)-B(i,j))^2
 \end{algorithm}
 
 
-\begin{algorithm}[h]
-        \caption{Levenberg-Marquardtï¿½ï¿½ï¿½ï¿½ï¿½Å»ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½}
-        \begin{algorithmic}[1] %Ã¿ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½Ðºï¿½
-            \Require $\boldsymbol{\mathcal{K}}_{i}$,$\boldsymbol{\mathcal{I}}_{j}$,$\boldsymbol{\delta}_{i(i-1)}$
-            ,$k_{max}$(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)
-            \Ensure $\boldsymbol{\delta}_{ji}$
-            \Function{TrackFrame}{$Array, left, middle, right$}
-                \State $v\gets 2$
-                \State $\boldsymbol{\delta}\gets \boldsymbol{\delta}_{i(i-1)}$
-                \State $\boldsymbol{f}_i$
-                \For{$i = 0 \to k_{max}-1$}
-                    \State $\boldsymbol{J}^{T}\boldsymbol{W}\boldsymbol{J}$
-                \While{$true$}
-                    \State slove $\boldsymbol{\delta}^{*}$
-                    \State update
-                    \State $\boldsymbol{f}_i$
-                    \State $error$=caclweight
-                    \If{$error<lastError$}
-                        \State $lastResidual$=$lastError$=$error$
-                        \If{$\lambda <=0.2$}
-                        \State $\lambda$=0
-                        \Else
-                        \State $\lambda$=$\frac{1}{2}\lambda$
-                        \EndIf
-                        \State break
-                    \Else
-                        \If{ï¿½ï¿½ï¿½ï¿½$<\varepsilon_1$}
-                            \State $i$=$k_{max}-1$
-                            \State break
-                        \EndIf
-                        \If{$\lambda$==0}
-                            \State $\lambda$=0.2
-                        \Else
-                        \State $\lambda$=2*inctry
-                        \EndIf
-                    \EndIf
-                \EndWhile
-                \EndFor
-                \State \Return{$\boldsymbol{\delta}$}
-            \EndFunction
-        \end{algorithmic}
-    \end{algorithm}
+
 
 
 \begin{equation}\left.\begin{aligned}
@@ -1201,7 +1160,198 @@ e.g. \quad i=0, \quad k:0\rightarrow{44}
 \end{aligned}\tag{2.2}\right.\end{equation}
 
 
+\begin{equation}\left.\begin{aligned}
+&
+\mathtt{Exp}(\boldsymbol{\xi^{\wedge}})
+=\textbf{T}=
+\begin{pmatrix}
+\textbf{R}&\textbf{t}\\\textbf{0}^T&0
+\end{pmatrix}_{4\times4},
+\mathtt{Exp}(\delta\boldsymbol{\xi^{\wedge}})
+=\begin{pmatrix}
+\delta\boldsymbol{\phi}^{\wedge}&\delta\boldsymbol{\rho}\\\textbf{0}^T&0
+\end{pmatrix}_{4\times4},\textbf{p}\in{\mathbb{R}^3}
+\\&
+\frac{\partial{(\textbf{T}\textbf{p}})}{\partial{\delta\boldsymbol{\xi}}}
+={\lim_{\delta\boldsymbol{\xi} \to \textbf{0}}}
+\frac{\mathtt{Exp}(\boldsymbol{\xi^{\wedge}})\mathtt{Exp}(\delta\boldsymbol{\xi^{\wedge}})\textbf{p}
+-\mathtt{Exp}(\boldsymbol{\xi^{\wedge}})\textbf{p}
+}{\delta\boldsymbol{\xi}}
+\\&
+\approx{\lim_{\delta\boldsymbol{\xi} \to \textbf{0}}}
+\frac{\mathtt{Exp}(\boldsymbol{\xi^{\wedge}})(\textbf{I}-\delta\boldsymbol{\xi^{\wedge}})\textbf{p}
+-\mathtt{Exp}(\boldsymbol{\xi^{\wedge}})\textbf{p}
+}{\delta\boldsymbol{\xi}}
+={\lim_{\delta\boldsymbol{\xi} \to \textbf{0}}}
+-\frac{\mathtt{Exp}(\boldsymbol{\xi^{\wedge}})\delta\boldsymbol{\xi^{\wedge}}\textbf{p}
+}{\delta\boldsymbol{\xi}}
+\\&
+={\lim_{\delta\boldsymbol{\xi} \to \textbf{0}}}
+-\frac{
+\begin{pmatrix}
+\textbf{R}&\textbf{t}\\\textbf{0}^T&0
+\end{pmatrix}
+\begin{pmatrix}
+\delta\boldsymbol{\phi}^{\wedge}\textbf{p}+\delta\boldsymbol{\rho}
+\\
+1
+\end{pmatrix}
+}{\delta\boldsymbol{\xi}}
+={\lim_{\delta\boldsymbol{\xi} \to \textbf{0}}}
+-\frac{
+\begin{pmatrix}
+\textbf{R}\delta\boldsymbol{\phi}^{\wedge}\textbf{p}+\textbf{R}\delta\boldsymbol{\rho}+\textbf{t}\\\textbf{0}^T
+\end{pmatrix}
+}{\delta\boldsymbol{\xi}}
+\\&
+={\lim_{\delta\boldsymbol{\xi} \to \textbf{0}}}
+-\frac{
+\begin{pmatrix}
+-\textbf{R}\textbf{p}^{\wedge}\delta\boldsymbol{\phi}+\textbf{R}\delta\boldsymbol{\rho}+\textbf{t}\\\textbf{0}^T
+\end{pmatrix}
+}{\begin{pmatrix}
+\delta\boldsymbol{\rho}
+\\\delta\boldsymbol{\phi}=
+\end{pmatrix}
+}
+=\begin{pmatrix}
+-\textbf{R}&\textbf{R}\textbf{p}^{\wedge}\\\textbf{0}^T&\textbf{0}^T
+\end{pmatrix}_{4\times6}
+\end{aligned}\right.
+\tag{1.1}
+\end{equation}
 
+\begin{algorithm}[h]
+    \caption{Levenberg-Marquardt µü´ú·¨}
+    \begin{algorithmic}[1] %µü´ú·¨
+        \Require $\boldsymbol{\mathcal{K}}_{i}$,$\boldsymbol{\mathcal{I}}_{j}$,$\boldsymbol{\delta}_{i(i-1)}$
+        ,$k_{max}$(µü´ú·¨)
+        \Ensure $\boldsymbol{\delta}_{ji}$
+        \Function{TrackFrame}{$Array, left, middle, right$}
+            \State $v\gets 2$
+            \State $\boldsymbol{\delta}\gets \boldsymbol{\delta}_{i(i-1)}$
+            \State $\boldsymbol{f}_i$
+            \For{$i = 0 \to k_{max}-1$}
+                \State $\boldsymbol{J}^{T}\boldsymbol{W}\boldsymbol{J}$
+            \While{$true$}
+                \State slove $\boldsymbol{\delta}^{*}$
+                \State update
+                \State $\boldsymbol{f}_i$
+                \State $error$=caclweight
+                \If{$error<lastError$}
+                    \State $lastResidual$=$lastError$=$error$
+                    \If{$\lambda <=0.2$}
+                    \State $\lambda$=0
+                    \Else
+                    \State $\lambda$=$\frac{1}{2}\lambda$
+                    \EndIf
+                    \State break
+                \Else
+                    \If{µü´ú·¨$<\varepsilon_1$}
+                        \State $i$=$k_{max}-1$
+                        \State break
+                    \EndIf
+                    \If{$\lambda$==0}
+                        \State $\lambda$=0.2
+                    \Else
+                    \State $\lambda$=2*inctry
+                    \EndIf
+                \EndIf
+            \EndWhile
+            \EndFor
+            \State \Return{$\boldsymbol{\delta}$}
+        \EndFunction
+    \end{algorithmic}
+\end{algorithm}
+
+\renewcommand{\thealgorithm}{1}
+\begin{algorithm}[H]
+\caption{Time-closest measurements selection}
+\label{ABCLFRS}
+\begin{algorithmic}[1]
+\Require $gyro\_list$,$acc\_list[s]$(an element in acc\_list)
+        \Ensure $gyro\_measure$(time closest element in gyro\_list)
+        \Function{Time\_closest\_select}{$gyro\_list,i$}
+            \State $t\gets acc\_list[s].timestamp,i\gets s$
+            \While{$true$}
+                \If{$i>=gyro\_list.size$}
+                    \State \Return{$gyro\_list.back$}
+                \Else
+                    \State $t_{now}\gets gyro\_list[i].timestamp$
+                    \State $t_{next}\gets gyro\_list[i+1].timestamp$                                    \If{$t_{now}  < t$}
+                        \If{$t_{next}  > t$}
+                            \State $t_{front}\gets abs(t_{now}-t),t_{back}\gets abs(t_{next}-t)$
+                            \State \Return{$t_{front}>t_{back}?gyro\_list[i]:gyro\_list[i+1]$}
+                        \Else
+                            \State $i=i+1$
+                        \EndIf
+                    \ElsIf{$t_{now}  > t$}
+                        \State $i=i-1$
+                    \Else
+                        \State \Return{$gyro\_list[i]$}
+                    \EndIf
+                \EndIf
+            \EndWhile
+        \EndFunction
+\end{algorithmic}
+\end{algorithm}
+
+\renewcommand{\thealgorithm}{1}
+\begin{algorithm}[H]
+\caption{On-Manifold Preintegeration for IMU}
+\label{ABCLFRS}
+\begin{algorithmic}[1]
+\Require $gyro\_list,acc\_list,m,n,rotate\_list$
+        \Ensure $(\Delta\bar{\textbf{R}}_{ij},
+                \frac{\partial{\Delta\bar{\textbf{R}}_{ij}}}{\partial{\textbf{b}^g}},
+                \frac{\partial{\Delta\bar{\textbf{v}}_{ij}}}{\partial{\textbf{b}^a}},
+                \frac{\partial{\Delta\bar{\textbf{p}}_{ij}}}{\partial{\textbf{b}^a}}
+                ),
+                (\Delta\bar{\textbf{v}}_{ij},
+                \frac{\partial{\Delta\bar{\textbf{v}}_{ij}}}{\partial{\textbf{b}^g}},
+                \Delta\bar{\textbf{p}}_{ij},
+                \frac{\partial{\Delta\bar{\textbf{p}}_{ij}}}{\partial{\textbf{b}^g}}
+                )$
+        \Function{IMU\_Preintegeration}{$gyro\_list,acc\_list,m,n,rotate\_list$}
+            \ForAll{$gyro\_list[i],i:0 \to m$}
+                \State $last\_{r} \gets rotate\_list[i-1]$
+                \State $rot.timestamp \gets gyro\_list[i].timestamp$
+                \State $rot.\omega \gets gyro\_list[i].\omega$
+                \State $rot.\Delta\bar{\textbf{R}}_{ik} \gets last\_{r}.\Delta\bar{\textbf{R}}_{ik}*\mathtt{Exp}(rot.\omega*\Delta{t})$
+                \State $rot.\Delta\bar{\textbf{R}}_{(k-1)k} \gets \mathtt{Exp}(rot.\omega*\Delta{t})$
+                \State $rot.\frac{\partial{\Delta\bar{\textbf{R}}_{ik}}}{\partial{\textbf{b}^g}} \gets \Delta\bar{\textbf{R}}_{(k-1)k}^T*
+                last\_{r}.\frac{\partial{\Delta\bar{\textbf{R}}_{ik}}}{\partial{\textbf{b}^g}}
+                -\mathtt{J}_r^{k-1}*\Delta t$
+                \State $rot.\frac{\partial{\Delta\bar{\textbf{v}}_{ik}}}{\partial{\textbf{b}^a}}
+                 \gets
+                 last\_{r}.\frac{\partial{\Delta\bar{\textbf{v}}_{ik}}}{\partial{\textbf{b}^a}}
+                -last\_{r}.\Delta \bar{\mathbf{R}}_{ik}*\Delta{t}$
+                \State $rot.\frac{\partial{\Delta\bar{\textbf{p}}_{ik}}}{\partial{\textbf{b}^a}}
+                 \gets
+                 last\_{r}.\frac{\partial{\Delta\bar{\textbf{p}}_{ik}}}{\partial{\textbf{b}^a}} +
+                 last\_{r}.\frac{\partial{\Delta\bar{\textbf{v}}_{ik}}}{\partial{\textbf{b}^a}}*\Delta{t}
+                -\frac{1}{2}*last\_{r}.\Delta \bar{\mathbf{R}}_{ik}*\Delta{t}^2$
+                \State $rotate\_list.push(rot)$
+            \EndFor
+
+            \ForAll{$acc\_list[i],i:0 \to n$}
+                \State $cls\_r \gets time\_closest\_select(rotate\_list,acc\_list[i])$
+                \State $acc \gets acc\_list[i]-\bar{\textbf{b}_i^a}$
+                \State $\Delta\bar{\textbf{v}}_{ij}+=cls\_r.\Delta\bar{\textbf{R}}_{ik}*acc*\Delta{t}$
+                \State $                           \frac{\partial{\Delta\bar{\textbf{v}}_{ij}}}{\partial{\textbf{b}^g}}
+                -=  cls\_r.\Delta\bar{\textbf{R}}_{ik}*acc^{\wedge}* cls\_r.\frac{\partial{\Delta\bar{\textbf{R}}_{ik}}}{\partial{\textbf{b}^g}}*
+                \Delta{t}$
+                \State $\Delta\bar{\textbf{p}}_{ij} 
+                +=
+                \Delta\bar{\textbf{v}}_{ij}*\Delta{t}
+                +\frac{1}{2}*cls\_r.\Delta\bar{\textbf{R}}_{ik}*acc*\Delta{t}$
+                
+
+
+            \EndFor
+        \EndFunction
+\end{algorithmic}
+\end{algorithm}
 
 \end{CJK*}
 \end{document}

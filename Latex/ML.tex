@@ -1296,6 +1296,89 @@ e.g. \quad i=0, \quad k:0\rightarrow{44}
 \end{algorithmic}
 \end{algorithm}
 
+\renewcommand{\thealgorithm}{1}
+\begin{algorithm}[H]
+\caption{On-Manifold Preintegeration for IMU}
+\label{ABCLFRS}
+\begin{algorithmic}[1]
+\Require $gyro\_list,acc\_list,m,n,rotate\_list$
+        \Ensure $(\Delta\bar{\textbf{R}}_{ij},
+                \frac{\partial{\Delta\bar{\textbf{R}}_{ij}}}{\partial{\textbf{b}^g}},
+                \frac{\partial{\Delta\bar{\textbf{v}}_{ij}}}{\partial{\textbf{b}^a}},
+                \frac{\partial{\Delta\bar{\textbf{p}}_{ij}}}{\partial{\textbf{b}^a}}
+                ),
+                (\Delta\bar{\textbf{v}}_{ij},
+                \frac{\partial{\Delta\bar{\textbf{v}}_{ij}}}{\partial{\textbf{b}^g}},
+                \Delta\bar{\textbf{p}}_{ij},
+                \frac{\partial{\Delta\bar{\textbf{p}}_{ij}}}{\partial{\textbf{b}^g}}
+                ),\Sigma_{ij}$
+        \Function{IMU\_Preintegeration}{$gyro\_list,acc\_list,m,n,rotate\_list$}
+            \ForAll{$gyro\_list[i],i:0 \to m$}
+                \State $last\_{r} \gets rotate\_list[i-1]$
+                \State $rot.timestamp \gets gyro\_list[i].timestamp$
+                \State $rot.\omega \gets gyro\_list[i].\omega-\bar{\textbf{b}_i^g}$
+                \State $rot.\Delta\bar{\textbf{R}}_{ik} \gets last\_{r}.\Delta\bar{\textbf{R}}_{ik}*\mathtt{Exp}(rot.\omega*\Delta{t})$
+                \State $rot.\Delta\bar{\textbf{R}}_{(k-1)k} \gets \mathtt{Exp}(rot.\omega*\Delta{t})$
+                \State $rot.\frac{\partial{\Delta\bar{\textbf{R}}_{ik}}}{\partial{\textbf{b}^g}} \gets \Delta\bar{\textbf{R}}_{(k-1)k}^T*
+                last\_{r}.\frac{\partial{\Delta\bar{\textbf{R}}_{ik}}}{\partial{\textbf{b}^g}}
+                -\mathtt{J}_r(rot.\omega*\Delta t)*\Delta t$
+                \State $rot.\frac{\partial{\Delta\bar{\textbf{v}}_{ik}}}{\partial{\textbf{b}^a}}
+                 \gets
+                 last\_{r}.\frac{\partial{\Delta\bar{\textbf{v}}_{ik}}}{\partial{\textbf{b}^a}}
+                -last\_{r}.\Delta \bar{\mathbf{R}}_{ik}*\Delta{t}$
+                \State $rot.\frac{\partial{\Delta\bar{\textbf{p}}_{ik}}}{\partial{\textbf{b}^a}}
+                 \gets
+                 last\_{r}.\frac{\partial{\Delta\bar{\textbf{p}}_{ik}}}{\partial{\textbf{b}^a}} +
+                 last\_{r}.\frac{\partial{\Delta\bar{\textbf{v}}_{ik}}}{\partial{\textbf{b}^a}}*\Delta{t}
+                -\frac{1}{2}last\_{r}.\Delta \bar{\mathbf{R}}_{ik}*\Delta{t}^2$
+                \State $rotate\_list.push(rot)$
+            \EndFor
+            \State $\Delta\bar{\textbf{R}}_{ij}=rotate\_list.end.\Delta\bar{\textbf{R}}_{ik}$
+            \State $\frac{\partial{\Delta\bar{\textbf{R}}_{ij}}}{\partial{\textbf{b}^g}}
+            =rotate\_list.end.\frac{\partial{\Delta\bar{\textbf{R}}_{ik}}}{\partial{\textbf{b}^g}}$
+            \State $\frac{\partial{\Delta\bar{\textbf{v}}_{ij}}}{\partial{\textbf{b}^a}}
+            =rotate\_list.end.\frac{\partial{\Delta\bar{\textbf{v}}_{ik}}}{\partial{\textbf{b}^a}}$
+            \State $\frac{\partial{\Delta\bar{\textbf{p}}_{ij}}}{\partial{\textbf{b}^a}}
+            =rotate\_list.end.\frac{\partial{\Delta\bar{\textbf{p}}_{ik}}}{\partial{\textbf{b}^a}}$
+            \ForAll{$acc\_list[i],i:0 \to n$}
+                \State $cls\_r \gets time\_closest\_select(rotate\_list,acc\_list[i])$
+                \State $acc \gets acc\_list[i]-\bar{\textbf{b}_i^a}$
+                \State $\Delta\bar{\textbf{v}}_{ij}+=cls\_r.\Delta\bar{\textbf{R}}_{ik}*acc*\Delta{t}$
+                \State $                           \frac{\partial{\Delta\bar{\textbf{v}}_{ij}}}{\partial{\textbf{b}^g}}
+                -=  cls\_r.\Delta\bar{\textbf{R}}_{ik}*acc^{\wedge}* cls\_r.\frac{\partial{\Delta\bar{\textbf{R}}_{ik}}}{\partial{\textbf{b}^g}}*
+                \Delta{t}$
+                \State $\Delta\bar{\textbf{p}}_{ij}
+                +=
+                \Delta\bar{\textbf{v}}_{ij}*\Delta{t}
+                +\frac{1}{2}cls\_r.\Delta\bar{\textbf{R}}_{ik}*acc*\Delta{t}^2$
+                \State $                           \frac{\partial{\Delta\bar{\textbf{p}}_{ij}}}{\partial{\textbf{b}^g}}
+                +=  cls\_r.\frac{\partial{\Delta\bar{\textbf{v}}_{ik}}}{\partial{\textbf{b}^a}}
+                \Delta{t}-\frac{1}{2}cls\_r.\Delta\bar{\textbf{R}}_{ik}*acc^{\wedge}* cls\_r.\frac{\partial{\Delta\bar{\textbf{R}}_{ik}}}{\partial{\textbf{b}^g}}*\Delta{t}^2
+                $
+                \State $
+                A = \left(
+                      \begin{array}{ccc}
+                        cls\_r.\Delta\bar{\textbf{R}}_{(k-1)k}^T & \textbf{0} & \textbf{0} \\
+                        -cls\_r.\Delta\bar{\textbf{R}}_{ik}*acc^{\wedge}*\Delta{t} & \textbf{I} & \textbf{0} \\
+                        -\frac{1}{2}cls\_r.\Delta\bar{\textbf{R}}_{ik}*acc^{\wedge}*\Delta{t}^2 & \Delta{t}\textbf{I} & \textbf{I} \\
+                      \end{array}
+                    \right)
+                $
+                \State $
+                B = \left(
+                      \begin{array}{cc}
+                        \mathtt{J}_r(rot.\omega*\Delta t)*\Delta t & \textbf{0} \\
+                        \textbf{0} & cls\_r.\Delta\bar{\textbf{R}}_{ik}*\Delta{t} \\
+                        \textbf{0} & \frac{1}{2}cls\_r.\Delta\bar{\textbf{R}}_{ik}*\Delta{t}^2 \\
+                      \end{array}
+                    \right)
+                $
+                \State $\Sigma_{ij}=A*\Sigma_{ij}*A^T+B*\Sigma_{\eta}*B^T$
+            \EndFor
+        \EndFunction
+\end{algorithmic}
+\end{algorithm}
+
 \end{CJK*}
 \end{document}
 
