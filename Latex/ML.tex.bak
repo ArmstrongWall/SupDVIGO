@@ -1311,17 +1311,17 @@ e.g. \quad i=0, \quad k:0\rightarrow{44}
                 \frac{\partial{\Delta\bar{\textbf{v}}_{ij}}}{\partial{\textbf{b}^g}},
                 \Delta\bar{\textbf{p}}_{ij},
                 \frac{\partial{\Delta\bar{\textbf{p}}_{ij}}}{\partial{\textbf{b}^g}}
-                )$
+                ),\Sigma_{ij}$
         \Function{IMU\_Preintegeration}{$gyro\_list,acc\_list,m,n,rotate\_list$}
             \ForAll{$gyro\_list[i],i:0 \to m$}
                 \State $last\_{r} \gets rotate\_list[i-1]$
                 \State $rot.timestamp \gets gyro\_list[i].timestamp$
-                \State $rot.\omega \gets gyro\_list[i].\omega$
+                \State $rot.\omega \gets gyro\_list[i].\omega-\bar{\textbf{b}_i^g}$
                 \State $rot.\Delta\bar{\textbf{R}}_{ik} \gets last\_{r}.\Delta\bar{\textbf{R}}_{ik}*\mathtt{Exp}(rot.\omega*\Delta{t})$
                 \State $rot.\Delta\bar{\textbf{R}}_{(k-1)k} \gets \mathtt{Exp}(rot.\omega*\Delta{t})$
                 \State $rot.\frac{\partial{\Delta\bar{\textbf{R}}_{ik}}}{\partial{\textbf{b}^g}} \gets \Delta\bar{\textbf{R}}_{(k-1)k}^T*
                 last\_{r}.\frac{\partial{\Delta\bar{\textbf{R}}_{ik}}}{\partial{\textbf{b}^g}}
-                -\mathtt{J}_r^{k-1}*\Delta t$
+                -\mathtt{J}_r(rot.\omega*\Delta t)*\Delta t$
                 \State $rot.\frac{\partial{\Delta\bar{\textbf{v}}_{ik}}}{\partial{\textbf{b}^a}}
                  \gets
                  last\_{r}.\frac{\partial{\Delta\bar{\textbf{v}}_{ik}}}{\partial{\textbf{b}^a}}
@@ -1330,10 +1330,16 @@ e.g. \quad i=0, \quad k:0\rightarrow{44}
                  \gets
                  last\_{r}.\frac{\partial{\Delta\bar{\textbf{p}}_{ik}}}{\partial{\textbf{b}^a}} +
                  last\_{r}.\frac{\partial{\Delta\bar{\textbf{v}}_{ik}}}{\partial{\textbf{b}^a}}*\Delta{t}
-                -\frac{1}{2}*last\_{r}.\Delta \bar{\mathbf{R}}_{ik}*\Delta{t}^2$
+                -\frac{1}{2}last\_{r}.\Delta \bar{\mathbf{R}}_{ik}*\Delta{t}^2$
                 \State $rotate\_list.push(rot)$
             \EndFor
-
+            \State $\Delta\bar{\textbf{R}}_{ij}=rotate\_list.end.\Delta\bar{\textbf{R}}_{ik}$
+            \State $\frac{\partial{\Delta\bar{\textbf{R}}_{ij}}}{\partial{\textbf{b}^g}}
+            =rotate\_list.end.\frac{\partial{\Delta\bar{\textbf{R}}_{ik}}}{\partial{\textbf{b}^g}}$
+            \State $\frac{\partial{\Delta\bar{\textbf{v}}_{ij}}}{\partial{\textbf{b}^a}}
+            =rotate\_list.end.\frac{\partial{\Delta\bar{\textbf{v}}_{ik}}}{\partial{\textbf{b}^a}}$
+            \State $\frac{\partial{\Delta\bar{\textbf{p}}_{ij}}}{\partial{\textbf{b}^a}}
+            =rotate\_list.end.\frac{\partial{\Delta\bar{\textbf{p}}_{ik}}}{\partial{\textbf{b}^a}}$
             \ForAll{$acc\_list[i],i:0 \to n$}
                 \State $cls\_r \gets time\_closest\_select(rotate\_list,acc\_list[i])$
                 \State $acc \gets acc\_list[i]-\bar{\textbf{b}_i^a}$
@@ -1344,15 +1350,118 @@ e.g. \quad i=0, \quad k:0\rightarrow{44}
                 \State $\Delta\bar{\textbf{p}}_{ij}
                 +=
                 \Delta\bar{\textbf{v}}_{ij}*\Delta{t}
-                +\frac{1}{2}*cls\_r.\Delta\bar{\textbf{R}}_{ik}*acc*\Delta{t}^2$
+                +\frac{1}{2}cls\_r.\Delta\bar{\textbf{R}}_{ik}*acc*\Delta{t}^2$
                 \State $                           \frac{\partial{\Delta\bar{\textbf{p}}_{ij}}}{\partial{\textbf{b}^g}}
                 +=  cls\_r.\frac{\partial{\Delta\bar{\textbf{v}}_{ik}}}{\partial{\textbf{b}^a}}
-                *acc^{\wedge}* cls\_r.\frac{\partial{\Delta\bar{\textbf{R}}_{ik}}}{\partial{\textbf{b}^g}}*
-                \Delta{t}$
+                \Delta{t}-\frac{1}{2}cls\_r.\Delta\bar{\textbf{R}}_{ik}*acc^{\wedge}* cls\_r.\frac{\partial{\Delta\bar{\textbf{R}}_{ik}}}{\partial{\textbf{b}^g}}*\Delta{t}^2
+                $
+                \State $
+                A = \left(
+                      \begin{array}{ccc}
+                        cls\_r.\Delta\bar{\textbf{R}}_{(k-1)k}^T & \textbf{0} & \textbf{0} \\
+                        -cls\_r.\Delta\bar{\textbf{R}}_{ik}*acc^{\wedge}*\Delta{t} & \textbf{I} & \textbf{0} \\
+                        -\frac{1}{2}cls\_r.\Delta\bar{\textbf{R}}_{ik}*acc^{\wedge}*\Delta{t}^2 & \Delta{t}\textbf{I} & \textbf{I} \\
+                      \end{array}
+                    \right)
+                $
+                \State $
+                B = \left(
+                      \begin{array}{cc}
+                        \mathtt{J}_r(rot.\omega*\Delta t)*\Delta t & \textbf{0} \\
+                        \textbf{0} & cls\_r.\Delta\bar{\textbf{R}}_{ik}*\Delta{t} \\
+                        \textbf{0} & \frac{1}{2}cls\_r.\Delta\bar{\textbf{R}}_{ik}*\Delta{t}^2 \\
+                      \end{array}
+                    \right)
+                $
+                \State $\Sigma_{ij}=A*\Sigma_{ij}*A^T+B*\Sigma_{\eta}*B^T$
             \EndFor
         \EndFunction
 \end{algorithmic}
 \end{algorithm}
+
+
+\begin{equation}\left.\begin{aligned}&
+\frac{\partial{\textbf{r}_{\Delta{\textbf{p}}_{ij}}}}{\partial{\delta\boldsymbol{\phi}_i}}
+= (\textbf{R}_i^T(\textbf{p}_j-\textbf{p}_i-\textbf{v}_i\Delta t_{ij}-\frac{1}{2}\textbf{g}\Delta t_{ij}^2))^{\bigwedge}
+\\&
+\frac{\partial{\textbf{r}_{\Delta{\textbf{p}}_{ij}}}}{\partial{\delta\textbf{p}_i}}
+=-\textbf{I}
+\\&
+\frac{\partial{\textbf{r}_{\Delta{\textbf{p}}_{ij}}}}{\partial{\delta\textbf{v}_i}}
+= - \textbf{R}_i^T \Delta t_{ij}
+\\&
+\frac{\partial{\textbf{r}_{\Delta{\textbf{p}}_{ij}}}}{\partial{\delta\boldsymbol{\phi}_j}}
+= \textbf{0}
+\\&
+\frac{\partial{\textbf{r}_{\Delta{\textbf{p}}_{ij}}}}{\partial{\delta\textbf{p}_j}}
+=\textbf{R}_i^T\textbf{R}_j
+\\&
+\frac{\partial{\textbf{r}_{\Delta{\textbf{p}}_{ij}}}}{\partial{\delta\textbf{v}_j}}
+= \textbf{0}
+\\&
+\frac{\partial{\textbf{r}_{\Delta{\textbf{p}}_{ij}}}}{\partial{\delta\textbf{b}_i^a}}
+= - \frac{\partial{\Delta\bar{\textbf{p}}_{ij}}}{\partial{\textbf{b}^a}}
+\\&    
+\frac{\partial{\textbf{r}_{\Delta{\textbf{p}}_{ij}}}}{\partial{\delta\textbf{b}_i^g}}
+= - \frac{\partial{\Delta\bar{\textbf{p}}_{ij}}}{\partial{\textbf{b}^g}}
+\\&
+\end{aligned}\tag{2.2}\right.\end{equation}
+
+\begin{equation}\left.\begin{aligned}&
+\frac{\partial{\textbf{r}_{\Delta{\textbf{v}}_{ij}}}}{\partial{\delta\boldsymbol{\phi}_i}}
+= (\textbf{R}_i^T(\textbf{v}_j-\textbf{v}_i-\textbf{g}\Delta t_{ij}))^{\bigwedge}
+\\&
+\frac{\partial{\textbf{r}_{\Delta{\textbf{v}}_{ij}}}}{\partial{\delta\textbf{v}_i}}
+=\textbf{0}
+\\&
+\frac{\partial{\textbf{r}_{\Delta{\textbf{v}}_{ij}}}}{\partial{\delta\textbf{v}_i}}
+= - \textbf{R}_i^T
+\\&
+\frac{\partial{\textbf{r}_{\Delta{\textbf{v}}_{ij}}}}{\partial{\delta\boldsymbol{\phi}_j}}
+= \textbf{0}
+\\&
+\frac{\partial{\textbf{r}_{\Delta{\textbf{v}}_{ij}}}}{\partial{\delta\textbf{v}_j}}
+= \textbf{0}
+\\&
+\frac{\partial{\textbf{r}_{\Delta{\textbf{v}}_{ij}}}}{\partial{\delta\textbf{v}_j}}
+= \textbf{R}_i^T
+\\&
+\frac{\partial{\textbf{r}_{\Delta{\textbf{v}}_{ij}}}}{\partial{\delta\textbf{b}_i^a}}
+= - \frac{\partial{\Delta\bar{\textbf{v}}_{ij}}}{\partial{\textbf{b}^a}}
+\\&
+\frac{\partial{\textbf{r}_{\Delta{\textbf{v}}_{ij}}}}{\partial{\delta\textbf{b}_i^g}}
+= - \frac{\partial{\Delta\bar{\textbf{v}}_{ij}}}{\partial{\textbf{b}^g}}
+\end{aligned}\tag{2.2}\right.\end{equation}
+
+
+\begin{equation}\left.\begin{aligned}&
+\frac{\partial{\textbf{r}_{\Delta{\textbf{R}}_{ij}}}}{\partial{\delta\textbf{p}_i}}
+=\textbf{0}
+\\&
+\frac{\partial{\textbf{r}_{\Delta{\textbf{R}}_{ij}}}}{\partial{\delta\boldsymbol{\phi}_i}}
+= -\mathtt{J}_r^{-1}(\textbf{r}_{\Delta{\textbf{R}}_{ij}})\textbf{R}_j^T\textbf{R}_i
+\\&
+\frac{\partial{\textbf{r}_{\Delta{\textbf{R}}_{ij}}}}{\partial{\delta\textbf{v}_i}}
+= \textbf{0}
+\\&
+\frac{\partial{\textbf{r}_{\Delta{\textbf{R}}_{ij}}}}{\partial{\delta\textbf{p}_j}}
+=\textbf{0}
+\\&
+\frac{\partial{\textbf{r}_{\Delta{\textbf{R}}_{ij}}}}{\partial{\delta\boldsymbol{\phi}_j}}
+=  \mathtt{J}_r^{-1}(\textbf{r}_{\Delta{\textbf{R}}_{ij}})
+\\&
+\frac{\partial{\textbf{r}_{\Delta{\textbf{R}}_{ij}}}}{\partial{\delta\textbf{v}_j}}
+= \textbf{0}
+\\&
+\frac{\partial{\textbf{r}_{\Delta{\textbf{R}}_{ij}}}}{\partial{\delta\textbf{b}_i^a}}
+= \textbf{0}
+\\&
+\frac{\partial{\textbf{r}_{\Delta{\textbf{R}}_{ij}}}}{\partial{\delta\textbf{b}_i^g}}
+= - \mathtt{J}_r^{-1}(\textbf{r}_{\Delta{\textbf{R}}_{ij}})
+    \mathtt{Exp}(\textbf{r}_{\Delta{\textbf{R}}_{ij}})^T
+    \mathtt{J}_r(\frac{\partial{\Delta\bar{\textbf{R}}_{ij}}}{\partial{\textbf{b}^g}}\delta\textbf{b}_i^g)
+    \frac{\partial{\Delta\bar{\textbf{R}}_{ij}}}{\partial{\textbf{b}^g}}
+\end{aligned}\tag{2.2}\right.\end{equation}
 
 \end{CJK*}
 \end{document}

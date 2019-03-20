@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2018.9.21)  14 MAR 2019 23:42
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2018.9.21)  20 MAR 2019 13:27
 entering extended mode
 **C:/Users/wzq/Desktop/git/Supplementary_Material_to_Stereo_VI_DSO/Latex/ML.tex
 
@@ -408,7 +408,7 @@ File: c19song.fd 2009/09/23 4.8.2
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[14] [15] [16]
+[14] [15] [16] [17] [18]
 (C:\Users\wzq\Desktop\git\Supplementary_Material_to_Stereo_VI_DSO\Latex\ML.aux)
 
 LaTeX Warning: There were multiply-defined labels.
@@ -444,9 +444,9 @@ public/amsfonts/cm/cmr8.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy
 /fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/CTEX/MiKTeX/fonts/type1/public/am
 sfonts/cm/cmtt10.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10
 .pfb>
-Output written on ML.pdf (16 pages, 337489 bytes).
+Output written on ML.pdf (18 pages, 340695 bytes).
 PDF statistics:
- 170 PDF objects out of 1000 (max. 8388607)
+ 176 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

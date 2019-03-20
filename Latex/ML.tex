@@ -1379,6 +1379,90 @@ e.g. \quad i=0, \quad k:0\rightarrow{44}
 \end{algorithmic}
 \end{algorithm}
 
+
+\begin{equation}\left.\begin{aligned}&
+\frac{\partial{\textbf{r}_{\Delta{\textbf{p}}_{ij}}}}{\partial{\delta\textbf{p}_i}}
+=-\textbf{I}
+\\&
+\frac{\partial{\textbf{r}_{\Delta{\textbf{p}}_{ij}}}}{\partial{\delta\boldsymbol{\phi}_i}}
+= (\textbf{R}_i^T(\textbf{p}_j-\textbf{p}_i-\textbf{v}_i\Delta t_{ij}-\frac{1}{2}\textbf{g}\Delta t_{ij}^2))^{\bigwedge}
+\\&
+\frac{\partial{\textbf{r}_{\Delta{\textbf{p}}_{ij}}}}{\partial{\delta\textbf{v}_i}}
+= - \textbf{R}_i^T \Delta t_{ij}
+\\&
+\frac{\partial{\textbf{r}_{\Delta{\textbf{p}}_{ij}}}}{\partial{\delta\textbf{p}_j}}
+=\textbf{R}_i^T\textbf{R}_j
+\\&
+\frac{\partial{\textbf{r}_{\Delta{\textbf{p}}_{ij}}}}{\partial{\delta\boldsymbol{\phi}_j}}
+= \textbf{0}
+\\&
+\frac{\partial{\textbf{r}_{\Delta{\textbf{p}}_{ij}}}}{\partial{\delta\textbf{v}_j}}
+= \textbf{0}
+\\&
+\frac{\partial{\textbf{r}_{\Delta{\textbf{p}}_{ij}}}}{\partial{\delta\textbf{b}_i^a}}
+= - \frac{\partial{\Delta\bar{\textbf{p}}_{ij}}}{\partial{\textbf{b}^a}}
+\\&    
+\frac{\partial{\textbf{r}_{\Delta{\textbf{p}}_{ij}}}}{\partial{\delta\textbf{b}_i^g}}
+= - \frac{\partial{\Delta\bar{\textbf{p}}_{ij}}}{\partial{\textbf{b}^g}}
+\\&
+\end{aligned}\tag{2.2}\right.\end{equation}
+
+\begin{equation}\left.\begin{aligned}&
+\frac{\partial{\textbf{r}_{\Delta{\textbf{v}}_{ij}}}}{\partial{\delta\textbf{p}_i}}
+=\textbf{0}
+\\&
+\frac{\partial{\textbf{r}_{\Delta{\textbf{v}}_{ij}}}}{\partial{\delta\boldsymbol{\phi}_i}}
+= (\textbf{R}_i^T(\textbf{v}_j-\textbf{v}_i-\textbf{g}\Delta t_{ij}))^{\bigwedge}
+\\&
+\frac{\partial{\textbf{r}_{\Delta{\textbf{v}}_{ij}}}}{\partial{\delta\textbf{v}_i}}
+= - \textbf{R}_i^T
+\\&
+\frac{\partial{\textbf{r}_{\Delta{\textbf{v}}_{ij}}}}{\partial{\delta\textbf{p}_j}}
+= \textbf{0}
+\\&
+\frac{\partial{\textbf{r}_{\Delta{\textbf{v}}_{ij}}}}{\partial{\delta\boldsymbol{\phi}_j}}
+= \textbf{0}
+\\&
+\frac{\partial{\textbf{r}_{\Delta{\textbf{v}}_{ij}}}}{\partial{\delta\textbf{v}_j}}
+= \textbf{R}_i^T
+\\&
+\frac{\partial{\textbf{r}_{\Delta{\textbf{v}}_{ij}}}}{\partial{\delta\textbf{b}_i^a}}
+= - \frac{\partial{\Delta\bar{\textbf{v}}_{ij}}}{\partial{\textbf{b}^a}}
+\\&
+\frac{\partial{\textbf{r}_{\Delta{\textbf{v}}_{ij}}}}{\partial{\delta\textbf{b}_i^g}}
+= - \frac{\partial{\Delta\bar{\textbf{v}}_{ij}}}{\partial{\textbf{b}^g}}
+\end{aligned}\tag{2.2}\right.\end{equation}
+
+
+\begin{equation}\left.\begin{aligned}&
+\frac{\partial{\textbf{r}_{\Delta{\textbf{R}}_{ij}}}}{\partial{\delta\textbf{p}_i}}
+=\textbf{0}
+\\&
+\frac{\partial{\textbf{r}_{\Delta{\textbf{R}}_{ij}}}}{\partial{\delta\boldsymbol{\phi}_i}}
+= -\mathtt{J}_r^{-1}(\textbf{r}_{\Delta{\textbf{R}}_{ij}})\textbf{R}_j^T\textbf{R}_i
+\\&
+\frac{\partial{\textbf{r}_{\Delta{\textbf{R}}_{ij}}}}{\partial{\delta\textbf{v}_i}}
+= \textbf{0}
+\\&
+\frac{\partial{\textbf{r}_{\Delta{\textbf{R}}_{ij}}}}{\partial{\delta\textbf{p}_j}}
+=\textbf{0}
+\\&
+\frac{\partial{\textbf{r}_{\Delta{\textbf{R}}_{ij}}}}{\partial{\delta\boldsymbol{\phi}_j}}
+=  \mathtt{J}_r^{-1}(\textbf{r}_{\Delta{\textbf{R}}_{ij}})
+\\&
+\frac{\partial{\textbf{r}_{\Delta{\textbf{R}}_{ij}}}}{\partial{\delta\textbf{v}_j}}
+= \textbf{0}
+\\&
+\frac{\partial{\textbf{r}_{\Delta{\textbf{R}}_{ij}}}}{\partial{\delta\textbf{b}_i^a}}
+= \textbf{0}
+\\&
+\frac{\partial{\textbf{r}_{\Delta{\textbf{R}}_{ij}}}}{\partial{\delta\textbf{b}_i^g}}
+= - \mathtt{J}_r^{-1}(\textbf{r}_{\Delta{\textbf{R}}_{ij}})
+    \mathtt{Exp}(\textbf{r}_{\Delta{\textbf{R}}_{ij}})^T
+    \mathtt{J}_r(\frac{\partial{\Delta\bar{\textbf{R}}_{ij}}}{\partial{\textbf{b}^g}}\delta\textbf{b}_i^g)
+    \frac{\partial{\Delta\bar{\textbf{R}}_{ij}}}{\partial{\textbf{b}^g}}
+\end{aligned}\tag{2.2}\right.\end{equation}
+
 \end{CJK*}
 \end{document}
 
