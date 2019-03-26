@@ -1381,20 +1381,20 @@ e.g. \quad i=0, \quad k:0\rightarrow{44}
 
 
 \begin{equation}\left.\begin{aligned}&
-\frac{\partial{\textbf{r}_{\Delta{\textbf{p}}_{ij}}}}{\partial{\delta\boldsymbol{\phi}_i}}
-= (\textbf{R}_i^T(\textbf{p}_j-\textbf{p}_i-\textbf{v}_i\Delta t_{ij}-\frac{1}{2}\textbf{g}\Delta t_{ij}^2))^{\bigwedge}
-\\&
 \frac{\partial{\textbf{r}_{\Delta{\textbf{p}}_{ij}}}}{\partial{\delta\textbf{p}_i}}
 =-\textbf{I}
+\\&
+\frac{\partial{\textbf{r}_{\Delta{\textbf{p}}_{ij}}}}{\partial{\delta\boldsymbol{\phi}_i}}
+= (\textbf{R}_i^T(\textbf{p}_j-\textbf{p}_i-\textbf{v}_i\Delta t_{ij}-\frac{1}{2}\textbf{g}\Delta t_{ij}^2))^{\bigwedge}
 \\&
 \frac{\partial{\textbf{r}_{\Delta{\textbf{p}}_{ij}}}}{\partial{\delta\textbf{v}_i}}
 = - \textbf{R}_i^T \Delta t_{ij}
 \\&
-\frac{\partial{\textbf{r}_{\Delta{\textbf{p}}_{ij}}}}{\partial{\delta\boldsymbol{\phi}_j}}
-= \textbf{0}
-\\&
 \frac{\partial{\textbf{r}_{\Delta{\textbf{p}}_{ij}}}}{\partial{\delta\textbf{p}_j}}
 =\textbf{R}_i^T\textbf{R}_j
+\\&
+\frac{\partial{\textbf{r}_{\Delta{\textbf{p}}_{ij}}}}{\partial{\delta\boldsymbol{\phi}_j}}
+= \textbf{0}
 \\&
 \frac{\partial{\textbf{r}_{\Delta{\textbf{p}}_{ij}}}}{\partial{\delta\textbf{v}_j}}
 = \textbf{0}
@@ -1408,19 +1408,19 @@ e.g. \quad i=0, \quad k:0\rightarrow{44}
 \end{aligned}\tag{2.2}\right.\end{equation}
 
 \begin{equation}\left.\begin{aligned}&
+\frac{\partial{\textbf{r}_{\Delta{\textbf{v}}_{ij}}}}{\partial{\delta\textbf{p}_i}}
+=\textbf{0}
+\\&
 \frac{\partial{\textbf{r}_{\Delta{\textbf{v}}_{ij}}}}{\partial{\delta\boldsymbol{\phi}_i}}
 = (\textbf{R}_i^T(\textbf{v}_j-\textbf{v}_i-\textbf{g}\Delta t_{ij}))^{\bigwedge}
 \\&
 \frac{\partial{\textbf{r}_{\Delta{\textbf{v}}_{ij}}}}{\partial{\delta\textbf{v}_i}}
-=\textbf{0}
-\\&
-\frac{\partial{\textbf{r}_{\Delta{\textbf{v}}_{ij}}}}{\partial{\delta\textbf{v}_i}}
 = - \textbf{R}_i^T
 \\&
-\frac{\partial{\textbf{r}_{\Delta{\textbf{v}}_{ij}}}}{\partial{\delta\boldsymbol{\phi}_j}}
+\frac{\partial{\textbf{r}_{\Delta{\textbf{v}}_{ij}}}}{\partial{\delta\textbf{p}_j}}
 = \textbf{0}
 \\&
-\frac{\partial{\textbf{r}_{\Delta{\textbf{v}}_{ij}}}}{\partial{\delta\textbf{v}_j}}
+\frac{\partial{\textbf{r}_{\Delta{\textbf{v}}_{ij}}}}{\partial{\delta\boldsymbol{\phi}_j}}
 = \textbf{0}
 \\&
 \frac{\partial{\textbf{r}_{\Delta{\textbf{v}}_{ij}}}}{\partial{\delta\textbf{v}_j}}
