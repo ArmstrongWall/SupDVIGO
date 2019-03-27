@@ -1463,6 +1463,42 @@ e.g. \quad i=0, \quad k:0\rightarrow{44}
     \frac{\partial{\Delta\bar{\textbf{R}}_{ij}}}{\partial{\textbf{b}^g}}
 \end{aligned}\tag{2.2}\right.\end{equation}
 
+
+\begin{equation}\left.\begin{aligned}
+&
+\frac{\partial{(\textbf{T}^{-1}\textbf{p}})}{\partial{\delta\boldsymbol{\xi}}}
+={\lim_{\delta\boldsymbol{\xi} \to \textbf{0}}}
+\frac{\mathtt{Exp}(-\boldsymbol{\xi^{\wedge}})\mathtt{Exp}(\delta\boldsymbol{\xi^{\wedge}})\textbf{p}
+-\mathtt{Exp}(-\boldsymbol{\xi^{\wedge}})\textbf{p}
+}{\delta\boldsymbol{\xi}}
+\\&
+\approx{\lim_{\delta\boldsymbol{\xi} \to \textbf{0}}}
+\frac{\mathtt{Exp}(-\boldsymbol{\xi^{\wedge}})(\textbf{I}-\delta\boldsymbol{\xi^{\wedge}})\textbf{p}
+-\mathtt{Exp}(-\boldsymbol{\xi^{\wedge}})\textbf{p}
+}{\delta\boldsymbol{\xi}}
+={\lim_{\delta\boldsymbol{\xi} \to \textbf{0}}}
+-\frac{\mathtt{Exp}(-\boldsymbol{\xi^{\wedge}})\delta\boldsymbol{\xi^{\wedge}}\textbf{p}
+}{\delta\boldsymbol{\xi}}
+\\&
+={\lim_{\delta\boldsymbol{\xi} \to \textbf{0}}}
+-\frac{
+\begin{pmatrix}
+\textbf{R}^{-1}&-\textbf{R}^{-1}\textbf{t}\\\textbf{0}^T&0
+\end{pmatrix}
+\begin{pmatrix}
+\delta\boldsymbol{\phi}^{\wedge}\textbf{p}+\delta\boldsymbol{\rho}
+\\
+1
+\end{pmatrix}
+}{\delta\boldsymbol{\xi}}
+=\begin{pmatrix}
+-\textbf{R}^{-1}&\textbf{R}^{-1}\textbf{p}^{\wedge}\\\textbf{0}^T&\textbf{0}^T
+\end{pmatrix}_{4\times6}
+\end{aligned}\right.
+\tag{1.1}
+\end{equation}
+
+
 \end{CJK*}
 \end{document}
 
