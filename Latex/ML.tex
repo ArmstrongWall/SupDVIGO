@@ -1464,26 +1464,38 @@ e.g. \quad i=0, \quad k:0\rightarrow{44}
 \end{aligned}\tag{2.2}\right.\end{equation}
 
 
+
+
 \begin{equation}\left.\begin{aligned}
 &
-\frac{\partial{(\textbf{T}^{-1}\textbf{p}})}{\partial{\delta\boldsymbol{\xi}}}
+\mathtt{Exp}(\boldsymbol{\xi}^{\wedge})
+=\textbf{T}=
+\begin{pmatrix}
+\textbf{R}&\textbf{t}\\\textbf{0}^T&1
+\end{pmatrix}_{4\times4},
+\mathtt{Exp}(\delta\boldsymbol{\xi }^{\wedge}  )
+=\begin{pmatrix}
+\delta\boldsymbol{\phi}^{\wedge}&\delta\boldsymbol{\rho}\\\textbf{0}^T&1
+\end{pmatrix}_{4\times4},\textbf{p}\in{\mathbb{R}^3}
+\\&
+\frac{\partial{(\textbf{T}\textbf{p}})}{\partial{\delta\boldsymbol{\xi}}}
 ={\lim_{\delta\boldsymbol{\xi} \to \textbf{0}}}
-\frac{\mathtt{Exp}(-\boldsymbol{\xi^{\wedge}})\mathtt{Exp}(\delta\boldsymbol{\xi^{\wedge}})\textbf{p}
--\mathtt{Exp}(-\boldsymbol{\xi^{\wedge}})\textbf{p}
+\frac{\mathtt{Exp}(\boldsymbol{\xi^{\wedge}})\mathtt{Exp}(\delta\boldsymbol{\xi^{\wedge}})\textbf{p}
+-\mathtt{Exp}(\boldsymbol{\xi^{\wedge}})\textbf{p}
 }{\delta\boldsymbol{\xi}}
 \\&
 \approx{\lim_{\delta\boldsymbol{\xi} \to \textbf{0}}}
-\frac{\mathtt{Exp}(-\boldsymbol{\xi^{\wedge}})(\textbf{I}-\delta\boldsymbol{\xi^{\wedge}})\textbf{p}
--\mathtt{Exp}(-\boldsymbol{\xi^{\wedge}})\textbf{p}
+\frac{\mathtt{Exp}(\boldsymbol{\xi^{\wedge}})(\textbf{I}+\delta\boldsymbol{\xi^{\wedge}})\textbf{p}
+-\mathtt{Exp}(\boldsymbol{\xi^{\wedge}})\textbf{p}
 }{\delta\boldsymbol{\xi}}
 ={\lim_{\delta\boldsymbol{\xi} \to \textbf{0}}}
--\frac{\mathtt{Exp}(-\boldsymbol{\xi^{\wedge}})\delta\boldsymbol{\xi^{\wedge}}\textbf{p}
+\frac{\mathtt{Exp}(\boldsymbol{\xi^{\wedge}})\delta\boldsymbol{\xi^{\wedge}}\textbf{p}
 }{\delta\boldsymbol{\xi}}
 \\&
 ={\lim_{\delta\boldsymbol{\xi} \to \textbf{0}}}
--\frac{
+\frac{
 \begin{pmatrix}
-\textbf{R}^{-1}&-\textbf{R}^{-1}\textbf{t}\\\textbf{0}^T&0
+\textbf{R}&\textbf{t}\\\textbf{0}^T&1
 \end{pmatrix}
 \begin{pmatrix}
 \delta\boldsymbol{\phi}^{\wedge}\textbf{p}+\delta\boldsymbol{\rho}
@@ -1491,13 +1503,101 @@ e.g. \quad i=0, \quad k:0\rightarrow{44}
 1
 \end{pmatrix}
 }{\delta\boldsymbol{\xi}}
+={\lim_{\delta\boldsymbol{\xi} \to \textbf{0}}}
+\frac{
+\begin{pmatrix}
+\textbf{R}\delta\boldsymbol{\phi}^{\wedge}\textbf{p}+\textbf{R}\delta\boldsymbol{\rho}+\textbf{t}\\1
+\end{pmatrix}
+}{\delta\boldsymbol{\xi}}
+\\&
+={\lim_{\delta\boldsymbol{\xi} \to \textbf{0}}}
+\frac{
+\begin{pmatrix}
+-\textbf{R}\textbf{p}^{\wedge}\delta\boldsymbol{\phi}+\textbf{R}\delta\boldsymbol{\rho}+\textbf{t}\\1
+\end{pmatrix}
+}{\begin{pmatrix}
+\delta\boldsymbol{\rho}
+\\\delta\boldsymbol{\phi}
+\end{pmatrix}
+}
 =\begin{pmatrix}
--\textbf{R}^{-1}&\textbf{R}^{-1}\textbf{p}^{\wedge}\\\textbf{0}^T&\textbf{0}^T
+\textbf{R}&-\textbf{R}\textbf{p}^{\wedge}\\\textbf{0}^T&\textbf{0}^T
 \end{pmatrix}_{4\times6}
 \end{aligned}\right.
 \tag{1.1}
 \end{equation}
 
+\begin{equation}\left.\begin{aligned}
+&
+\frac{\partial{(\textbf{T}^{-1}\textbf{p}})}{\partial{\delta\boldsymbol{\xi}}}
+={\lim_{\delta\boldsymbol{\xi} \to \textbf{0}}}
+\frac{(\mathtt{Exp}(\boldsymbol{\xi^{\wedge}})\mathtt{Exp}(\delta\boldsymbol{\xi^{\wedge}}))^{-1}\textbf{p}
+-\mathtt{Exp}(-\boldsymbol{\xi^{\wedge}})\textbf{p}
+}{\delta\boldsymbol{\xi}}
+\\&
+={\lim_{\delta\boldsymbol{\xi} \to \textbf{0}}}\frac{(\mathtt{Exp}(\delta\boldsymbol{\xi^{\wedge}}))^{-1}(\mathtt{Exp}(\boldsymbol{\xi^{\wedge}}))^{-1}\textbf{p}
+-\mathtt{Exp}(-\boldsymbol{\xi^{\wedge}})\textbf{p}
+}{\delta\boldsymbol{\xi}}
+\\&
+={\lim_{\delta\boldsymbol{\xi} \to \textbf{0}}}\frac{\mathtt{Exp}(-\delta\boldsymbol{\xi^{\wedge}})\mathtt{Exp}(-\boldsymbol{\xi^{\wedge}})\textbf{p}
+-\mathtt{Exp}(-\boldsymbol{\xi^{\wedge}})\textbf{p}
+}{\delta\boldsymbol{\xi}}
+\\&
+\approx{\lim_{\delta\boldsymbol{\xi} \to \textbf{0}}}
+\frac{(\textbf{I}-\delta\boldsymbol{\xi^{\wedge}})\mathtt{Exp}(-\boldsymbol{\xi^{\wedge}})\textbf{p}
+-\mathtt{Exp}(-\boldsymbol{\xi^{\wedge}})\textbf{p}
+}{\delta\boldsymbol{\xi}}
+={\lim_{\delta\boldsymbol{\xi} \to \textbf{0}}}
+-\frac{\delta\boldsymbol{\xi^{\wedge}}\mathtt{Exp}(-\boldsymbol{\xi^{\wedge}})\textbf{p}
+}{\delta\boldsymbol{\xi}}
+\\&
+={\lim_{\delta\boldsymbol{\xi} \to \textbf{0}}}
+-\frac{
+\begin{pmatrix}
+\delta\boldsymbol{\phi}^{\wedge}&\delta\boldsymbol{\rho}\\\textbf{0}^T&1
+\end{pmatrix}
+\begin{pmatrix}
+\textbf{R}^{-1}&-\textbf{R}^{-1}\textbf{t}\\\textbf{0}^T&1
+\end{pmatrix}
+\begin{pmatrix}
+\textbf{p}\\1
+\end{pmatrix}
+}{\delta\boldsymbol{\xi}}
+\\&
+={\lim_{\delta\boldsymbol{\xi} \to \textbf{0}}}
+-\frac{
+\begin{pmatrix}
+\delta\boldsymbol{\phi}^{\wedge}&\delta\boldsymbol{\rho}\\\textbf{0}^T&1
+\end{pmatrix}
+\begin{pmatrix}
+\textbf{R}^{-1}\textbf{p}-\textbf{R}^{-1}\textbf{t}\\1
+\end{pmatrix}
+}{\delta\boldsymbol{\xi}}
+\\&
+={\lim_{\delta\boldsymbol{\xi} \to \textbf{0}}}
+-\frac{
+\begin{pmatrix}
+\delta\boldsymbol{\phi}^{\wedge}(\textbf{R}^{-1}\textbf{p}-\textbf{R}^{-1}\textbf{t})+\delta\boldsymbol{\rho}\\1
+\end{pmatrix}
+}{\delta\boldsymbol{\xi}}
+\\&
+={\lim_{\delta\boldsymbol{\xi} \to \textbf{0}}}
+-\frac{
+\begin{pmatrix}
+-(\textbf{R}^{-1}\textbf{p}-\textbf{R}^{-1}\textbf{t})^{\wedge}\delta\boldsymbol{\phi}+\delta\boldsymbol{\rho}\\1
+\end{pmatrix}
+}{
+\begin{pmatrix}
+\delta\boldsymbol{\rho}
+\\\delta\boldsymbol{\phi}
+\end{pmatrix}
+}
+=\begin{pmatrix}
+-\textbf{I}_{3}&(\textbf{R}^{-1}\textbf{p}-\textbf{R}^{-1}\textbf{t})^{\wedge}\\\textbf{0}^T&\textbf{0}^T
+\end{pmatrix}_{4\times6}
+\end{aligned}\right.
+\tag{1.2}
+\end{equation}
 
 \end{CJK*}
 \end{document}

@@ -1,8 +1,10 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2018.9.21)  27 MAR 2019 20:43
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2018.1.13)  25 APR 2019 14:20
 entering extended mode
-**C:/Users/wzq/Desktop/git/Supplementary_Material_to_Stereo_VI_DSO/Latex/ML.tex
+**C:/Users/Johnny/Desktop/git/Supplementary_Material_to_Stereo_VI_DSO/Latex/ML.
+tex
 
-(C:/Users/wzq/Desktop/git/Supplementary_Material_to_Stereo_VI_DSO/Latex/ML.tex
+(C:/Users/Johnny/Desktop/git/Supplementary_Material_to_Stereo_VI_DSO/Latex/ML.t
+ex
 LaTeX2e <2011/06/27>
 Babel <v3.8m> and hyphenation patterns for loaded.
 (C:\CTEX\MiKTeX\tex\latex\base\article.cls
@@ -196,7 +198,8 @@ Package color Info: Driver file: pdftex.def on input line 130.
 Package: ulem 2011/03/18
 \ULdepth=\dimen116
 )
-(C:\Users\wzq\Desktop\git\Supplementary_Material_to_Stereo_VI_DSO\Latex\ML.aux
+(C:\Users\Johnny\Desktop\git\Supplementary_Material_to_Stereo_VI_DSO\Latex\ML.a
+ux
 
 LaTeX Warning: Label `ABCLFRS' multiply defined.
 
@@ -408,20 +411,21 @@ File: c19song.fd 2009/09/23 4.8.2
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[14] [15] [16] [17] [18]
-(C:\Users\wzq\Desktop\git\Supplementary_Material_to_Stereo_VI_DSO\Latex\ML.aux)
+[14] [15] [16] [17] [18] [19]
+(C:\Users\Johnny\Desktop\git\Supplementary_Material_to_Stereo_VI_DSO\Latex\ML.a
+ux)
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
  3895 strings out of 495354
- 46008 string characters out of 3183859
+ 46029 string characters out of 3183859
  135332 words of memory out of 3000000
  6989 multiletter control sequences out of 15000+200000
  14787 words of font info for 61 fonts, out of 3000000 for 9000
  14 hyphenation exceptions out of 8191
- 27i,21n,25p,380b,549s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 27i,21n,25p,383b,549s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/CTEX/CTeX/fonts/truetype/chinese/simsun.ttf><C:/CTEX/CTeX/fonts/truetype/
 chinese/simsun.ttf><C:/CTEX/CTeX/fonts/truetype/chinese/simsun.ttf><C:/CTEX/MiK
 TeX/fonts/type1/public/amsfonts/cm/cmbsy10.pfb><C:/CTEX/MiKTeX/fonts/type1/publ
@@ -444,9 +448,9 @@ public/amsfonts/cm/cmr8.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy
 /fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/CTEX/MiKTeX/fonts/type1/public/am
 sfonts/cm/cmtt10.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10
 .pfb>
-Output written on ML.pdf (18 pages, 341502 bytes).
+Output written on ML.pdf (19 pages, 343888 bytes).
 PDF statistics:
- 176 PDF objects out of 1000 (max. 8388607)
+ 180 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
