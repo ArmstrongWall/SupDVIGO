@@ -1,4 +1,4 @@
-If the page does not load images, you can also choose to download <font color='red'> Sup_DVIGO.pdf </font> and read them
+###This is supplementary material of DVIGO. If the page does not load images, you can also choose to download $\color{red}{Sup_DVIGO.pdf}$ and read them
 <div align="center">
     <img src="fig/1.jpg" width = 100% >
 </div>
